@@ -124,7 +124,15 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                    swal(data.msg, "", "success");
+                    swal({
+                        title: "Good!",
+                        text: data.msg,
+                        imageUrl: "images/thumbs-up.jpg",
+                        type: 'success',
+                        timer: 5000,
+                        showConfirmButton: false,
+                        done : window.location.href = history.go(-1)
+                    });
                 }else{
                     swal(data.msg, "", "error");
                 }
