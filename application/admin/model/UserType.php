@@ -14,7 +14,7 @@ use think\Model;
 
 class UserType extends Model
 {
-    protected  $table = 'snake_role';
+    protected  $table = 'cat_role';
 
     /**
      * 根据搜索条件获取角色列表信息
