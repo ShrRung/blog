@@ -60,4 +60,11 @@ class Node extends Model
 
         return $menu;
     }
+
+    /*
+     * menu菜单
+     */
+    public function index(){
+        return $this->fetch();
+    }
 }

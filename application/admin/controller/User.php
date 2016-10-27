@@ -37,7 +37,7 @@ class User extends Base
 
             foreach($selectResult as $key=>$vo){
 
-                $selectResult[$key]['last_login_time'] = date('Y-m-d H:i:s', $vo['last_login_time']);
+                $selectResult[$key]['last_login_time'] = $vo['last_login_time']? date('Y-m-d H:i:s', $vo['last_login_time']):'';
                 $selectResult[$key]['status'] = $status[$vo['status']];
 
                 $operate = [
@@ -79,7 +79,8 @@ class User extends Base
         $role = new UserType();
         $this->assign([
             'role' => $role->getRole(),
-            'status' => config('user_status')
+            'status' => config('user_status'),
+            'upload_path' => 'avatar'
         ]);
 
         return $this->fetch();
@@ -109,7 +110,8 @@ class User extends Base
         $this->assign([
             'user' => $user->getOneUser($id),
             'status' => config('user_status'),
-            'role' => $role->getRole()
+            'role' => $role->getRole(),
+            'upload_path' => 'avatar'
         ]);
         return $this->fetch();
     }
