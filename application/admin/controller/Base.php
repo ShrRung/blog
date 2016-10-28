@@ -36,7 +36,7 @@ class Base extends Controller
 
         //获取权限菜单
         $node = new Node();
-
+//var_dump($node->getMenu(session('rule')));
         $this->assign([
             'username' => session('username'),
             'menu' => $node->getMenu(session('rule')),
