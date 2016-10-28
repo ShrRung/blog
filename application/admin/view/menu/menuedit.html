@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑角色</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="/static/admin/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑菜单</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" method="post" onsubmit="return toVaild()" >
+                        <input type="hidden" value="{$menu_info.id}" name="id"/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单名称：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="node_name" type="text" class="form-control" name="node_name" required="" aria-required="true" value="{$menu_info.node_name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">上级目录：</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b" name="pid" id="pid" onchange="menu_change()">
+                                    <option value="0" {if condition="$menu_info.pid eq 0"}selected{/if}>一级菜单</option>
+                                    {foreach name="menu_list" item="vo"}
+                                        <option value="{$vo.id}" {if condition="$menu_info.pid eq $vo.id"}selected{/if}>
+                                            {if condition="$vo.level eq 2"}<span>&nbsp;&nbsp;┠</span>{/if}
+                                            {if condition="$vo.level eq 3"}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┗</span>{/if}
+                                            {$vo.node_name}
+                                        </option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否menu：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="radio i-checks">
+                                    <label>
+                                        <input type="radio" value="2" {if condition="$menu_info.is_menu eq 2"}checked{/if} name="is_menu"> <i></i> 是</label>
+                                    <label>
+                                        <input type="radio" value="1" {if condition="$menu_info.is_menu eq 1"}checked{/if} name="is_menu"> <i></i> 否</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">控制器名：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="control_name" type="text" class="form-control" name="control_name" required="" aria-required="true" value="{$menu_info.control_name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">方法名：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="action_name" type="text" class="form-control" name="action_name" required="" aria-required="true" value="{$menu_info.action_name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">菜单样式：</label>
+                            <div class="input-group col-sm-4">
+                                <div class="row" style="padding-left: 1em">
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-tasks'"}checked{/if}  name="icon" value="fa fa-tasks">&nbsp;&nbsp;<i class="fa fa-tasks"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-cog'"}checked{/if}  name="icon" value="fa fa-cog">&nbsp;&nbsp;<i class="fa fa-cog"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-dashboard'"}checked{/if}  name="icon" value="fa fa-dashboard">&nbsp;&nbsp;<i class="fa fa-dashboard"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-retweet'"}checked{/if}  name="icon" value="fa fa-retweet">&nbsp;&nbsp;<i class="fa fa-retweet"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-navicon'"}checked{/if} name="icon" value="fa fa-navicon">&nbsp;&nbsp;<i class="fa fa-navicon"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-table'"}checked{/if} name="icon" value="fa fa-table">&nbsp;&nbsp;<i class="fa fa-table"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-bar-chart'"}checked{/if}  name="icon" value="fa fa-bar-chart">&nbsp;&nbsp;<i class="fa fa-bar-chart"></i></span>
+                                </div>
+                                <div class="row" style="padding-left: 1em">
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-desktop'"}checked{/if} name="icon" value="fa fa-desktop">&nbsp;&nbsp;<i class="fa fa-desktop"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-book'"}checked{/if}  name="icon" value="fa fa-book">&nbsp;&nbsp;<i class="fa fa-book"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-flag'"}checked{/if}  name="icon" value="fa fa-flag">&nbsp;&nbsp;<i class="fa fa-flag"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-home'"}checked{/if}  name="icon" value="fa fa-home">&nbsp;&nbsp;<i class="fa fa-home"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-pencil'"}checked{/if}  name="icon" value="fa fa-pencil">&nbsp;&nbsp;<i class="fa fa-pencil"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-star'"}checked{/if} name="icon" value="fa fa-star">&nbsp;&nbsp;<i class="fa fa-star"></i></span>
+                                    <span class="iconspan"><input type="radio" {if condition="$menu_info.style eq 'fa fa-users'"}checked{/if}  name="icon" value="fa fa-users">&nbsp;&nbsp;<i class="fa fa-users"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/static/admin/js/content.min.js?v=1.0.0"></script>
+<script src="/static/admin/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/static/admin/js/plugins/validate/messages_zh.min.js"></script>
+<script src="/static/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script src="/static/admin/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
+<script src="/static/admin/js/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="/static/admin/js/plugins/layer/layer.min.js"></script>
+<script type="text/javascript">
+
+    //表单提交
+    function toVaild(){
+        var jz;
+        var url = "./menuEdit";
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:{'data' : $('#commentForm').serialize()},// 你的formid
+            async: false,
+            beforeSend:function(){
+                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+            },
+            error: function(request) {
+                layer.close(jz);
+                swal("网络错误!", "", "error");
+            },
+            success: function(data) {
+                //关闭加载层
+                layer.close(jz);
+                if(data.code == 1){
+                    swal({
+                        title: "Good!",
+                        text: data.msg,
+                        imageUrl: "images/thumbs-up.jpg",
+                        type: 'success',
+                        timer: 5000,
+                        showConfirmButton: false,
+                        done : window.location.href = history.go(-1)
+                    });
+                }else{
+                    swal(data.msg, "", "error");
+                }
+
+            }
+        });
+
+        return false;
+    }
+
+    //表单验证
+    $(document).ready(function(){
+        $(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",});
+    });
+    $.validator.setDefaults({
+        highlight: function(e) {
+            $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+        },
+        success: function(e) {
+            e.closest(".form-group").removeClass("has-error").addClass("has-success")
+        },
+        errorElement: "span",
+        errorPlacement: function(e, r) {
+            e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+        },
+        errorClass: "help-block m-b-none",
+        validClass: "help-block m-b-none"
+    });
+
+    function menu_change(){
+        var select = $('#pid').val();
+        var menu_id = {$menu_info.id};
+        var pid = {$menu_info.pid};
+        if(select == menu_id){
+            layer.msg('不能选择自己',{icon: 2,time: 3000});
+            $('#pid').val(pid);
+        }
+    }
+</script>
+
+</body>
+</html>

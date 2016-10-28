@@ -17,46 +17,46 @@
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>管理员列表</h5>
+            <h5>菜单列表</h5>
         </div>
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
-                <a href="./userAdd"><button class="btn btn-outline btn-primary" type="button">添加用户</button></a>
+                <a href="./menuAdd"><button class="btn btn-outline btn-primary" type="button">添加菜单</button></a>
             </div>
-            <!--搜索框开始-->
-            <form id='commentForm' role="form" method="post" class="form-inline">
-                <div class="content clearfix m-b">
-                    <div class="form-group">
-                        <label>管理员名称：</label>
-                        <input type="text" class="form-control" id="username" name="username">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <!--搜索框结束-->
+            <div style="clear:both"><br></div>
             <div class="hr-line-dashed"></div>
 
             <div class="example-wrap">
                 <div class="example">
-                    <table id="cusTable" data-height="700">
+                    <table id="cusTable" data-height="500">
                         <thead>
-                        <th data-field="username">管理员名称</th>
-                        <th data-field="rolename">管理员角色</th>
-                        <th data-field="loginnum">登录次数</th>
-                        <th data-field="last_login_ip">上次登录ip</th>
-                        <th data-field="last_login_time">上次登录时间</th>
-                        <th data-field="real_name">真是姓名</th>
-                        <th data-field="status">状态</th>
-                        <th data-field="operate">操作</th>
+                            <th data-field="node_name">菜单名称</th>
+                            <th data-field="href">方法地址</th>
+                            <th data-field="rolename">模板</th>
+                            <th data-field="operate">操作</th>
                         </thead>
+                        <tbody>
+                            {foreach name="menu_list" item="vo" key="k" }
+                            <tr id="menu_{$vo.level}" >
+                                <td {if condition="$vo.level eq 2"}style='padding-left:13em'{/if} {if condition="$vo.level eq 3"}style="padding-left:16em"{/if}>
+                                {if condition="$vo.level eq 2"}<span style="padding-left: 3em">┣ </span>{/if}
+                                {if condition="$vo.level eq 3"}<span style="padding-left: 7em">┗ </span>{/if}
+                                {$vo.node_name}</td>
+                                <td>{$vo.href}</td>
+                                <td>{$vo.style}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="{:url('Menu/menuEdit',['id'=>$vo.id])}">编辑</a>
+                                    <button class="btn btn-primary btn-sm btn-danger">删除</button>
+                                </td>
+                            </tr>
+                            {/foreach}
+                        </tbody>
                     </table>
                 </div>
             </div>
             <!-- End Example Pagination -->
         </div>
+
     </div>
 </div>
 <!-- End Panel Other -->
@@ -71,6 +71,11 @@
 <script src="/static/admin/js/plugins/layer/laydate/laydate.js"></script>
 <script src="/static/admin/js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="/static/admin/js/plugins/layer/layer.min.js"></script>
+<script src="/static/admin/js/plugins/layer/layer.min.js"></script>
+<!--<link rel="stylesheet" href="/static/admin/js/plugins/zTree/zTreeStyle.css" type="text/css">-->
+<!--<script type="text/javascript" src="/static/admin/js/plugins/zTree/jquery.ztree.core-3.5.js"></script>-->
+<!--<script type="text/javascript" src="/static/admin/js/plugins/zTree/jquery.ztree.excheck-3.5.js"></script>-->
+<!--<script type="text/javascript" src="/static/admin/js/plugins/zTree/jquery.ztree.exedit-3.5.js"></script>-->
 <script type="text/javascript">
     function initTable() {
         //先销毁表格
@@ -80,7 +85,7 @@
             method: "get",  //使用get请求到服务器获取数据
             url: "./index", //获取数据的地址
             striped: true,  //表格显示条纹
-            pagination: true, //启动分页
+            pagination: false, //启动分页
             pageSize: 10,  //每页显示的记录数
             pageNumber:1, //当前第几页
             pageList: [5, 10, 15, 20, 25],  //记录数可选列表
@@ -113,7 +118,7 @@
         $("#search").bind("click", initTable);
     });
 
-    function userDel(id){
+    function menuDel(id){
         layer.confirm('确认删除此管理员?', {icon: 3, title:'提示'}, function(index){
             //do something
             $.getJSON('./userDel', {'id' : id}, function(res){

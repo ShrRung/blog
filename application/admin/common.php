@@ -51,12 +51,11 @@ function subTree($param, $pid = 0)
             subTree($param, $vo['id']);
         }
     }
-
     return $res;
 }
 
 /**
- * 整理菜单住方法
+ * 整理菜单主方法
  * @param $param
  * @return array
  */
@@ -67,7 +66,7 @@ function prepareMenu($param)
 
     foreach($param as $key=>$vo){
 
-        if($vo['typeid'] == 0){
+        if($vo['pid'] == 0){
             $vo['href'] = '#';
             $parent[] = $vo;
         }else{
@@ -79,7 +78,7 @@ function prepareMenu($param)
     foreach($parent as $key=>$vo){
         foreach($child as $k=>$v){
 
-            if($v['typeid'] == $vo['id']){
+            if($v['pid'] == $vo['id']){
                 $parent[$key]['child'][] = $v;
             }
         }
