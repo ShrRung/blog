@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 �?10 �?28 �?18:42
+-- 生成日期: 2016 �?10 �?31 �?18:03
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.5.17
 
@@ -55,17 +55,27 @@ CREATE TABLE IF NOT EXISTS `cat_article_tag` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cat_category`
+-- 表的结构 `cat_categorys`
 --
 
-CREATE TABLE IF NOT EXISTS `cat_category` (
+CREATE TABLE IF NOT EXISTS `cat_categorys` (
   `cate_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(40) NOT NULL COMMENT '分类名',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '上级id',
+  `level` int(11) NOT NULL DEFAULT '1' COMMENT '目录阶级',
   `sort` int(10) NOT NULL DEFAULT '0' COMMENT '由大到小排序',
   `status` tinyint(1) NOT NULL COMMENT '状态1',
   PRIMARY KEY (`cate_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章分类表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='文章分类表' AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `cat_categorys`
+--
+
+INSERT INTO `cat_categorys` (`cate_id`, `title`, `pid`, `level`, `sort`, `status`) VALUES
+(1, '技术文章', 0, 1, 0, 1),
+(3, 'PHP文章', 1, 2, 23, 1),
+(5, '情感文章', 0, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -77,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `cat_config` (
   `conf_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `descript` varchar(255) NOT NULL,
+  `homepage` varchar(255) DEFAULT NULL COMMENT '主页',
   `logo` varchar(255) NOT NULL COMMENT '图片logo',
   `ico` varchar(255) DEFAULT NULL COMMENT 'ico图片',
   `keywords` varchar(255) NOT NULL COMMENT '网站关键词',
@@ -91,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `cat_config` (
 -- 转存表中的数据 `cat_config`
 --
 
-INSERT INTO `cat_config` (`conf_id`, `name`, `descript`, `logo`, `ico`, `keywords`, `qrcode`, `copyright`, `author`, `author_email`) VALUES
-(1, 'LazyCat', 'LazyCat个人博客', '/uploads', '/uploads', '关键词', '/uploads', 'fsdfs', 'LazyCat', '1026825079@qq.com');
+INSERT INTO `cat_config` (`conf_id`, `name`, `descript`, `homepage`, `logo`, `ico`, `keywords`, `qrcode`, `copyright`, `author`, `author_email`) VALUES
+(1, 'lazycat个人博客', '方师傅师傅', 'http://www.thinkphptest.com', '\\uploads\\logo\\20161031\\47c158ab124305e14b8b6e79545fc763.png', '/uploads', 'lazycat，个人博客，PHP，thinkphp', '/uploads', 'Copyright LazyCat ©2016 All rights reserved   ', 'lazycat', '1026825079@qq.com');
 
 -- --------------------------------------------------------
 
@@ -129,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `cat_node` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `pid_2` (`pid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- 转存表中的数据 `cat_node`
@@ -159,11 +170,14 @@ INSERT INTO `cat_node` (`id`, `node_name`, `module_name`, `control_name`, `actio
 (30, '添加文章', 'admin', 'article', 'articleadd', 1, 29, 3, ''),
 (31, '编辑文章', 'admin', 'article', 'articleedit', 1, 29, 3, ''),
 (32, '删除文章', 'admin', 'article', 'articledel', 1, 29, 3, ''),
-(33, '文章分类', 'admin', 'category', 'index', 2, 27, 2, ''),
+(33, '文章分类', 'admin', 'categorys', 'index', 2, 27, 2, ''),
 (34, '文章标签', 'admin', 'tag', 'index', 2, 27, 2, ''),
-(35, '添加分类', 'admin', 'category', 'categoryadd', 1, 33, 3, ''),
-(36, '修改分类', 'admin', 'category', 'categoryedit', 1, 33, 3, ''),
-(37, '删除分类', 'admin', 'category', 'categorydel', 1, 33, 3, '');
+(35, '添加分类', 'admin', 'categorys', 'categoryadd', 1, 33, 3, ''),
+(36, '修改分类', 'admin', 'categorys', 'categoryedit', 1, 33, 3, ''),
+(37, '删除分类', 'admin', 'categorys', 'categorydel', 1, 33, 3, ''),
+(40, '添加标签', 'admin', 'tag', 'tagadd', 1, 34, 3, ''),
+(41, '编辑标签', 'admin', 'tag', 'tagedit', 1, 34, 3, ''),
+(42, '删除标签', 'admin', 'tag', 'tagdel', 1, 34, 3, '');
 
 -- --------------------------------------------------------
 
@@ -185,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `cat_role` (
 INSERT INTO `cat_role` (`id`, `rolename`, `rule`) VALUES
 (1, '超级管理员', ''),
 (2, '系统维护员', '1,2,3,4,5,6,7,8,9,10'),
-(3, '新闻发布员', '1,2,3,4,5,6,7,10,11,12,13,14');
+(3, '新闻发布员', '1,2,3,4,5,6,7,10,11,12,13,14,27,29,30,31,32,33,35,36,37,34,40,41,42');
 
 -- --------------------------------------------------------
 
@@ -197,7 +211,15 @@ CREATE TABLE IF NOT EXISTS `cat_tag` (
   `tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(40) NOT NULL COMMENT '标签内容',
   PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='标签表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='标签表' AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `cat_tag`
+--
+
+INSERT INTO `cat_tag` (`tag_id`, `title`) VALUES
+(2, 'LNMP'),
+(3, 'THINKPHP');
 
 -- --------------------------------------------------------
 
@@ -225,11 +247,11 @@ CREATE TABLE IF NOT EXISTS `cat_user` (
 --
 
 INSERT INTO `cat_user` (`id`, `username`, `password`, `avatar`, `loginnum`, `last_login_ip`, `last_login_time`, `real_name`, `email`, `status`, `typeid`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 50, '127.0.0.1', 1477648378, 'admin', NULL, 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 61, '127.0.0.1', 1477902560, 'admin', NULL, 1, 1),
 (2, 'xiaobai', '4297f44b13955235245b2497399d7a93', '\\uploads\\avatar\\20161027\\9ca5e756295b3fe7ec09c1da203dec1e.png', 6, '127.0.0.1', 1470368260, '小白122123', NULL, 1, 2),
 (4, 'root', '63a9f0ea7bb98050796b649e85481845', '\\uploads\\avatar\\20161027\\e4535accf1d3f56f08801839d5260440.png', 0, '', 0, 'root', NULL, 1, 2),
 (5, 'test', '098f6bcd4621d373cade4e832627b4f6', '\\uploads\\avatar\\20161027\\65f0ca2d8e0dad2d14b7e138c018f050.jpg', 2, '127.0.0.1', 1477640067, 'test', NULL, 1, 2),
-(6, 'zhangcong', '84fa8a6653af9145522baab2051e2b76', '\\uploads\\avatar\\20161027\\5854d67a16900ae22066d20aa17d5d3c.png', 1, '127.0.0.1', 1477623250, '234234', NULL, 1, 3);
+(6, 'zhangcong', '84fa8a6653af9145522baab2051e2b76', '\\uploads\\avatar\\20161027\\5854d67a16900ae22066d20aa17d5d3c.png', 4, '127.0.0.1', 1477902590, '234234', NULL, 1, 3);
 
 -- --------------------------------------------------------
 
