@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加管理员</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/plugins/markdown/bootstrap-markdown.min.css" />
+    <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加管理员</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" id="commentForm" method="post">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文章标题：</label>
+                            <div class="input-group col-sm-7">
+                                <input id="title" type="text" class="form-control" name="title" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">分类ID：</label>
+                            <div class="input-group col-sm-7">
+                                <select class="form-control" name="cate_id" required="" aria-required="true">
+                                    <option value="0">请选择</option>
+                                    {if !empty($cate_list)}
+                                    {foreach name="cate_list" item="vo"}
+                                    <option value="{$vo.id}">{$vo.title}</option>
+                                    {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文章标签：</label>
+                            <div class="col-sm-7">
+                                {foreach name="tag_list" item="val"}
+                                    <label class="checkbox-inline i-checks">
+                                        <input type="checkbox" value="{$val.tag_id}" id="tag[]">{$val.title}</label>
+                                {/foreach}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">摘要：</label>
+                            <div class="input-group col-sm-7">
+                                <textarea class="form-control" name="abstract"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">内容：</label>
+                            <div class="input-group col-sm-7">
+                                <div class="ibox-content">
+                                    <textarea name="content" data-provide="markdown"  rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">排序：</label>
+                            <div class="input-group col-sm-7">
+                                <input id="sort" type="text" class="form-control" name="sort" required="" aria-required="true">
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <!--<input type="button" value="提交" class="btn btn-primary" id="postform"/>-->
+                                <button class="btn btn-primary" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/static/admin/js/content.min.js?v=1.0.0"></script>
+
+<script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+<script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/static/admin/js/content.min.js?v=1.0.0"></script>
+<script src="/static/admin/js/plugins/layer/layer.min.js"></script>
+
+<script type="text/javascript" src="/static/admin/js/plugins/markdown/markdown.js"></script>
+<script type="text/javascript" src="/static/admin/js/plugins/markdown/to-markdown.js"></script>
+<script type="text/javascript" src="/static/admin/js/plugins/markdown/bootstrap-markdown.js"></script>
+<script type="text/javascript" src="/static/admin/js/plugins/markdown/bootstrap-markdown.zh.js"></script>
+
+</body>
+</html>
