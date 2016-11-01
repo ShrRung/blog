@@ -27,22 +27,23 @@ class Article extends Base
         if(request()->isPost()){
 
             $param = input('param.');
-            $param = parseParams($param['data']);
-
-
             $flag = $model_article->insertArticle($param);
+            if($flag['code'] == 1){
+                $this->success('添加成功');
+            }else{
+                $this->error($flag['msg']);
+            }
+//            return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+        }else{
+            $cate_list = $model_cate->getAllCategorys();
+            $tag_list = $model_tag->getAllTag();
+            $this->assign([
+                'cate_list' => $cate_list,
+                'tag_list' => $tag_list,
+                'upload_path' => 'avatar'
+            ]);
 
-            return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
+            return $this->fetch();
         }
-
-        $cate_list = $model_cate->getAllCategorys();
-        $tag_list = $model_tag->getAllTag();
-        $this->assign([
-            'cate_list' => $cate_list,
-            'tag_list' => $tag_list,
-            'upload_path' => 'avatar'
-        ]);
-
-        return $this->fetch();
     }
 }

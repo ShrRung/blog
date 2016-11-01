@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 �?10 �?31 �?18:03
+-- 生成日期: 2016 �?11 �?01 �?17:59
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.5.17
 
@@ -30,16 +30,24 @@ CREATE TABLE IF NOT EXISTS `cat_article` (
   `art_id` int(11) NOT NULL AUTO_INCREMENT,
   `cate_id` int(11) NOT NULL DEFAULT '0' COMMENT '分类id',
   `title` varchar(255) NOT NULL COMMENT '标题',
-  `content` text NOT NULL COMMENT '内容',
+  `content` text NOT NULL,
   `abstract` varchar(255) NOT NULL COMMENT '摘要',
   `sort` int(10) NOT NULL DEFAULT '0' COMMENT '由大到小排序',
-  `top` tinyint(1) NOT NULL COMMENT '是否置顶',
+  `top` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否置顶',
   `view` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:显示;0:不显示',
-  `video_id` int(11) NOT NULL,
-  `create_time` int(10) NOT NULL DEFAULT '0',
-  `modify_time` int(10) NOT NULL DEFAULT '0' COMMENT '最后修改时间',
+  `video_id` int(11) NOT NULL DEFAULT '0',
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modify_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '最后修改时间',
   PRIMARY KEY (`art_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='文章表' AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `cat_article`
+--
+
+INSERT INTO `cat_article` (`art_id`, `cate_id`, `title`, `content`, `abstract`, `sort`, `top`, `view`, `video_id`, `create_time`, `modify_time`) VALUES
+(1, 3, 'mysql执行对某字段替换值', '```\r\nUPDATE 表 set 字段= REPLACE(字段,待替换值,替换的值)\r\n```\r\n', 'mysql执行对某字段替换值', 0, 0, 1, 0, '2016-11-01 02:16:36', '0000-00-00 00:00:00'),
+(2, 3, 'gdfgs', '![输入图片说明](https://www.baidu.com/img/bdlogo.png &quot;在这里输入图片标题&quot;)   \nhdfhdfgh\n\n1. 1. 这里输入代码', 'dgsdf', 3, 0, 1, 0, '2016-11-01 02:24:23', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -247,11 +255,11 @@ CREATE TABLE IF NOT EXISTS `cat_user` (
 --
 
 INSERT INTO `cat_user` (`id`, `username`, `password`, `avatar`, `loginnum`, `last_login_ip`, `last_login_time`, `real_name`, `email`, `status`, `typeid`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 61, '127.0.0.1', 1477902560, 'admin', NULL, 1, 1),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 62, '127.0.0.1', 1477966446, 'admin', NULL, 1, 1),
 (2, 'xiaobai', '4297f44b13955235245b2497399d7a93', '\\uploads\\avatar\\20161027\\9ca5e756295b3fe7ec09c1da203dec1e.png', 6, '127.0.0.1', 1470368260, '小白122123', NULL, 1, 2),
 (4, 'root', '63a9f0ea7bb98050796b649e85481845', '\\uploads\\avatar\\20161027\\e4535accf1d3f56f08801839d5260440.png', 0, '', 0, 'root', NULL, 1, 2),
 (5, 'test', '098f6bcd4621d373cade4e832627b4f6', '\\uploads\\avatar\\20161027\\65f0ca2d8e0dad2d14b7e138c018f050.jpg', 2, '127.0.0.1', 1477640067, 'test', NULL, 1, 2),
-(6, 'zhangcong', '84fa8a6653af9145522baab2051e2b76', '\\uploads\\avatar\\20161027\\5854d67a16900ae22066d20aa17d5d3c.png', 4, '127.0.0.1', 1477902590, '234234', NULL, 1, 3);
+(6, 'zhangcong', '84fa8a6653af9145522baab2051e2b76', '\\uploads\\avatar\\20161027\\5854d67a16900ae22066d20aa17d5d3c.png', 5, '127.0.0.1', 1477961846, '234234', NULL, 1, 3);
 
 -- --------------------------------------------------------
 

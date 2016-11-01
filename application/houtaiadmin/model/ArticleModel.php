@@ -12,6 +12,8 @@ namespace app\houtaiadmin\model;
 
 use think\Model;
 
+use app\houtaiadmin\model\TagModel;
+
 class ArticleModel extends Model
 {
     protected $table = 'cat_article';
@@ -25,7 +27,9 @@ class ArticleModel extends Model
      */
     public function insertArticle($param){
         try{
-            $result =  $this->save($param);
+            $result =  $this->save(['cate_id'=>$param['cate_id'],'title'=>$param['title'],'content'=>htmlspecialchars($param['content']),'abstract'=>$param['abstract'],
+                                'sort'=>$param['sort'],'create_time'=>date('Y-m-d h:i:s',time())
+                                ]);
             if(false === $result){
                 // 验证失败 输出错误信息
                 return ['code' => -1, 'data' => '', 'msg' => $this->getError()];
