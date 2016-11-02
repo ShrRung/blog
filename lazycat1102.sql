@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 �?11 �?02 �?17:43
+-- 生成日期: 2016 �?11 �?02 �?17:56
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.5.17
 
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `cat_node` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `pid_2` (`pid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
 
 --
 -- 转存表中的数据 `cat_node`
@@ -196,7 +196,18 @@ INSERT INTO `cat_node` (`id`, `node_name`, `module_name`, `control_name`, `actio
 (41, '编辑标签', 'admin', 'tag', 'tagedit', 1, 34, 3, ''),
 (42, '删除标签', 'admin', 'tag', 'tagdel', 1, 34, 3, ''),
 (43, '置顶文章', 'admin', 'article', 'changearttop', 1, 29, 3, ''),
-(44, '修改文章状态', 'admin', 'article', 'changeartview', 1, 29, 3, '');
+(44, '修改文章状态', 'admin', 'article', 'changeartview', 1, 29, 3, ''),
+(45, '友链管理', 'admin', 'link', 'index', 2, 11, 2, ''),
+(46, '添加链接', 'admin', 'link', 'linkadd', 1, 45, 3, ''),
+(47, '编辑友链', 'admin', 'link', 'linkedit', 1, 45, 3, ''),
+(48, '删除友链', 'admin', 'link', 'linkdel', 1, 45, 3, ''),
+(49, '音频管理', 'admin', '#', '#', 2, 0, 1, 'fa fa-tasks'),
+(50, '音频列表', 'admin', 'video', 'index', 2, 49, 2, ''),
+(51, '个人管理', 'admin', '#', '#', 2, 0, 1, 'fa fa-pencil'),
+(52, '修改个人密码', 'admin', 'personnel', 'changepassword', 2, 51, 2, ''),
+(53, '添加音频', 'admin', 'video', 'videoadd', 1, 50, 3, ''),
+(54, '修改音频', 'admin', 'video', 'videoedit', 1, 50, 3, ''),
+(55, '删除音频', 'admin', 'video', 'videodel', 1, 50, 3, '');
 
 -- --------------------------------------------------------
 
