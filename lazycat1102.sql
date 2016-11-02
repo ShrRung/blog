@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 �?11 �?02 �?17:56
+-- 生成日期: 2016 �?11 �?02 �?18:00
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.5.17
 
@@ -130,7 +130,8 @@ INSERT INTO `cat_config` (`conf_id`, `name`, `descript`, `homepage`, `logo`, `ic
 
 CREATE TABLE IF NOT EXISTS `cat_link` (
   `link_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL COMMENT '友链名',
+  `author` varchar(50) NOT NULL DEFAULT '-' COMMENT '友链作者',
+  `title` varchar(50) NOT NULL DEFAULT '-' COMMENT '友链名',
   `url` varchar(255) NOT NULL COMMENT '网站链接',
   `logo` varchar(255) DEFAULT NULL COMMENT '图片logo',
   `view` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:显示;0:不显示',
