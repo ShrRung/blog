@@ -143,7 +143,7 @@ class UserType extends Model
 
         $result = db('role')->where('id', $id)->find();
         if(empty($result['rule'])){
-            $where = '';
+            $where = array();
         }else{
             $where = 'id in('.$result['rule'].')';
         }

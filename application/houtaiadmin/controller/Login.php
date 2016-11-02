@@ -55,7 +55,6 @@ class Login extends Controller
         //获取该管理员的角色信息
         $user = new UserType();
         $info = $user->getRoleInfo($hasUser['typeid']);
-
         session('username', $username);
         session('id', $hasUser['id']);
         session('role', $info['rolename']);  //角色名

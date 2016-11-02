@@ -27,9 +27,39 @@
             <form id='commentForm' role="form" method="post" class="form-inline">
                 <div class="content clearfix m-b">
                     <div class="form-group">
-                        <label>管理员名称：</label>
-                        <input type="text" class="form-control" id="username" name="username">
+                        <label>文章关键字：</label>
+                        <input type="text" class="form-control" id="keyword" name="keyword">
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label">分类ID：</label>
+                        <div class="input-group">
+                            <select class="form-control" name="cate_id" id="cate_id" required="" aria-required="true">
+                                <option value="0">请选择</option>
+                                {if !empty($cate_list)}
+                                {foreach name="cate_list" item="vo"}
+                                <option value="{$vo.id}">{$vo.title}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">是否显示：</label>
+                        <div class="input-group">
+                            <select class="form-control" name="view" id="view" required="" aria-required="true">
+                                {if !empty($view)}
+                                {foreach name="$view" item="vo" key="k"}
+                                <option value="{$k}">{$vo}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group">
                         <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>
                         </button>
@@ -43,13 +73,12 @@
                 <div class="example">
                     <table id="cusTable" data-height="700">
                         <thead>
-                        <th data-field="username">管理员名称</th>
-                        <th data-field="rolename">管理员角色</th>
-                        <th data-field="loginnum">登录次数</th>
-                        <th data-field="last_login_ip">上次登录ip</th>
-                        <th data-field="last_login_time">上次登录时间</th>
-                        <th data-field="real_name">真实姓名</th>
-                        <th data-field="status">状态</th>
+                        <th data-field="title">文章名称</th>
+                        <th data-field="cate">分类</th>
+                        <th data-field="tags">标签</th>
+                        <th data-field="create_time">创建时间</th>
+                        <th data-field="top">是否置顶</th>
+                        <th data-field="view">是否显示</th>
                         <th data-field="operate">操作</th>
                         </thead>
                     </table>
@@ -92,7 +121,9 @@
                 var param = {
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
-                    searchText:$('#username').val()
+                    searchText:$('#keyword').val(),
+                    cateId : $('#cate_id').val(),
+                    view : $('#view').val()
                 };
                 return param;
             },
@@ -127,7 +158,52 @@
 
             layer.close(index);
         })
+    }
 
+    function change_article_top(top,art_id){
+        if(top == 1){
+            top = 0;
+        }else{
+            top = 1;
+        }
+        $.getJSON('./changeArtTop', {art_id : art_id,top:top}, function(res){
+//            console.log(res);
+            if(res.code == 1){
+                $("#art_top"+art_id).attr("href","javascript:change_article_top("+top+","+art_id+")");
+                if(top == 1){
+                    $("#art_top"+art_id).removeClass('btn-danger').addClass('btn-sm');
+                    $("#art_top"+art_id).text('是');
+                }else{
+                    $("#art_top"+art_id).removeClass('btn-sm').addClass('btn-danger');
+                    $("#art_top"+art_id).text('否');
+                }
+            }else{
+                layer.alert(res.msg);
+            }
+        });
+    }
+
+    function change_article_view(view,art_id){
+        if(view == 1){
+            view = 0;
+        }else{
+            view = 1;
+        }
+        $.getJSON('./changeArtView', {art_id : art_id,view:view}, function(res){
+//            console.log(res);
+            if(res.code == 1){
+                $("#art_view"+art_id).attr("href","javascript:change_article_view("+view+","+art_id+")");
+                if(view == 1){
+                    $("#art_view"+art_id).removeClass('btn-danger').addClass('btn-sm');
+                    $("#art_view"+art_id).text('是');
+                }else{
+                    $("#art_view"+art_id).removeClass('btn-sm').addClass('btn-danger');
+                    $("#art_view"+art_id).text('否');
+                }
+            }else{
+                layer.alert(res.msg);
+            }
+        });
     }
 </script>
 </body>
