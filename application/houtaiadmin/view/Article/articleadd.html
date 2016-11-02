@@ -9,7 +9,6 @@
     <link href="/static/admin/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="/static/admin/css/animate.min.css" rel="stylesheet">
     <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
-    <link href="/static/admin/css/style.min862f.css?v=4.1.0" rel="stylesheet">
     <!--https://simplemde.com/ 很不错，但没有代码高亮效果，拜拜-->
     <!--<link href="/static/admin/js/plugins/simplemde/simplemde.min.css" rel="stylesheet">
     <script src="/static/admin/js/plugins/simplemde/simplemde.min.js"></script>-->
@@ -111,6 +110,9 @@
 <script src="/static/admin/js/plugins/layer/layer.min.js"></script>
 <script src="/static/admin/js/plugins/editormd/editormd.js"></script>
 <script>
+    $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+</script>
+<script>
     //editormd
     $(function() {
         var editor = editormd("editormd", {
@@ -125,6 +127,7 @@
          });
          */
     });
+
     // https://simplemde.com/ 很不错，但没有代码高亮效果，拜拜
     //    var simplemde = new SimpleMDE({ element: document.getElementById("markdown") });
 

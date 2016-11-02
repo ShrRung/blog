@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+    <link href="/static/admin/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="/static/admin/css/style.min.css?v=4.1.0" rel="stylesheet">
     <!--https://simplemde.com/ 很不错，但没有代码高亮效果，拜拜-->
     <!--<link href="/static/admin/js/plugins/simplemde/simplemde.min.css" rel="stylesheet">
@@ -109,9 +110,12 @@
 <script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
 <script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="/static/admin/js/content.min.js?v=1.0.0"></script>
-
+<script src="/static/admin/js/plugins/iCheck/icheck.min.js"></script>
 <script src="/static/admin/js/plugins/layer/layer.min.js"></script>
 <script src="/static/admin/js/plugins/editormd/editormd.js"></script>
+<script>
+    $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+</script>
 <script>
     //editormd
     $(function() {
