@@ -9,6 +9,7 @@ class Index extends Controller
     {
 
         $this->assign('list', 111);
+        header("HTTP/1.0 404 Not Found");
         return $this->fetch();
     }
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 �?11 �?02 �?18:00
+-- 生成日期: 2016 �?11 �?03 �?17:53
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.5.17
 
@@ -129,15 +129,23 @@ INSERT INTO `cat_config` (`conf_id`, `name`, `descript`, `homepage`, `logo`, `ic
 --
 
 CREATE TABLE IF NOT EXISTS `cat_link` (
-  `link_id` int(11) NOT NULL,
+  `link_id` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(50) NOT NULL DEFAULT '-' COMMENT '友链作者',
   `title` varchar(50) NOT NULL DEFAULT '-' COMMENT '友链名',
   `url` varchar(255) NOT NULL COMMENT '网站链接',
   `logo` varchar(255) DEFAULT NULL COMMENT '图片logo',
   `view` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:显示;0:不显示',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '降序排序',
-  `create_time` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='友链表';
+  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  KEY `link_id` (`link_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='友链表' AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `cat_link`
+--
+
+INSERT INTO `cat_link` (`link_id`, `author`, `title`, `url`, `logo`, `view`, `sort`, `create_time`) VALUES
+(1, '测试1', '房贷房贷1', 'http://www.baidu1.com', '\\uploads\\link\\20161103\\86feb33dc4f36b0bd328d3d761917e53.png', 1, 1, '2016-11-03 10:32:15');
 
 -- --------------------------------------------------------
 
@@ -205,7 +213,7 @@ INSERT INTO `cat_node` (`id`, `node_name`, `module_name`, `control_name`, `actio
 (49, '音频管理', 'admin', '#', '#', 2, 0, 1, 'fa fa-tasks'),
 (50, '音频列表', 'admin', 'video', 'index', 2, 49, 2, ''),
 (51, '个人管理', 'admin', '#', '#', 2, 0, 1, 'fa fa-pencil'),
-(52, '修改个人密码', 'admin', 'personnel', 'changepassword', 2, 51, 2, ''),
+(52, '修改个人密码', 'admin', 'personnel', 'change_password', 2, 51, 2, ''),
 (53, '添加音频', 'admin', 'video', 'videoadd', 1, 50, 3, ''),
 (54, '修改音频', 'admin', 'video', 'videoedit', 1, 50, 3, ''),
 (55, '删除音频', 'admin', 'video', 'videodel', 1, 50, 3, '');
@@ -229,8 +237,8 @@ CREATE TABLE IF NOT EXISTS `cat_role` (
 
 INSERT INTO `cat_role` (`id`, `rolename`, `rule`) VALUES
 (1, '超级管理员', ''),
-(2, '系统维护员', '1,2,3,4,5,6,7,8,9,10'),
-(3, '新闻发布员', '1,2,3,4,5,6,7,10,11,12,13,14,27,29,30,31,32,43,44,33,35,36,37,34,40,41,42');
+(2, '系统维护员', '27,29,30,31,32,43,44,33,35,36,37,34,40,41,42,51,52'),
+(3, '新闻发布员', '27,29,30,31,32,43,44,33,35,36,37,34,40,41,42,51,52');
 
 -- --------------------------------------------------------
 
@@ -278,11 +286,11 @@ CREATE TABLE IF NOT EXISTS `cat_user` (
 --
 
 INSERT INTO `cat_user` (`id`, `username`, `password`, `avatar`, `loginnum`, `last_login_ip`, `last_login_time`, `real_name`, `email`, `status`, `typeid`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 70, '127.0.0.1', 1478075088, 'admin', NULL, 1, 1),
-(2, 'xiaobai', '4297f44b13955235245b2497399d7a93', '\\uploads\\avatar\\20161027\\9ca5e756295b3fe7ec09c1da203dec1e.png', 6, '127.0.0.1', 1470368260, '小白122123', NULL, 1, 2),
-(4, 'root', '63a9f0ea7bb98050796b649e85481845', '\\uploads\\avatar\\20161027\\e4535accf1d3f56f08801839d5260440.png', 0, '', 0, 'root', NULL, 1, 2),
-(5, 'test', '098f6bcd4621d373cade4e832627b4f6', '\\uploads\\avatar\\20161027\\65f0ca2d8e0dad2d14b7e138c018f050.jpg', 2, '127.0.0.1', 1477640067, 'test', NULL, 1, 2),
-(6, 'zhangcong', '84fa8a6653af9145522baab2051e2b76', '\\uploads\\avatar\\20161027\\5854d67a16900ae22066d20aa17d5d3c.png', 7, '127.0.0.1', 1478075055, '234234', NULL, 1, 3);
+(1, 'admin', 'ebb86315c61d32b7fc1a4d4d073afccc', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 75, '127.0.0.1', 1478156124, 'admin', NULL, 1, 1),
+(2, 'xiaobai', '1f71cc1f26c0b34e47b00457d936ce23', '\\uploads\\avatar\\20161027\\9ca5e756295b3fe7ec09c1da203dec1e.png', 6, '127.0.0.1', 1470368260, '小白122123', NULL, 1, 2),
+(4, 'root', '0acf6e1805cd18935a3bf90dd78a1e6d', '\\uploads\\avatar\\20161027\\e4535accf1d3f56f08801839d5260440.png', 0, '', 0, 'root', NULL, 1, 2),
+(5, 'test', '6bcaf3e739c0f006d3d6c4155de3e1e6', '\\uploads\\avatar\\20161027\\65f0ca2d8e0dad2d14b7e138c018f050.jpg', 2, '127.0.0.1', 1477640067, 'test', NULL, 1, 2),
+(6, 'zhangcong', '513ace2a8817be8167ebbc70d7084bf0', '\\uploads\\avatar\\20161027\\5854d67a16900ae22066d20aa17d5d3c.png', 9, '127.0.0.1', 1478155988, '234234', NULL, 1, 3);
 
 -- --------------------------------------------------------
 
