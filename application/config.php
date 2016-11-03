@@ -231,4 +231,6 @@ return [
         'list_rows' => 15,
     ],
 
+    //密码加密字符串
+    'crypt_string'          => 'sf$R^*^(&(fsfajflj123*&',
 ];

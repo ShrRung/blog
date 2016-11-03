@@ -106,4 +106,24 @@ class UserModel extends Model
             return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
         }
     }
+
+    /*
+     * 修改个人密码
+     */
+    public function changePassword($id,$password){
+        try{
+
+            $result =  $this->save(['password'=>md5(config('crypt_string').$password)], ['id' => $id]);
+
+            if(false === $result){
+                // 验证失败 输出错误信息
+                return ['code' => 0, 'data' => '', 'msg' => $this->getError()];
+            }else{
+
+                return ['code' => 1, 'data' => '', 'msg' => '修改成功'];
+            }
+        }catch( PDOException $e){
+            return ['code' => 0, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
 }

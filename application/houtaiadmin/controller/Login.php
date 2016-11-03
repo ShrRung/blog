@@ -44,7 +44,7 @@ class Login extends Controller
             return json(['code' => -1, 'data' => '', 'msg' => '管理员不存在']);
         }
 
-        if(md5($password) != $hasUser['password']){
+        if(md5(config('crypt_string').$password) != $hasUser['password']){
             return json(['code' => -2, 'data' => '', 'msg' => '密码错误']);
         }
 
