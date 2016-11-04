@@ -234,7 +234,7 @@ jQuery(document).ready(function ($) {
         var i2 = Math.floor(Math.random() * s.length);
             $(".spig").animate({
             left: document.body.offsetWidth/2*(1+s[i1]),
-            top:  document.body.offsetHeight/2*(1+s[i1])
+            top:  document.documentElement.offsetHeight/2*(1+s[i1])
             },
 			{
 			    duration: 500,

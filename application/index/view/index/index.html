@@ -23,6 +23,18 @@
 
     <link rel="stylesheet" href="__STATIC__/assets/css/spigPet.css" type="text/css"/>
 </head>
+<style>
+    .top_div{width: 100%;height:30px;}
+    .first_div{width:1200px;margin:0 auto;}
+    .left_div {width: 830px;float:left;}
+    .left_div .shadow{box-shadow: 1px 1px 2px 1px #E2E2E2}
+    .right_div{width: 352px;height:auto;float:left;margin-left: 18px;}
+    .right_div .right-title{font-size: 20px;color: #999;margin-bottom: 10px;padding-bottom: 4px;}
+    .right_div .right_content{    background: #FFF;  margin-bottom: 30px;  opacity: .8;padding:10px;height:auto;box-shadow: 1px 1px 2px 1px #E2E2E2}
+    .right_div .right_content .tag_name{margin-right:5px;float:left;}
+    .right_div .right_content li{list-style: none;height:30px;}
+    .right_div .right_content li .a{width:100px;height:45px;color: white;margin:5px;border-radius:10px;cursor:pointer}
+</style>
 <script type="text/javascript">
     var isindex = true;
     var visitor = true;
@@ -65,285 +77,128 @@
         </div>
     </div>
 </nav>
-<div class="leftbar ">
-    <!-- 左菜单 -->
-    <div class="left_menu">
-        <ul class="menu_link">
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-toggle="tooltip" data-placement="right" title="登陆">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
+<div class="first_div">
+    <div class="left_div">
+        <!--主要内容 -->
+            <div class="top-title">
+                <div class="">
+                    <h1 class="page-title">
+                        最新文章
+                    </h1>
+                </div>
+            </div>
+            <!--main Start-->
+            <div class="">
+                <div class="col-md-12 post-container shadow">
+                    <h2 class="post-title">
+                        <a href="content.html" title="">异步测试文章</a>
+                    </h2>
+                    <div class="meta-box">
+                        <span class="m-post-date">
+                          <i class="fa fa-calendar-o">
+                          </i>
+                          2015年6月3日
+                        </span>
+                        <span class="comments-link">
+                          <a href="" class="ds-thread-count" data-thread-key="9500" title="Comment on 毕业两周年">
+                              <i class="fa fa-comments-o">
+                              </i>
+                              留言
+                          </a>
+                        </span>
                     </div>
-                </a>
-            </li>
-            <li data-toggle="tooltip" data-placement="right" title="博客">
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   target="_black">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                注册
-              </span>
-                    <div class="clearfix">
+                    <div class="post-content">
+                        <p>
+                            如果您在使用中遇到什么麻烦的事情,那么baby千万不要捶胸顿足,在友情链接界面您会看到作者的博客链接，您可以通过访问作者的博客留言联系我
+                            <a href="http://www.ybsat.com">
+                                联系我
+                            </a>
+                        </p>
                     </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
+                    <div class="meta-box">
+                        <span class="cat-links">
+                          <i class="fa fa-navicon">
+                          </i>
+                          <b>
+                              分类:
+                          </b>
+                          <a href="topics/life/diary.htm">
+                              测试
+                          </a>
+                        </span>
+                        <span class="tag-links">
+                          <i class="fa fa-tags">
+                          </i>
+                          <b>
+                              标签:
+                          </b>
+                          <a href="tags/毕业.htm" rel="tag">
+                              异步
+                          </a>
+                        </span>
                     </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-tooltip="自定义链接">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
+                </div>
+            </div>
+            <!--推荐阅读-->
+            <div class="">
+                <div class="col-md-12 post-container m-recommend-page">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                                <img src="__STATIC__/assets/img/works.png" alt="作品展示">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                                <img src="__STATIC__/assets/img/study.png" alt="学习生活">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                                <img src="__STATIC__/assets/img/book.png" alt="作品推荐">
+                            </a>
+                        </div>
                     </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-tooltip="自定义链接">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-tooltip="自定义链接">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-tooltip="自定义链接">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-tooltip="自定义链接">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href="" class="simptip-position-right simptip-smooth simptip-movable"
-                   data-tooltip="自定义链接">
-                    <img src="__STATIC__/assets/img/login.png">
-              <span>
-                自定义链接
-              </span>
-                    <div class="clearfix">
-                    </div>
-                </a>
-            </li>
-        </ul>
+                </div>
+            </div>
+
     </div>
+    <div class="right_div">
+        <div class="top-title" style="width: 100%;height:auto;">
+            <div class="right_content"  style="height:auto;padding:10px 10px 40px 10px;">
+                <div class="right-title">
+                    热门标签
+                </div>
+                <div>
+                    <ul>
+                        <li class="tag_name"><a style="background-color: #028231;" class="a">&nbsp;&nbsp;发斯蒂芬&nbsp;&nbsp;</a></li>
+                        <li class="tag_name"><a style="background-color: #E97705;" class="a">&nbsp;&nbsp;是的&nbsp;&nbsp;</a></li>
+                        <li class="tag_name"><a style="background-color: #D82508;" class="a">&nbsp;是的&nbsp;</a></li>
+                        <li class="tag_name"><a style="background-color: green;" class="a">&nbsp;非官方个&nbsp;</a></li> <br>
+
+                        <li class="tag_name"><a style="background-color: red;" class="a">&nbsp;fdsfds&nbsp;</a></li>
+                        <li class="tag_name"><a style="background-color: green;" class="a">&nbsp;gdsfgsdfg&nbsp;</a></li>
+                        <li class="tag_name"><a style="background-color: green;" class="a">&nbsp;gdsfgsdfg&nbsp;</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="" style="width: 100%;height:auto;">
+            <div class="right_content">
+                <div class="right-title">
+                    友情链接
+                </div>
+                <div>
+                    <a style="background-color: red;">fdsfds</a><a style="background-color: green;">fdsfds</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-<!--Start banner img-->
-<div class="container-filed" id="banner_container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="slider-wrapper theme-default">
-                <div id="slider" class="nivoSlider">
-                    <img src="__STATIC__/assets/img/owl.jpg" data-thumb="__STATIC__/assets/img/owl.jpg" alt="" />
-                    <a href="__STATIC__/assets/img/owl2.jpg"><img src="__STATIC__/assets/img/owl2.jpg" alt="" /></a>
-                    <img src="__STATIC__/assets/img/owl.jpg" data-thumb="__STATIC__/assets/img/owl.jpg" alt="" />
-                    <img src="__STATIC__/assets/img/owl2.jpg" data-thumb="__STATIC__/assets/img/owl2.jpg" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End banner img-->
-<!--主要内容 -->
-<div class="container-fluid main-container" id="main-container">
-    <div class="row top-title">
-        <div class="col-md-12">
-            <h1 class="page-title">
-                最新文章
-            </h1>
-        </div>
-    </div>
-    <!--main Start-->
-    <div class="row">
-        <div class="col-md-12 post-container">
-            <h2 class="post-title">
-                <a href="content.html" title="">异步测试文章</a>
-            </h2>
-            <div class="meta-box">
-				<span class="m-post-date">
-				  <i class="fa fa-calendar-o">
-                  </i>
-				  2015年6月3日
-				</span>
-				<span class="comments-link">
-				  <a href="" class="ds-thread-count" data-thread-key="9500" title="Comment on 毕业两周年">
-                      <i class="fa fa-comments-o">
-                      </i>
-                      留言
-                  </a>
-				</span>
-            </div>
-            <div class="post-content">
-                <p>
-                    如果您在使用中遇到什么麻烦的事情,那么baby千万不要捶胸顿足,在友情链接界面您会看到作者的博客链接，您可以通过访问作者的博客留言联系我
-                    <a href="http://www.ybsat.com">
-                        联系我
-                    </a>
-                </p>
-            </div>
-            <div class="meta-box">
-				<span class="cat-links">
-				  <i class="fa fa-navicon">
-                  </i>
-				  <b>
-                      分类:
-                  </b>
-				  <a href="topics/life/diary.htm">
-                      测试
-                  </a>
-				</span>
-				<span class="tag-links">
-				  <i class="fa fa-tags">
-                  </i>
-				  <b>
-                      标签:
-                  </b>
-				  <a href="tags/毕业.htm" rel="tag">
-                      异步
-                  </a>
-				</span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 post-container">
-            <h2 class="post-title">
-                <a href="content.html" title="">异步测试文章</a>
-            </h2>
-            <div class="meta-box">
-				<span class="m-post-date">
-				  <i class="fa fa-calendar-o">
-                  </i>
-				  2015年6月3日
-				</span>
-				<span class="comments-link">
-				  <a href="" class="ds-thread-count" data-thread-key="9500" title="Comment on 毕业两周年">
-                      <i class="fa fa-comments-o">
-                      </i>
-                      留言
-                  </a>
-				</span>
-            </div>
-            <div class="post-content">
-                <p>
-                    leaves轻博客主要是将大家在博客中不需要的一些东西直接切割掉,只保存最实用的东西,这样使leaves变得更加简洁,同时更显得大方,由于leaves基于bootstrap所以说如果您想定制一些需要的东西是很好改动的．
-                    <a href="">
-                        这是一个链接
-                    </a>
-                    如果您觉得本博客的内容不够您的使用,您可以咨询作者,作者是很乐意为广大用户奉献代码的！
-                </p>
-            </div>
-            <div class="meta-box">
-				<span class="cat-links">
-				  <i class="fa fa-navicon">
-                  </i>
-				  <b>
-                      分类:
-                  </b>
-				  <a href="topics/life/diary.html">
-                      测试
-                  </a>
-				</span>
-				<span class="tag-links">
-				  <i class="fa fa-tags">
-                  </i>
-				  <b>
-                      标签:
-                  </b>
-				  <a href="tags/毕业.html" rel="tag">
-                      异步
-                  </a>
-				</span>
-            </div>
-        </div>
-    </div>
-    <!--更多内容-->
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-title">
-                <a href="blog.html" title="">更多内容</a>
-            </h2>
-        </div>
-    </div>
-    <!--跳转至博客页面-->
-    <div class="row">
-        <div class="col-md-12 post-container">
-            <div class="row">
-                <div class="col-md-4">
-                    <a class="btn btn-primary home-browser-more-btn" href="blog.html">
-                        <span>浏览更多文章</span>
-                    </a>
-                </div>
-                <div class="col-md-8">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--推荐阅读-->
-    <div class="row">
-        <div class="col-md-12 post-container m-recommend-page">
-            <div class="row">
-                <div class="col-md-4">
-                    <a href="" class="thumbnail">
-                        <img src="__STATIC__/assets/img/works.png" alt="作品展示">
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" class="thumbnail">
-                        <img src="__STATIC__/assets/img/study.png" alt="学习生活">
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="" class="thumbnail">
-                        <img src="__STATIC__/assets/img/book.png" alt="作品推荐">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 网站底部 -->
+<!-- 网站底部 -->
+<div style="clear:both">
     <footer>
         <!--版权信息-->
         <div class="copyright">
@@ -351,8 +206,9 @@
         </div>
     </footer>
 </div>
+
 <!--小人只在首页显示 start*-->
-<div id="spig" class="spig">
+<div id="spig" class="spig" style="clear:both">
     <div id="message">正在加载中……</div>
     <div id="mumu" class="mumu"></div>
 </div>
@@ -361,24 +217,13 @@
 
 <script src="__STATIC__/assets/js/bootstrap.min.js"></script>
 <script>
-    /*banner 初始化*/
-    $(window).load(function() {
-        $('#slider').nivoSlider({
-            effect: 'random',        // 过渡效果
-            controlNav: false,       // 是否显示图片导航控制按钮（,2,3... ）
-            pauseOnHover: true,      // 鼠标县浮时是否停止动画
-            manualAdvance: false,    // 是否手动切换 
-            animSpeed: 100,          // 图片过渡时间   
-            pauseTime: 2000,         // 图片显示时间
-            pauseOnHover: false,
-            manualAdvance: false,
-        });
-    });
     $(document).ready(function(){
         $('body').show();
         $('.version').text(NProgress.version);
         NProgress.start();
         setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+
+        $('.a').mouseup(this.css('border-radius','0'));
     })
 
 </script>
