@@ -20,7 +20,7 @@
     <script src="__STATIC__/assets/js/nprogress.js"></script>
     <script type="text/javascript" src="__STATIC__/assets/js/spig.js"></script>
     <script type="text/javascript" src="__STATIC__/assets/js/layer/layer.js"></script>
-
+    <script type="text/javascript" src="__STATIC__/assets/js/scroll/scrolltopcontrol.js"></script>
     <link rel="stylesheet" href="__STATIC__/assets/css/spigPet.css" type="text/css"/>
 </head>
 <style>
@@ -32,6 +32,7 @@
     .right_div .right-title{font-size: 20px;color: #999;margin-bottom: 10px;padding-bottom: 4px;}
     .right_div .right_content{    background: #FFF;  margin-bottom: 30px;  opacity: .8;padding:10px;height:auto;box-shadow: 1px 1px 2px 1px #E2E2E2}
     .right_div .right_content .tag_name{margin-right:5px;float:left;}
+    .tag_name:hover .a{background-color:white}
     .right_div .right_content li{list-style: none;height:30px;}
     .right_div .right_content li .a{width:100px;height:45px;color: white;margin:5px;border-radius:10px;cursor:pointer}
 </style>
@@ -78,7 +79,7 @@
     </div>
 </nav>
 <div class="first_div">
-    <div class="left_div">
+    <div class="left_div" style="clear:both">
         <!--主要内容 -->
             <div class="top-title">
                 <div class="">
@@ -197,6 +198,7 @@
     </div>
 
 </div>
+<div style="height:1000px;clear:both"></div>
 <!-- 网站底部 -->
 <div style="clear:both">
     <footer>
@@ -222,8 +224,6 @@
         $('.version').text(NProgress.version);
         NProgress.start();
         setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
-
-        $('.a').mouseup(this.css('border-radius','0'));
     })
 
 </script>
