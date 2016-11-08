@@ -1,0 +1,22 @@
+<!-- 网站底部 -->
+<div style="clear:both">
+    <footer>
+        <!--版权信息-->
+        <div class="copyright">
+            Copyright ShrRung ©2016 All rights reserved &nbsp;&nbsp;
+        </div>
+    </footer>
+</div>
+<script src="__STATIC__/assets/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('body').show();
+        $('.version').text(NProgress.version);
+        NProgress.start();
+        setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
+    })
+
+</script>
+</body>
+
+</html>

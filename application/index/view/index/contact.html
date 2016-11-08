@@ -1,0 +1,140 @@
+{include file="Public:header"}
+<link rel="stylesheet" href="__STATIC__/assets/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="__STATIC__/assets/css/index.css" type="text/css"/>
+
+<div class="first_div">
+    <div class="left_div" style="clear:both">
+        <!--主要内容 -->
+        <div class="top-title">
+            <div class="">
+                <h1 class="page-title">
+                    给我留言
+                </h1>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="post-container">
+                <h2 class="post-title">
+                    <a rel="bookmark">给我留言</a>
+                </h2>
+                <div class="meta-box"></div>
+                <div class="post-content">
+                    <p></p>
+                </div>
+                <div class="post-content">
+                    <p>
+                        <a href="javascript:;">
+                            <p>
+                                呵呵
+                            </p>
+                        </a>
+                    </p>
+                    <blockquote class="contact-list" id="contact-list">
+                        <ul>
+                            <li>
+                                有朋自远方来，不亦悦乎。
+                            </li>
+                            <li>
+                                既然来了，如果我们有共同兴趣的话，不妨留言讨论，说不定我们会成为朋友。
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <p>
+                        关于我，我想我的个人
+                        <a href="about.html" target="_blank">
+                            关于页面
+                        </a>
+                        已经介绍的比较详细了，如果你想联系我的话，不妨写信给我。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="post-container">
+                <div class="post-content">
+                    <form method="post" action="" id="commentForm" class="contact-form" onsubmit="return confirmForm()">
+                        <div>
+                            <span><label for="author">姓名*</label></span>
+                            <span style="width: 550px;float:left"><input id="author" name="contact_name" type="text" class="textbox" style="width: 550px;border:1px solid red"></span>
+                            <div style="width: 200px;float:left;margin-left: 10px;">fdsf</div>
+                        </div>
+                        <div style="clear:both">
+                            <span><label for="title">标题*</label></span>
+                            <span><input id="title" name="contact_title" type="text" class="textbox"></span>
+                        </div>
+                        <div>
+                            <span><label for="email">邮箱*</label></span>
+                            <span><input id="email" name="contact_email" type="email" class="textbox"></span>
+                        </div>
+                        <div>
+                            <span><label for="comment">内容*</label></span>
+                            <span><textarea id="comment" name="contact_con" class="textbox"></textarea></span>
+                            <input type="hidden" name="confirm" value="{$confirm}">
+                        </div>
+                        <div>
+                            <span><input type="submit" value="提交" name="tijiao"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="meta-box">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right_div">
+        {include file="Public:right" /}
+    </div>
+
+</div>
+
+<!--小人只在首页显示 start*-->
+<div id="spig" class="spig" style="clear:both">
+    <div id="message">正在加载中……</div>
+    <div id="mumu" class="mumu"></div>
+</div>
+<!--小人end*-->
+<script>
+    function confirmForm(){
+        var jz;
+        var url = '{:url("index/contact")}';
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:{'data' : $('#commentForm').serialize()},// 你的formid
+            async: false,
+            beforeSend:function(){
+                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+            },
+            error: function(request) {
+                return false;
+                layer.close(jz);
+                swal("网络错误!", "", "error");
+            },
+            success: function(data) {
+                console.log(data);return false;
+                //关闭加载层
+                layer.close(jz);
+                if(data.code == 1){
+                    swal({
+                        title: "Good!",
+                        text: data.msg,
+                        imageUrl: "images/thumbs-up.jpg",
+                        type: 'success',
+                        timer: 5000,
+                        showConfirmButton: false,
+                        done : window.location.href = history.go(-1)
+                    });
+                }else{
+                    swal(data.msg, "", "error");
+                    return false;
+                }
+
+            }
+        });
+        return false;
+    }
+</script>
+{include file="Public:footer" /}

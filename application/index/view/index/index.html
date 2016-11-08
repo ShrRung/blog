@@ -1,232 +1,103 @@
-<!DOCTYPE html>
-<html lang="cn" dir="ltr" class="no-js">
+{include file="Public:header" /}
 
-<head>
-    <meta charset="utf-8">
-    <link href="__STATIC__/assets/img/ico.ico" rel="shortcut icon">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="maximum-scale=1.0,width=device-width,initial-scale=1.0,user-scalable=no">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <title>博客首页 </title>
-    <link href="__STATIC__/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="__STATIC__/assets/css/style.css" rel="stylesheet" />
-    <link href="__STATIC__/assets/css/nprogress.css" rel="stylesheet" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/nivo-slider.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="__STATIC__/assets/css/default.css" type="text/css" media="screen" />
-    <script src="__STATIC__/assets/js/jquery.min.js"></script>
-    <script src="__STATIC__/assets/js/jquery.nivo.slider.pack.js"></script>
-    <script src="__STATIC__/assets/js/nprogress.js"></script>
-    <script type="text/javascript" src="__STATIC__/assets/js/spig.js"></script>
-    <script type="text/javascript" src="__STATIC__/assets/js/layer/layer.js"></script>
-    <script type="text/javascript" src="__STATIC__/assets/js/scroll/scrolltopcontrol.js"></script>
-    <link rel="stylesheet" href="__STATIC__/assets/css/spigPet.css" type="text/css"/>
-</head>
-<style>
-    .top_div{width: 100%;height:30px;}
-    .first_div{width:1200px;margin:0 auto;}
-    .left_div {width: 830px;float:left;}
-    .left_div .shadow{box-shadow: 1px 1px 2px 1px #E2E2E2}
-    .right_div{width: 352px;height:auto;float:left;margin-left: 18px;}
-    .right_div .right-title{font-size: 20px;color: #999;margin-bottom: 10px;padding-bottom: 4px;}
-    .right_div .right_content{    background: #FFF;  margin-bottom: 30px;  opacity: .8;padding:10px;height:auto;box-shadow: 1px 1px 2px 1px #E2E2E2}
-    .right_div .right_content .tag_name{margin-right:5px;float:left;}
-    .tag_name:hover .a{background-color:white}
-    .right_div .right_content li{list-style: none;height:30px;}
-    .right_div .right_content li .a{width:100px;height:45px;color: white;margin:5px;border-radius:10px;cursor:pointer}
-</style>
-<script type="text/javascript">
-    var isindex = true;
-    var visitor = true;
-    $(document).ready(function(){
-        if(!!window.ActiveXObject || "ActiveXObject" in window)
-        {
-            layer.msg('俺未做IE兼容，还请使用其他浏览器以有更好的体验', {icon: 2,time: 3000});
-        }
-    });
-
-</script>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">
-              Toggle navigation
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-            </button>
-            <a class="navbar-brand" href="index.html">
-                <img src="__STATIC__/assets/img/logo.png" class="logo"/>
-            </a>
-        </div>
-        <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav header-menu">
-                <li><a href="index.html">首页</a></li> <li><a href="about.html">关于</a></li>
-                <li><a href="blog.html">博客</a></li><li><a href="works.html">作品</a></li>
-                <li><a href="links.html">链接</a></li><li><a href="contact.html">联系</a></li>
-                <li><a href="help.html">帮助</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="first_div">
-    <div class="left_div" style="clear:both">
-        <!--主要内容 -->
-            <div class="top-title">
+<link rel="stylesheet" href="__STATIC__/assets/css/index.css" type="text/css"/>
+    <div class="first_div">
+        <div class="left_div" style="clear:both">
+            <!--主要内容 -->
+                <div class="top-title">
+                    <div class="">
+                        <h1 class="page-title">
+                            最新文章
+                        </h1>
+                    </div>
+                </div>
+                <!--main Start-->
                 <div class="">
-                    <h1 class="page-title">
-                        最新文章
-                    </h1>
-                </div>
-            </div>
-            <!--main Start-->
-            <div class="">
-                <div class="col-md-12 post-container shadow">
-                    <h2 class="post-title">
-                        <a href="content.html" title="">异步测试文章</a>
-                    </h2>
-                    <div class="meta-box">
-                        <span class="m-post-date">
-                          <i class="fa fa-calendar-o">
-                          </i>
-                          2015年6月3日
-                        </span>
-                        <span class="comments-link">
-                          <a href="" class="ds-thread-count" data-thread-key="9500" title="Comment on 毕业两周年">
-                              <i class="fa fa-comments-o">
+                    <div class="col-md-12 post-container shadow">
+                        <h2 class="post-title">
+                            <a href="content.html" title="">异步测试文章</a>
+                        </h2>
+                        <div class="meta-box">
+                            <span class="m-post-date">
+                              <i class="fa fa-calendar-o">
                               </i>
-                              留言
-                          </a>
-                        </span>
-                    </div>
-                    <div class="post-content">
-                        <p>
-                            如果您在使用中遇到什么麻烦的事情,那么baby千万不要捶胸顿足,在友情链接界面您会看到作者的博客链接，您可以通过访问作者的博客留言联系我
-                            <a href="http://www.ybsat.com">
-                                联系我
-                            </a>
-                        </p>
-                    </div>
-                    <div class="meta-box">
-                        <span class="cat-links">
-                          <i class="fa fa-navicon">
-                          </i>
-                          <b>
-                              分类:
-                          </b>
-                          <a href="topics/life/diary.htm">
-                              测试
-                          </a>
-                        </span>
-                        <span class="tag-links">
-                          <i class="fa fa-tags">
-                          </i>
-                          <b>
-                              标签:
-                          </b>
-                          <a href="tags/毕业.htm" rel="tag">
-                              异步
-                          </a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!--推荐阅读-->
-            <div class="">
-                <div class="col-md-12 post-container m-recommend-page">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <a href="" class="thumbnail">
-                                <img src="__STATIC__/assets/img/works.png" alt="作品展示">
-                            </a>
+                              2015年6月3日
+                            </span>
+                            <span class="comments-link">
+                              <a href="" class="ds-thread-count" data-thread-key="9500" title="Comment on 毕业两周年">
+                                  <i class="fa fa-comments-o">
+                                  </i>
+                                  留言
+                              </a>
+                            </span>
                         </div>
-                        <div class="col-md-4">
-                            <a href="" class="thumbnail">
-                                <img src="__STATIC__/assets/img/study.png" alt="学习生活">
-                            </a>
+                        <div class="post-content">
+                            <p>
+                                如果您在使用中遇到什么麻烦的事情,那么baby千万不要捶胸顿足,在友情链接界面您会看到作者的博客链接，您可以通过访问作者的博客留言联系我
+                                <a href="http://www.ybsat.com">
+                                    联系我
+                                </a>
+                            </p>
                         </div>
-                        <div class="col-md-4">
-                            <a href="" class="thumbnail">
-                                <img src="__STATIC__/assets/img/book.png" alt="作品推荐">
-                            </a>
+                        <div class="meta-box">
+                            <span class="cat-links">
+                              <i class="fa fa-navicon">
+                              </i>
+                              <b>
+                                  分类:
+                              </b>
+                              <a href="topics/life/diary.htm">
+                                  测试
+                              </a>
+                            </span>
+                            <span class="tag-links">
+                              <i class="fa fa-tags">
+                              </i>
+                              <b>
+                                  标签:
+                              </b>
+                              <a href="tags/毕业.htm" rel="tag">
+                                  异步
+                              </a>
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
+                <!--推荐阅读-->
+                <div class="">
+                    <div class="col-md-12 post-container m-recommend-page">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="" class="thumbnail">
+                                    <img src="__STATIC__/assets/img/works.png" alt="作品展示">
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="" class="thumbnail">
+                                    <img src="__STATIC__/assets/img/study.png" alt="学习生活">
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="" class="thumbnail">
+                                    <img src="__STATIC__/assets/img/book.png" alt="作品推荐">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <div class="right_div">
+            {include file="Public:right" /}
+        </div>
 
     </div>
-    <div class="right_div">
-        <div class="top-title" style="width: 100%;height:auto;">
-            <div class="right_content"  style="height:auto;padding:10px 10px 40px 10px;">
-                <div class="right-title">
-                    热门标签
-                </div>
-                <div>
-                    <ul>
-                        <li class="tag_name"><a style="background-color: #028231;" class="a">&nbsp;&nbsp;发斯蒂芬&nbsp;&nbsp;</a></li>
-                        <li class="tag_name"><a style="background-color: #E97705;" class="a">&nbsp;&nbsp;是的&nbsp;&nbsp;</a></li>
-                        <li class="tag_name"><a style="background-color: #D82508;" class="a">&nbsp;是的&nbsp;</a></li>
-                        <li class="tag_name"><a style="background-color: green;" class="a">&nbsp;非官方个&nbsp;</a></li> <br>
+    <div style="height:1000px;clear:both"></div>
 
-                        <li class="tag_name"><a style="background-color: red;" class="a">&nbsp;fdsfds&nbsp;</a></li>
-                        <li class="tag_name"><a style="background-color: green;" class="a">&nbsp;gdsfgsdfg&nbsp;</a></li>
-                        <li class="tag_name"><a style="background-color: green;" class="a">&nbsp;gdsfgsdfg&nbsp;</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-        <div class="" style="width: 100%;height:auto;">
-            <div class="right_content">
-                <div class="right-title">
-                    友情链接
-                </div>
-                <div>
-                    <a style="background-color: red;">fdsfds</a><a style="background-color: green;">fdsfds</a>
-                </div>
-            </div>
-        </div>
+    <!--小人只在首页显示 start*-->
+    <div id="spig" class="spig" style="clear:both">
+        <div id="message">正在加载中……</div>
+        <div id="mumu" class="mumu"></div>
     </div>
-
-</div>
-<div style="height:1000px;clear:both"></div>
-<!-- 网站底部 -->
-<div style="clear:both">
-    <footer>
-        <!--版权信息-->
-        <div class="copyright">
-            Copyright ShrRung ©2016 All rights reserved &nbsp;&nbsp;
-        </div>
-    </footer>
-</div>
-
-<!--小人只在首页显示 start*-->
-<div id="spig" class="spig" style="clear:both">
-    <div id="message">正在加载中……</div>
-    <div id="mumu" class="mumu"></div>
-</div>
-<!--小人end*-->
-
-
-<script src="__STATIC__/assets/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('body').show();
-        $('.version').text(NProgress.version);
-        NProgress.start();
-        setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
-    })
-
-</script>
-</body>
-
-</html>
+    <!--小人end*-->
+{include file="Public:footer" /}

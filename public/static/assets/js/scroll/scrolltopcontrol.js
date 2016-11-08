@@ -5,7 +5,7 @@ var scrolltotop={
 		scrollduration:400, //滚动过渡时间
 		fadeduration:[500,100] //淡出淡现消失
 	},
-	controlHTML:'<img src="../static/assets/js/scroll/image/top1.png" id="img_top" style="width:54px; height:54px; border:0;border-radius:6px;" onmouseover="OnBackTOP()" onmouseout="LeaveBackTOP()" />', //返回顶部按钮
+	controlHTML:'<img src="/static/assets/js/scroll/image/top1.png" id="img_top" style="width:54px; height:54px; border:0;border-radius:6px;" onmouseover="OnBackTOP()" onmouseout="LeaveBackTOP()" />', //返回顶部按钮
 	controlattrs:{offsetx:30,offsety:80},//返回按钮固定位置
 	anchorkeyword:"#top",
 	state:{
@@ -55,8 +55,8 @@ var scrolltotop={
 	}
 };
 scrolltotop.init();
-var img_top = '../static/assets/js/scroll/image/top.png';
-var img_top1 = '../static/assets/js/scroll/image/top1.png';
+var img_top = '/static/assets/js/scroll/image/top.png';
+var img_top1 = '/static/assets/js/scroll/image/top1.png';
 function OnBackTOP(){
 	$('#img_top').attr('src',img_top);
 }

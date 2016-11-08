@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 �?11 �?03 �?17:53
+-- 生成日期: 2016 �?11 �?08 �?17:53
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.5.17
 
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `cat_user` (
 --
 
 INSERT INTO `cat_user` (`id`, `username`, `password`, `avatar`, `loginnum`, `last_login_ip`, `last_login_time`, `real_name`, `email`, `status`, `typeid`) VALUES
-(1, 'admin', 'ebb86315c61d32b7fc1a4d4d073afccc', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 75, '127.0.0.1', 1478156124, 'admin', NULL, 1, 1),
+(1, 'admin', 'ebb86315c61d32b7fc1a4d4d073afccc', '\\uploads\\avatar\\20161027\\7f29e5284146fc97ba98558e32662de4.png', 77, '127.0.0.1', 1478501800, 'admin', NULL, 1, 1),
 (2, 'xiaobai', '1f71cc1f26c0b34e47b00457d936ce23', '\\uploads\\avatar\\20161027\\9ca5e756295b3fe7ec09c1da203dec1e.png', 6, '127.0.0.1', 1470368260, '小白122123', NULL, 1, 2),
 (4, 'root', '0acf6e1805cd18935a3bf90dd78a1e6d', '\\uploads\\avatar\\20161027\\e4535accf1d3f56f08801839d5260440.png', 0, '', 0, 'root', NULL, 1, 2),
 (5, 'test', '6bcaf3e739c0f006d3d6c4155de3e1e6', '\\uploads\\avatar\\20161027\\65f0ca2d8e0dad2d14b7e138c018f050.jpg', 2, '127.0.0.1', 1477640067, 'test', NULL, 1, 2),

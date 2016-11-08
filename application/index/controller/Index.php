@@ -2,34 +2,34 @@
 namespace app\index\controller;
 
 use think\Controller;
+use think\Session;
 
 class Index extends Controller
 {
     public function index()
     {
-
-        $this->assign('list', 111);
-        header("HTTP/1.0 404 Not Found");
         return $this->fetch();
     }
 
-    public function hello()
+    public function about()
     {
-        return 'hello,thinkphp!';
+        return $this->fetch();
     }
 
-    public function test()
-    {
-        return '这是一个测试方法!';
+    public function contact(){
+        if(request()->isPost()){
+            $param = input('param.');
+            $arrParams = [];
+            parse_str(html_entity_decode(urldecode($param['data'])), $arrParams);
+            return json($arrParams);
+        }else{
+            $confirm = md5('fdsah!@^*687'.time());
+            Session::set('confirm',$confirm);
+            $this->assign(
+                ['confirm' => $confirm]
+            );
+        }
+        return $this->fetch();
     }
 
-    protected function hello2()
-    {
-        return '只是protected方法!';
-    }
-
-    private function hello3()
-    {
-        return '这是private方法!';
-    }
 }
