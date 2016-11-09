@@ -1,7 +1,11 @@
 {include file="Public:header"}
 <link rel="stylesheet" href="__STATIC__/assets/css/font-awesome.min.css" type="text/css"/>
 <link rel="stylesheet" href="__STATIC__/assets/css/index.css" type="text/css"/>
-
+<script src="/static/assets/js/confirm.js"></script>
+<style>
+    .div_clear{clear:both}
+    .div_confirm{width: 200px;float:left;margin-left: 40px;color:red}
+</style>
 <div class="first_div">
     <div class="left_div" style="clear:both">
         <!--主要内容 -->
@@ -54,27 +58,30 @@
         <div class="">
             <div class="post-container">
                 <div class="post-content">
-                    <form method="post" action="" id="commentForm" class="contact-form" onsubmit="return confirmForm()">
+                    <form method="post" action="" id="commentForm" class="contact-form">
                         <div>
                             <span><label for="author">姓名*</label></span>
-                            <span style="width: 550px;float:left"><input id="author" name="contact_name" type="text" class="textbox" style="width: 550px;border:1px solid red"></span>
-                            <div style="width: 200px;float:left;margin-left: 10px;">fdsf</div>
+                            <span><input id="author" name="author" type="text" class="textbox" onblur="checkIsNull(this)" autocomplete="off"></span>
+                            <div id="confirm_author" class="div_confirm" style="display: none">*请填写你的名称</div>
                         </div>
-                        <div style="clear:both">
+                        <div class="div_clear">
                             <span><label for="title">标题*</label></span>
-                            <span><input id="title" name="contact_title" type="text" class="textbox"></span>
+                            <span ><input id="title" name="title" type="text" class="textbox" onblur="checkIsNull(this)" autocomplete="off"></span>
+                            <div id="confirm_title" class="div_confirm" style="display: none">*请填写联系标题</div>
                         </div>
-                        <div>
+                        <div class="div_clear">
                             <span><label for="email">邮箱*</label></span>
-                            <span><input id="email" name="contact_email" type="email" class="textbox"></span>
+                            <span><input id="email" name="email" type="text" class="textbox" onblur="checkIsNull(this)" autocomplete="off"></span>
+                            <div id="confirm_email" class="div_confirm" style="display: none">*请填写你的邮箱</div>
                         </div>
-                        <div>
+                        <div class="div_clear">
                             <span><label for="comment">内容*</label></span>
-                            <span><textarea id="comment" name="contact_con" class="textbox"></textarea></span>
+                            <span><textarea id="comment" name="comment" class="textbox" onblur="checkIsNull(this)"></textarea></span>
                             <input type="hidden" name="confirm" value="{$confirm}">
+                            <div id="confirm_comment" class="div_confirm" style="display: none">*请填写联系内容</div>
                         </div>
-                        <div>
-                            <span><input type="submit" value="提交" name="tijiao"></span>
+                        <div class="div_clear">
+                            <span><input type="submit" value="提交" name="tijiao"  onclick="confirmForm()"></span>
                         </div>
                     </form>
                 </div>
@@ -97,44 +104,8 @@
 </div>
 <!--小人end*-->
 <script>
-    function confirmForm(){
-        var jz;
-        var url = '{:url("index/contact")}';
-        $.ajax({
-            type:"POST",
-            url:url,
-            data:{'data' : $('#commentForm').serialize()},// 你的formid
-            async: false,
-            beforeSend:function(){
-                jz = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-            },
-            error: function(request) {
-                return false;
-                layer.close(jz);
-                swal("网络错误!", "", "error");
-            },
-            success: function(data) {
-                console.log(data);return false;
-                //关闭加载层
-                layer.close(jz);
-                if(data.code == 1){
-                    swal({
-                        title: "Good!",
-                        text: data.msg,
-                        imageUrl: "images/thumbs-up.jpg",
-                        type: 'success',
-                        timer: 5000,
-                        showConfirmButton: false,
-                        done : window.location.href = history.go(-1)
-                    });
-                }else{
-                    swal(data.msg, "", "error");
-                    return false;
-                }
-
-            }
-        });
+    $("#commentForm").submit( function () {
         return false;
-    }
+    } );
 </script>
 {include file="Public:footer" /}
