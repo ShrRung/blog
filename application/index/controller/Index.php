@@ -33,8 +33,11 @@ class Index extends Controller
             ['confirm' => $confirm]
         );
         return $this->fetch();
+    }
 
+    public function books(){
 
+        return $this->fetch();
     }
 
 }
