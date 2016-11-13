@@ -9,11 +9,17 @@ class Index extends Controller
 {
     public function index()
     {
+        $this->assign([
+            'index' => 'current'
+        ]);
         return $this->fetch();
     }
 
     public function about()
     {
+        $this->assign([
+            'about' => 'current'
+        ]);
         return $this->fetch();
     }
 
@@ -29,14 +35,24 @@ class Index extends Controller
 
         $confirm = md5('fdsah!@^*687'.time());
         Session::set('confirm',$confirm);
-        $this->assign(
-            ['confirm' => $confirm]
-        );
+        $this->assign([
+            'confirm' => $confirm,
+            'contact' => 'current'
+        ]);
         return $this->fetch();
     }
 
     public function books(){
+        $this->assign([
+            'books' => 'current'
+        ]);
+        return $this->fetch();
+    }
 
+    public function blog(){
+        $this->assign([
+            'blog' => 'current'
+        ]);
         return $this->fetch();
     }
 

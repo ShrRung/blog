@@ -47,11 +47,11 @@
             </div>
             <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav header-menu">
-                    <li><a href="{:url('index/index')}">首页</a></li>
-                    <li><a href="blog.html">博客</a></li>
-                    <li><a href="{:url('index/books')}">书籍资料</a></li>
-                    <li><a href="{:url('index/about')}">关于</a></li>
-                    <li><a href="{:url('index/contact')}">联系</a></li>
+                    <li><a class="{$index|default=''}" href="{:url('index/index')}">首页</a></li>
+                    <li><a class="{$blog|default=''}" href="{:url('index/blog')}">博客</a></li>
+                    <li><a class="{$books|default=''}" href="{:url('index/books')}">书籍资料</a></li>
+                    <li><a class="{$about|default=''}" href="{:url('index/about')}">关于</a></li>
+                    <li><a class="{$contact|default=''}" href="{:url('index/contact')}">联系</a></li>
                 </ul>
             </div>
         </div>
