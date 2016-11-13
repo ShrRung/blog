@@ -1,0 +1,12 @@
+.nav1 { width: 1000px; margin: 0 auto 20px; text-align: center; font-size: 0;list-style-type: none;margin-top:80px;}
+.nav1 li { display: inline-block; margin: 0 5px; padding: 10px 20px; font-size: 14px; color: #333; background-color: #ccc; cursor: pointer;}
+.nav1 .active { color: #fff; background-color: #21b384;}
+.jq22 { width: 1000px; margin: 0 auto; font-size: 0;}
+.filtr-item { display: inline-block; width: 248px; padding: 12px; margin:12px; cursor:pointer}
+.filtr-item .books { width: 225px;height:120px;border:1px solid red;}
+
+/* summary */
+.summary{background:#333;display:none;opacity:0.8}
+.listimg{float:left;width:228px;height:65px;position:relative;overflow:hidden;}
+.summary{width:225px;height:65px;top:12px;left:12px;position:absolute;}
+.summarytxt{margin:5px 10px;width:228px;height:auto;line-height:22px;font-size:12px;color:#cfcfcf;}

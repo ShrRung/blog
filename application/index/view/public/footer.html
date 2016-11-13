@@ -9,13 +9,28 @@
 </div>
 <script src="__STATIC__/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="__STATIC__/assets/js/layer/layer.js"></script>
+
 <script>
     $(document).ready(function(){
+        //进度条
         $('body').show();
         $('.version').text(NProgress.version);
         NProgress.start();
         setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
-    })
+        //tags
+        $('.tag').each(function(i) {
+            setTimeout(function() {
+                $('.tag:eq('+i+')').css({ display: 'block', opacity: 0 }).stop().animate({ opacity: 1 }, 'easeInOutExpo');
+            }, 250)
+        });
+
+        $('.tag').hover(function() {
+            $(this).stop().animate({ paddingRight: ($('.tag_count', this).outerWidth() - 5) }, 'easeInOutExpo');
+        }, function() {
+            $(this).stop().animate({ paddingRight: 5 }, 'easeInOutExpo');
+        });
+
+    });
 
 </script>
 </body>

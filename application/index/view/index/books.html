@@ -1,7 +1,82 @@
 {include file="Public:header" /}
 
 <link rel="stylesheet" href="__STATIC__/assets/css/index.css" type="text/css"/>
+<link rel="stylesheet" href="__STATIC__/assets/plugins/filterizr/css/books.css" type="text/css"/>
+
 <div class="first_div" style="border:1px red solid;height:1000px;">
+    <ul class="nav1">
+        <li class="active" data-filter="all">全部</li>
+        <li data-filter="1">1</li>
+        <li data-filter="2">2</li>
+        <li data-filter="3">3</li>
+        <li data-filter="4">4</li>
+        <li data-filter="5">5</li>
+    </ul>
+
+    <div class="jq22">
+        <div class="filtr-item listimg1" data-category="1, 5">
+            <div class="books">
+
+            </div>
+            <div class="summary">
+                <div class="summarytxt">
+                    <p>适合做图片类网站的特效，鼠标经过弹出标题，效果很不错</p>
+                </div>
+            </div>
+        </div>
+        <div class="filtr-item listimg1" data-category="2, 5">
+            <div class="books">
+
+            </div>
+            <div class="summary">
+                <div class="summarytxt">
+                    <p>适合做图片类网站的特效，1212</p>
+                </div>
+            </div>
+        </div>
+        <div class="filtr-item" data-category="1, 4">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a3.png" alt="">-->
+        </div>
+        <div class="filtr-item" data-category="3">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a4.png" alt="">-->
+        </div>
+        <div class="filtr-item" data-category="3, 4">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a5.png" alt="">-->
+        </div>
+        <div class="filtr-item" data-category="2, 4">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a6.png" alt="">-->
+        </div>
+        <div class="filtr-item" data-category="1, 5">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a7.png" alt="">-->
+        </div>
+        <div class="filtr-item" data-category="2, 4">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a8.png" alt="">-->
+        </div>
+        <div class="filtr-item abc" data-category="3">
+            <div class="books">
+
+            </div>
+            <!--<img src="__STATIC__/assets/plugins/filterizr/img/a9.png" alt="">-->
+        </div>
+    </div>
 
 </div>
 <div style="height:1000px;clear:both"></div>
@@ -12,4 +87,23 @@
     <div id="mumu" class="mumu"></div>
 </div>
 <!--小人end*-->
+<script src="__STATIC__/assets/plugins/filterizr/jquery.filterizr.js"></script>
+<script>
+    $(function() {
+        //books
+        $('.jq22').filterizr();
+
+        $('.nav1 li').on('click', function() {
+            $(this).toggleClass('active').siblings().removeClass('active');
+        });
+
+        $('.listimg1').hover(function(){
+            $(".summary",this).css('display','block');
+        },function(){
+            $(".summary",this).css('display','none');
+        });
+
+    });
+</script>
+
 {include file="Public:footer" /}

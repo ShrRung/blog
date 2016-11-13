@@ -1,30 +1,134 @@
+<link rel="stylesheet" href="__STATIC__/assets/plugins/tags/css/easing.css" type="text/css"/>
 <div class="top-title" style="width: 100%;height:auto;">
-    <div class="right_content"  style="height:auto;padding:10px 10px 40px 10px;">
+    <div class="right_content hot-tag"  style="height:auto;padding:10px 10px 40px 10px;">
         <div class="right-title">
             热门标签
         </div>
-        <div>
+        <div class="tag_div">
             <ul>
-                <li class="tag_name"><a style="background-color: #028231;" class="a">&nbsp;&nbsp;发斯蒂芬&nbsp;&nbsp;</a></li>
-                <li class="tag_name"><a style="background-color: #E97705;" class="a">&nbsp;&nbsp;是的&nbsp;&nbsp;</a></li>
-                <li class="tag_name"><a style="background-color: #D82508;" class="a">&nbsp;是的&nbsp;</a></li>
-                <li class="tag_name"><a style="background-color: #028231;" class="a">&nbsp;非官方个&nbsp;</a></li> <br>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">17素材网</span>
+                        <span class="tag_count">17sucai</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">PS教程</span>
+                        <span class="tag_count">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">PNG图标</span>
+                        <span class="tag_count">15</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">GIF图标</span>
+                        <span class="tag_count">27</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">PSD素材</span>
+                        <span class="tag_count">11</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">矢量素材</span>
+                        <span class="tag_count">34</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">常用软件</span>
+                        <span class="tag_count">72</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">文字效果</span>
+                        <span class="tag_count">11</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">网页教程</span>
+                        <span class="tag_count">7</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">JQ幻灯片</span>
+                        <span class="tag_count">25</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">17sucai</span>
+                        <span class="tag_count">41</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.17sucai.com/" class="tag">
+                        <span class="tag_name">17sucai</span>
+                        <span class="tag_count">41</span>
+                    </a>
+                </li><li>
+                <a href="http://www.17sucai.com/" class="tag">
+                    <span class="tag_name">17sucai</span>
+                    <span class="tag_count">41</span>
+                </a>
+            </li><li>
+                <a href="http://www.17sucai.com/" class="tag">
+                    <span class="tag_name">17sucai</span>
+                    <span class="tag_count">41</span>
+                </a>
+            </li><li>
+                <a href="http://www.17sucai.com/" class="tag">
+                    <span class="tag_name">17sucai</span>
+                    <span class="tag_count">41</span>
+                </a>
+            </li><li>
+                <a href="http://www.17sucai.com/" class="tag">
+                    <span class="tag_name">17sucai</span>
+                    <span class="tag_count">41</span>
+                </a>
+            </li>
 
-                <li class="tag_name"><a style="background-color: #E97705;" class="a">&nbsp;fdsfds&nbsp;</a></li>
-                <li class="tag_name"><a style="background-color: #D82508;" class="a">&nbsp;gdsfgsdfg&nbsp;</a></li>
-                <li class="tag_name"><a style="background-color: #028231;" class="a">&nbsp;gdsfgsdfg&nbsp;</a></li>
             </ul>
-
         </div>
     </div>
 </div>
-<div class="" style="width: 100%;height:auto;">
+<div class="" style="width: 100%;height:auto;clear:both">
     <div class="right_content">
         <div class="right-title">
             友情链接
         </div>
         <div>
-            <a style="background-color: red;">fdsfds</a><a style="background-color: green;">fdsfds</a>
+            <div class="tag_div">
+
+            </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="__STATIC__/assets/plugins/tags/js/jquery.easing.1.3.js"></script>
+<script>
+    $(document).ready(function(){
+        //tags改变hot-tag
+        var tag_count = $('.tag').length;
+        var tag_line = Math.floor(tag_count/3);
+//        alert($('.hot-tag').height());
+//        $('.hot-tag').css('height',$('.hot-tag').height()+(tag_line-1)*90);
+        //tags触发
+        $('.tag').hover(function() {
+            $(this).stop().animate({ paddingRight: ($('.tag_count', this).outerWidth() - 5) }, 'easeInOutExpo');
+        }, function() {
+            $(this).stop().animate({ paddingRight: 5 }, 'easeInOutExpo');
+        });
+
+    });
+</script>

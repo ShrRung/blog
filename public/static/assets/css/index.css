@@ -2,10 +2,11 @@
 .first_div{width:1200px;margin:0 auto;}
 .left_div {width: 830px;float:left;}
 .left_div .shadow{box-shadow: 1px 1px 2px 1px #E2E2E2}
-.right_div{width: 352px;height:auto;float:left;margin-left: 18px;}
-.right_div .right-title{font-size: 20px;color: #999;margin-bottom: 10px;padding-bottom: 4px;}
-.right_div .right_content{    background: #FFF;  margin-bottom: 30px;  opacity: .8;padding:10px;height:auto;box-shadow: 1px 1px 2px 1px #E2E2E2}
-.right_div .right_content .tag_name{margin-right:5px;float:left;}
-.tag_name:hover .a{background-color:white}
-.right_div .right_content li{list-style: none;height:30px;}
-.right_div .right_content li .a{width:100px;height:45px;color: white;margin:5px;border-radius:10px;cursor:pointer}
+
+
+.right_div{width: 352px;float:left;margin-left: 18px;}
+.right_div .right_content{margin-bottom: 30px;  opacity: .8;padding:10px;height:auto;background-color:white;box-shadow: 1px 1px 2px 1px #E2E2E2}
+.right_div .right_content .right-title{font-size: 20px;color: #999;margin-bottom: 10px;padding-bottom: 4px;}
+
+/*.right_div .right_content li{list-style: none;height:30px;}*/
+/*.right_div .right_content li .a{width:100px;height:45px;color: white;margin:5px;border-radius:10px;cursor:pointer}*/
