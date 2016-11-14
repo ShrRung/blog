@@ -304,6 +304,8 @@ input#wp-submit {
 */
 .navbar-brand .logo{
     height:30px;
+    position: absolute;
+    top: 10px;
 }
 .navbar {
     width: 100%;
