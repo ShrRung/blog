@@ -85,8 +85,8 @@ class Link extends Base{
     {
         $id = input('param.link_id');
 
-        $role = new UserType();
-        $flag = $role->delRole($id);
+        $role = new LinkModel();
+        $flag = $role->linkDel($id);
         return json(['code' => $flag['code'], 'data' => $flag['data'], 'msg' => $flag['msg']]);
     }
 }

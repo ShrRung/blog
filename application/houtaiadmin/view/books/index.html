@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>友链列表</title>
+    <title>书籍列表</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -17,18 +17,18 @@
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>友链列表</h5>
+            <h5>书籍列表</h5>
         </div>
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
-                <a href="./linkAdd"><button class="btn btn-outline btn-primary" type="button">添加友链</button></a>
+                <a href="./add"><button class="btn btn-outline btn-primary" type="button">添加书籍</button></a>
             </div>
             <!--搜索框开始-->
             <form id='commentForm' role="form" method="post" class="form-inline">
                 <div class="content clearfix m-b">
                     <div class="form-group">
-                        <label>友链作者名称：</label>
-                        <input type="text" class="form-control" id="author" name="author">
+                        <label>书籍名称：</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>
@@ -43,11 +43,11 @@
                 <div class="example">
                     <table id="cusTable" data-height="500">
                         <thead>
-                        <th data-field="link_id">友链ID</th>
+                        <th data-field="bk_id">书籍ID</th>
+                        <th data-field="name">书籍名</th>
                         <th data-field="author">作者</th>
-                        <th data-field="title">友链标题</th>
-                        <th data-field="url">网链地址</th>
-                        <th data-field="logo">图标</th>
+                        <th data-field="url">书籍地址</th>
+                        <th data-field="picture">书籍封面</th>
                         <th data-field="view">是否显示</th>
                         <th data-field="sort">排序</th>
                         <th data-field="operate">操作</th>
@@ -113,7 +113,7 @@
                 var param = {
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
-                    searchText:$('#author').val()
+                    searchText:$('#name').val()
                 };
                 return param;
             },
@@ -134,23 +134,41 @@
         $("#search").bind("click", initTable);
 
     });
-
-    function linkDel(link_id){
-        layer.confirm('确认删除此友链?', {icon: 3, title:'提示'}, function(index){
-            //do something
-            $.getJSON('./linkDel', {'link_id' : link_id}, function(res){
-                if(res.code == 1){
-                    layer.alert('删除成功', function(){
-                        initTable();
-                    });
+    //改变书籍状态
+    function change_bk_view(view,bk_id){
+        if(view == 1){
+            view = 0;
+        }else{
+            view = 1;
+        }
+        $.getJSON('./changeBkView', {bk_id : bk_id,view:view}, function(res){
+//            console.log(res);
+            if(res.code == 1){
+                $("#bk_view"+bk_id).attr("href","javascript:change_bk_view("+view+","+bk_id+")");
+                if(view == 1){
+                    $("#bk_view"+bk_id).removeClass('btn-danger').addClass('btn-sm');
+                    $("#bk_view"+bk_id).text('是');
                 }else{
-                    layer.alert('删除失败');
+                    $("#bk_view"+bk_id).removeClass('btn-sm').addClass('btn-danger');
+                    $("#bk_view"+bk_id).text('否');
                 }
-            });
+            }else{
+                layer.alert(res.msg);
+            }
+        });
+    }
 
-            layer.close(index);
-        })
-
+    //删除书籍
+    function booksDel(bk_id){
+        $.post('./del', {bk_id : bk_id}, function(res){
+//            console.log(res);
+            if(res.code == 1){
+                layer.alert(res.msg);
+                initTable();
+            }else{
+                layer.alert(res.msg);
+            }
+        });
     }
 
 </script>

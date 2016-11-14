@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>友链列表</title>
+    <title>书籍列表</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="/static/admin/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/static/admin/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -17,18 +17,18 @@
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>友链列表</h5>
+            <h5>书籍分类列表</h5>
         </div>
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
-                <a href="./linkAdd"><button class="btn btn-outline btn-primary" type="button">添加友链</button></a>
+                <a href="./bk_tag_add"><button class="btn btn-outline btn-primary" type="button">添加书籍分类</button></a>
             </div>
             <!--搜索框开始-->
-            <form id='commentForm' role="form" method="post" class="form-inline">
+            <form id='commentForm' role="form" method="post" class="form-inline" style="padding-left: 140px;">
                 <div class="content clearfix m-b">
                     <div class="form-group">
-                        <label>友链作者名称：</label>
-                        <input type="text" class="form-control" id="author" name="author">
+                        <label>分类名称：</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" type="button" style="margin-top:5px" id="search"><strong>搜 索</strong>
@@ -43,12 +43,8 @@
                 <div class="example">
                     <table id="cusTable" data-height="500">
                         <thead>
-                        <th data-field="link_id">友链ID</th>
-                        <th data-field="author">作者</th>
-                        <th data-field="title">友链标题</th>
-                        <th data-field="url">网链地址</th>
-                        <th data-field="logo">图标</th>
-                        <th data-field="view">是否显示</th>
+                        <th data-field="bt_id">书籍分类ID</th>
+                        <th data-field="name">分类名</th>
                         <th data-field="sort">排序</th>
                         <th data-field="operate">操作</th>
                         </thead>
@@ -99,7 +95,7 @@
         //初始化表格,动态从服务器加载数据
         $("#cusTable").bootstrapTable({
             method: "get",  //使用get请求到服务器获取数据
-            url: "./index", //获取数据的地址
+            url: "./bk_tag_index", //获取数据的地址
             striped: true,  //表格显示条纹
             pagination: true, //启动分页
             pageSize: 10,  //每页显示的记录数
@@ -113,7 +109,7 @@
                 var param = {
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
-                    searchText:$('#author').val()
+                    searchText:$('#name').val()
                 };
                 return param;
             },
@@ -135,22 +131,17 @@
 
     });
 
-    function linkDel(link_id){
-        layer.confirm('确认删除此友链?', {icon: 3, title:'提示'}, function(index){
-            //do something
-            $.getJSON('./linkDel', {'link_id' : link_id}, function(res){
-                if(res.code == 1){
-                    layer.alert('删除成功', function(){
-                        initTable();
-                    });
-                }else{
-                    layer.alert('删除失败');
-                }
-            });
-
-            layer.close(index);
-        })
-
+    //删除书籍分类
+    function booksTagDel(bt_id){
+        $.post('./bk_tag_del', {bt_id : bt_id}, function(res){
+//            console.log(res);
+            if(res.code == 1){
+                layer.alert(res.msg);
+                initTable();
+            }else{
+                layer.alert(res.msg);
+            }
+        });
     }
 
 </script>

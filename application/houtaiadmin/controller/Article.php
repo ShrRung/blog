@@ -28,7 +28,7 @@ class Article extends Base
 
             $where = [];
             if (isset($param['searchText']) && !empty($param['searchText'])) {
-                $where['title'] = ['like', '%' . $param['title'] . '%'];
+                $where['title'] = ['like', '%' . $param['searchText'] . '%'];
             }
             if(isset($param['cateId']) && $param['cateId']!=0 ){
                 $where['cate_id'] = $param['cateId'];

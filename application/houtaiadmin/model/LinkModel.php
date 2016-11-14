@@ -62,4 +62,18 @@ class LinkModel extends Model{
     public function getOneLink($link_id){
         return $this->visible('link_id,author,title,url,logo,sort')->where(['link_id'=>$link_id])->find();
     }
+
+    //删除友链
+    public function linkDel($link_id){
+        try{
+            $result =  $this->where('link_id',$link_id)->delete();
+           if($result){
+               return ['code' => 1, 'data' => '', 'msg' => '删除成功'];
+           }else{
+               return ['code' => -1, 'data' => '', 'msg' => '删除失败'];
+           }
+        }catch( PDOException $e){
+            return ['code' => -2, 'data' => '', 'msg' => $e->getMessage()];
+        }
+    }
 }
