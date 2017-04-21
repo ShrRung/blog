@@ -12,6 +12,7 @@ class Index extends Controller
         $this->assign([
             'index' => 'current'
         ]);
+        $user = db('user')->select();
         return $this->fetch();
     }
 
