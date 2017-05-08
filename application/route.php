@@ -18,4 +18,5 @@ return [
     'contact' => 'index/index/contact',
     'blog' => 'index/index/blog',
     'about' => 'index/index/about',
+    'api' => 'index/api/index',
 ];

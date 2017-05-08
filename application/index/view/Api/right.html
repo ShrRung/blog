@@ -1,0 +1,6388 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>接口示例和返回数据</title>
+    <style>
+        div {
+            background: #fafafa;
+            border: 1px solid #CCCCCC;
+        }
+
+        h3 {
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 98%;
+            height: 300px;
+            background: #fafafa;
+            font-size: 13px;
+        }
+
+        li {
+            padding: 2px 0px;
+        }
+
+        #log {
+            padding: 10px;
+            max-height: 200px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+
+<div style="padding: 10px; margin-bottom: 10px;" id="top">
+    接口示例和返回数据：<br/>
+    除非特别声明，否则一律post方法提交。需要提交token和客户端类型，一律在header里面提交。<br/>
+    分别是token和ostype.
+</div>
+
+<div id="log">
+    <h3>更新日志</h3>
+    <ul>
+        <li><a href="#j1406">市场部页面结果</a>【16.06.14】</li>
+        <li><a href="#j1407">教务消课情况柱状图</a>【16.06.14】</li>
+        <li><a href="#j1408">顾问部页面</a>【16.06.14】</li>
+        <li><a href="#j1409">顾问列表业绩</a>【16.06.14】</li>
+        <li><a href="#j1410">顾问个人业绩详情</a>【16.06.14】</li>
+        <li><a href="#j1411">运营首页</a>【16.06.14】</li>
+        <li><a href="#j1316">提现</a> 【16.06.14】</li>
+        <li><a href="#j1315">近期学费交易明细</a> 【16.06.14】</li>
+        <li><a href="#j529">充值</a> 【16.06.14】</li>
+        <li><a href="#j533">根据手机号验证用户是否是学校学员</a> 【16.06.14】</li>
+        <li><a href="#j1314">提现三项汇总</a> 【16.06.14】</li>
+        <li><a href="#j1105">今日试听详情</a> 【16.06.14】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j110">机构手机登陆（校长账号）</a> 【16.06.12】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j708">获取通讯录</a> 【16.06.11】</li>
+        <li><a href="#j1101">机构日报相关</a> 【16.06.11】</li>
+        <li><a href="#j1201">机构版客户</a> 【16.06.11】</li>
+        <li><a href="#j1301">机构财务相关</a> 【16.06.11】</li>
+        <li><a href="#j1401">机构运营相关</a> 【16.06.11】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j531">获取个人月份行程安排</a> 【16.05.03】</li>
+        <li><a href="#j532">获取老师月份行程详情</a> 【16.05.03】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j528">充值金额选择列表</a> 【16.03.23】</li>
+        <li><a href="#j529">新建充值订单</a> 【16.03.23】</li>
+        <li><a href="#j530">充值记录</a> 【16.03.23】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j322">课程签到情况</a> 【16.03.23】</li>
+        <li><a href="#j525">获取老师学习首页</a> 【16.03.23】</li>
+        <li><a href="#j526">获取老师行程详情</a> 【16.03.23】</li>
+        <li><a href="#j527">获取签到详情</a> 【16.03.23】</li>
+        <li><a href="#j108">获取登陆验证码</a></li>
+        <li><a href="#j109">验证码登陆</a></li>
+        <li><a href="#j319">发布动态</a></li>
+        <li><a href="#j320">发布通知</a></li>
+        <li><a href="#j321">课程批量签到</a></li>
+        <li><a href="#j322">课程签到情况</a></li>
+        <li><a href="#j524">动态详情</a></li>
+        <li><a href="#j517">班级动态列表</a></li>
+        <li><a href="#j518">班级动态评论列表</a></li>
+        <li><a href="#j519">班级通知列表</a></li>
+        <li><a href="#j520">评论动态</a></li>
+        <li><a href="#j521">[取消]收藏动态</a></li>
+        <li><a href="#j522">[取消]赞动态</a></li>
+        <li><a href="#j523">我收藏的动态</a></li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j515">日程详情</a> 【16.03.16】</li>
+        <li><a href="#j516">签到请假</a> 【16.03.16】</li>
+
+        <li><a href="#j513">学习首页</a> 【16.03.15】</li>
+        <li><a href="#j514">获取某天行程安排</a> 【16.03.15】</li>
+        <li><a href="#j1010">订单详情</a> 【16.03.15】</li>
+        <li><a href="#j921">更新订单收件人</a> 【16.03.14】</li>
+        <li><a href="#j920">已完成订单列表</a> 【16.03.14】</li>
+        <li><a href="#j919">申请售后</a> 【16.03.14】</li>
+        <li><a href="#j702">获取学校简要信息</a> 【16.03.14】</li>
+        <li><a href="#j907">新建商品订单</a> 【16.03.14】</li>
+        <li><a href="#j1006">新建秀场订单</a> 【16.03.14】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j917">确认收货</a> 【16.03.11】</li>
+        <li><a href="#j918">订单评论</a> 【16.03.11】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j512">通过token获取个人信息</a> 【16.03.11】</li>
+        <li><a href="#j511">修改用户性别</a> 【16.03.11】</li>
+        <li><a href="#j108">获取登录验证码</a> 【16.03.11】</li>
+        <li><a href="#j109">验证码登录</a> 【16.03.11】</li>
+        <li><a href="#j913">创建收件人</a> 【16.03.11】</li>
+        <li><a href="#j914">编辑收件人</a> 【16.03.11】</li>
+        <li><a href="#j915">设为默认联系人</a> 【16.03.11】</li>
+        <li><a href="#j916">删除联系人</a> 【16.03.11】</li>
+        <li><a href="#j1008">秀场首页精彩分享</a> 【16.03.11】</li>
+        <li><a href="#j1009">秀场图片列表</a> 【16.03.11】</li>
+        <li><a href="#j1001">秀场首页</a> 【16.03.09】</li>
+        <li><a href="#j1002">全国秀场</a> 【16.03.09】</li>
+        <li><a href="#j1003">本地秀场</a> 【16.03.09】</li>
+        <li><a href="#j1004">秀场详情</a> 【16.03.09】</li>
+        <li><a href="#j1005">我的订单</a> 【16.03.09】</li>
+        <li><a href="#j1006">新建订单</a> 【16.03.09】</li>
+        <li><a href="#j1007">取消订单</a> 【16.03.09】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j901">商城首页</a> 【16.03.09】</li>
+        <li><a href="#j902">商品列表</a> 【16.03.09】</li>
+        <li><a href="#j903">商品详情</a> 【16.03.09】</li>
+        <li><a href="#j904">商品评价列表</a> 【16.03.09】</li>
+        <li><a href="#j905">我的收件人</a> 【16.03.09】</li>
+        <li><a href="#j906">我的订单</a> 【16.03.09】</li>
+        <li><a href="#j907">新建订单</a> 【16.03.09】</li>
+        <li><a href="#j908">取消订单</a> 【16.03.09】</li>
+        <li><a href="#j909">订单详情</a> 【16.03.09】</li>
+        <li><a href="#j910">我的收藏</a> 【16.03.09】</li>
+        <li><a href="#j911">添加收藏</a> 【16.03.09】</li>
+        <li><a href="#j912">取消收藏</a> 【16.03.09】</li>
+        <li style="list-style: none">
+            <hr/>
+        </li>
+        <li><a href="#j217">获取一个班级信息</a> 【11.04】</li>
+        <li><a href="#j218">设置班级头像</a> 【11.04】</li>
+        <li><a href="#j315">v1.1班级主页任务列表</a> 【11.04】</li>
+        <li><a href="#j219">转让班级</a> 【11.05】</li>
+        <li><a href="#j220">获取班级的协作老师</a> 【11.05】</li>
+        <li><a href="#j509">修改头像</a> 【12.01】</li>
+        <li><a href="#j408">根据环信用户名获取用户信息</a> 【12.03】</li>
+        <li><a href="#j305">选择发布对象，获得班级和班级成员的集合：</a> 【12.03】</li>
+        <li><a href="#j306">获取文件夹中的附件列表：</a> 【12.03】</li>
+        <li><a href="#j3062">获取老师上传的附件文件夹列表：</a> 【12.03】</li>
+        <li><a href="#j316">班级主页-&gt;文件：老师文件夹列表：</a> 【12.04】</li>
+        <li><a href="#j317">班级主页-&gt;文件：某一老师发布到任务的所有文件列表：</a> 【12.04】</li>
+        <li><a href="#j510">用户提交意见反馈：</a> 【12.08】</li>
+    </ul>
+</div>
+
+<h3 id="j101">1.01 手机注册时获取验证码：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+    "action":"getRegCode",
+    "mobile":"13681796760"
+    }
+    请求参数说明：
+    mobile: 手机号
+
+    response:
+    {
+        "code": 200,
+        "message": "发送验证码成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j102">1.02 手机号注册：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"mobileReg",
+        "mobile":"13681796760",
+        "regCode":"761096",
+        "password":"111111",
+        "user_type":1,
+        "truename":"周老虎",
+        "nickname":"tiger"
+    }
+    请求参数说明：
+    mobile: 手机号
+    regCode: 注册时收到的验证码
+    password: 密码
+    user_type: 角色类型：1.老师 2.学生
+
+    response:
+    {
+        "code": 200,
+        "message": "注册成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j103">1.03 手机号登录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"mobileLogin",
+        "mobile":"13681796760",
+        "password":"111111"
+    }
+
+    response:
+    {
+        "token": "c4ca4238a0b923820dcc509a6f75849b",
+        "uid": "1",
+        "mobile": "13681796760",
+        "reg_type": "0",
+        "user_type": "1",
+        "nickname": "",
+        "truename": "",
+        "avatar": "",
+        "sex": "女",
+        "birthday": "0000-00-00",
+        "province": "0",
+        "city": "0",
+        "district": "0",
+        "town": "0",
+        "reg_time": "2015-07-27",
+        "last_time": "2015-07-27 13:00:11",
+        "code": 200,
+        "message": "success"
+    }
+</textarea>
+
+<h3 id="j104">1.04 找回密码：发送验证码：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"getForgetPasswordCode",
+        "mobile":"13681796760"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "发送验证码成功",
+        "items": []
+    }
+</textarea>
+
+
+<h3 id="j105">1.05 忘记密码后重置密码：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"resetPassword",
+        "mobile":"13681796760",
+        "code":"865920",
+        "password":"222222"
+    }
+    参数说明：
+    code: 找回密码时发送的验证码
+    password: 新密码
+
+    response:
+    {
+        "code": 200,
+        "message": "修改密码成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j106">1.06 修改密码：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"changePassword",
+        "old_password":"111111",
+        "new_password":"222222",
+        "re_password":"222222"
+    }
+    参数说明：
+    old_password: 老密码
+    new_password: 新密码
+    re_password: 再一次输入新密码
+
+    response:
+    {
+        "code": 200,
+        "message": "修改密码成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j107">1.07 忘记密码:判断验证码是否正确：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"checkForgetPasswordCode",
+        "mobile":"13681796760",
+        "code":"123456"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j108">1.08 获取登录验证码：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"getLoginCode",
+        "mobile":"13681796760",
+        "app_version":"teacher"
+    }
+    参数说明 app_version  区分客户端,教师端必须使用,且值为teacher
+
+    response:
+    {
+        "code": 200,
+        "message": "获取验证码成功"
+    }
+</textarea>
+
+<h3 id="j109">1.09 验证码登录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"loginByCode",
+        "mobile":"13681796760",
+        "code":"123456",
+        "app_version":"teacher"
+    }
+    参数说明 app_version  区分客户端,教师端必须使用,且值为teacher
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "user_profile": {
+          "uid": "488",
+          "root_id": "488",
+          "username": "13681796760",
+          "password": "ae21e7f2cdb3030aaf5a5b257eaf2890",
+          "random": "mZuka2",
+          "reg_type": "0",
+          "user_type": "1",
+          "account_type": "0",
+          "group_type": "0",
+          "nickname": "徐益智",
+          "truename": "徐益智",
+          "name_index": "",
+          "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/4EC353B5-F7F3-4779-888A-4B533D9AE734.jpg",
+          "sex": "0",
+          "birthday": "0000-00-00",
+          "province": "0",
+          "city": "0",
+          "district": "0",
+          "town": "0",
+          "reg_time": "1445314833",
+          "last_time": "1457401884",
+          "last_ip": "101.81.116.152",
+          "token": "c3c59e5f8b3e9753913f4d435b53c308",
+          "create_time": "1445314833",
+          "hx_username": "ea50492183d612092301fa8bb6bbbc94"
+        }
+      }
+    }
+</textarea>
+
+<h3 id="j110">1.10 机构手机登陆（校长账号）：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    body:
+    {
+        "action":"outfitMobileLogin",
+        "mobile":"18321702917",
+        "password":"111111"
+    }
+
+    response:
+    {
+          "token": "854d9fca60b4bd07f9bb215d59ef5561",
+          "uid": "489",
+          "mobile": "18321702917",
+          "reg_type": "0",
+          "user_type": "3",
+          "nickname": "阳光",
+          "truename": "洋娃娃",
+          "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/854d9fca60b4bd07f9bb215d59ef55611453346457247.jpg",
+          "sex": "女",
+          "birthday": "0000-00-00",
+          "province": "0",
+          "city": "0",
+          "district": "0",
+          "town": "0",
+          "reg_time": "2015-10-20",
+          "last_time": "2016-06-12 12:01:32",
+          "hx_username": "85125190c5fa4f32df653593ac884f16",
+          "code": 200,
+          "school_id":"1"
+          "message": "登录成功"
+    }
+</textarea>
+
+<h3 id="j201">2.01 创建一个班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"createClass",
+        "class_name":"测试创建班级名称",
+        "class_code":"testClass001"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "创建班级成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j202">2.02 修改班级名称：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"editClassName",
+        "class_id":"1",
+        "class_name":"修改班级名称"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "修改班级名称成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j203">2.03. 删除班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"deleteClass",
+        "class_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "删除班级成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j204">2.04 根据班级代码，加入班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"joinClassByCode",
+        "class_code":"testClass001"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "加入班级成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j205">2.05 移除班级成员：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"removeClassMember",
+        "class_id":"2",
+        "uid":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "移除班级成员成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j206">2.06 老师开启和关闭接收班级成员的消息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"setClassMsg",
+        "class_id":"2",
+        "option_msg":"1"
+    }
+    请求参数说明：
+    option_msg: 是否允许学生发起消息,默认0允许, 1.关闭
+
+    response:
+    {
+        "code": 200,
+        "message": "修改接收信息状态成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j207">2.07 获取我的班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getMyClasses"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "myManagementClasses": [
+            {
+                "class_id": "216",
+                "class_name": "我的世界",
+                "class_code": "575757",
+                "is_teacher": 1,
+                "member_type": "3",
+                "avatar": "ico_14"
+            }
+        ],
+        "myJoinedClasses": []
+    }
+    返回参数说明：
+    myManagementClasses : 我创建的班级和我管理的班级
+    myJoinedClasses : 我作为学生加入的班级, 和参与管理的班级
+    is_teacher: 1.在班级中的角色是老师  0.在班级中的角色是学生
+    member_type: 当前登录用户在班级中的角色: 1.创建者(老师) 2.协作老师 3.学生
+</textarea>
+
+<h3 id="j208">2.08 获取班级成员列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getClassMember",
+        "class_id":"2",
+        "member_type":1
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "member_count": 2,
+        "teachers": [],
+        "students": [
+            {
+                "class_id": "179",
+                "uid": "56",
+                "member_type": "1",
+                "user_type": "1",
+                "truename": "涂成平",
+                "memo": "",
+                "mobile": "13601993603",
+                "hx_username": "bf7a29e97a6e11a778afbf5fde8476cd",
+                "hx_nickname": "涂成平",
+                "is_new": "0"
+            }
+        ]
+    }
+    参数说明：
+    member_count ：班级成员总数（不包括创建者）
+    teachers : 协作老师组
+    students : 学生成员组
+</textarea>
+
+<h3 id="j209">2.09 老师给班级成员添加备注信息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"setMemberMemo",
+        "class_id":2,
+        "uid":"2",
+        "memo":"张备注"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j210">2.10 设置或取消成员为协作老师：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"setTeacher",
+        "class_id":2,
+        "uid":"2",
+        "become_teacher":1
+    }
+    参数说明：become_teacher: 1.设置为协作老师 0.取消协作老师身份
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j211">2.11 学生退出班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"quitClass",
+        "class_id":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "退出班级成功",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j212">2.12 ios: 学生端班级列表:未读的任务个数</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getNoticeMissionClass"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+        "studentClient_missionClassId": [
+            {
+                "class_id": 2,
+                "unread": 2
+            },
+            {
+                "class_id": 1,
+                "unread": 1
+            }
+        ],
+        "teacherClient_feedback_classId": 0,
+        "teacherClient_feedback_missionId": 0
+        }
+    }
+    返回参数说明：studentClient_missionClassId,未读任务信息： 这里表示，class_id为2的班级，有2条未读任务, class_id为1的班级，有一条未读任务
+</textarea>
+
+<h3 id="j213">2.13 获取班级成员数：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getAllClassMemberCount",
+        "class_id":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "member_count": "2",
+        "have_new_member":"0"
+    }
+</textarea>
+
+<h3 id="j214">2.14 消除班级成员的新加入状态：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"updateNewStatus",
+        "class_id":"2",
+        "uid":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j215">2.15 学生：获取我加入的班级的新的任务数(我未反馈的)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getNewMissionAndClass"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "num": "1",
+                "class_id": "2"
+            }
+        ]
+    }
+    num: 此班级的新的未读(反馈)的任务
+</textarea>
+
+<h3 id="j216">2.16 学生：消除本班级所有未反馈任务标记：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"setClassMissionRead",
+        "class_id":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j217">2.17 获取一个班级信息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getClassInfo",
+        "class_id":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "my_member_type": 3,
+            "class_id": "2",
+            "class_name": "测试创建班级名称",
+            "class_code": "testClass001",
+            "avatar": "",
+            "creator": [
+                {
+                    "class_id": "2",
+                    "uid": "1",
+                    "member_type": "1",
+                    "user_type": "1",
+                    "truename": "徐益智",
+                    "memo": "",
+                    "mobile": "13681796760",
+                    "hx_username": "38bf87963d0faf9588b04e8f11f974ec",
+                    "hx_nickname": "徐益智"
+                }
+                ],
+            "teachers": [],
+            "school_id": 0,
+            "school_name": ""
+        }
+    }
+    参数说明：
+    my_member_type：当前登录用户在这个班级的角色 ：1.创建者 2.协作老师 3.学生
+    avatar: 班级头像
+    creator:班级创建者信息列表
+    teachers: 协作老师信息列表
+    school_id: 学校ID int型
+    school_name: 学校名称
+</textarea>
+
+<h3 id="j218">2.18 设置班级头像：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"setClassAvatar",
+        "class_id":"2",
+        "avatar":"a"
+    }
+    参数说明：avatar: 约定的班级头像带好
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j219">2.19 转让班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"transferClass",
+        "class_id":"2",
+        "to_uid":"1"
+    }
+    参数说明：to_uid: 班级接收者UID
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j220">2.20 获取班级的协作老师：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getClassTeachers",
+        "class_id":"2",
+        "become_type":1
+    }
+    参数说明：become_type: 1.获取所有当前的协作老师  2.获取所有在班级当中是学生角色，但用户类型是老师的成员，可设置未协作老师
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id": "2",
+                "uid": "1",
+                "member_type": "1",
+                "user_type": "1",
+                "truename": "徐益智",
+                "memo": "",
+                "mobile": "13681796760",
+                "hx_username": "38bf87963d0faf9588b04e8f11f974ec",
+                "hx_nickname": "徐益智"
+            }
+        ]
+    }
+</textarea>
+
+<h3 id="j221">2.21 老师：所有学生列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"getClassStudents",
+        "class_id":"220",
+        "getAttendance":"1",
+        "current_date":"2015-12-22"
+    }
+    参数说明：getAttendance:获取出勤信息(可选项) , current_date:查询出勤的日期
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id": "2",
+                "uid": "2",
+                "member_type": "3",
+                "user_type": "2",
+                "truename": "测试姓名",
+                "memo": "张备注",
+                "mobile": "15692177275",
+                "hx_username": "e5a135b23d1287478697e38f425821c7",
+                "hx_nickname": "测试姓名",
+                "avatar": "",
+                "status":"1"
+            }
+        ]
+    }
+    avatar:头像地址
+</textarea>
+
+<h3 id="j222">2.22 老师：保存当日考勤：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Attendance
+    header: token
+    body:
+    {
+        "action":"saveAttendance",
+        "class_id":"1",
+        "current_date":"2015-11-23",
+        "attendance_info":[
+            {
+                "uid":"1",
+                "status":3
+            },
+            {
+                "uid":"2",
+                "status":3
+            },
+            {
+                "uid":"3",
+                "status":3
+            }
+        ]
+    }
+    参数说明：current_date:当前日期，格式是：yyyy-mm-dd
+    attendance_info:班级成员的签到数组：
+        status: 1.出勤 2.迟到 3.缺席
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j223">2.23 老师：查看当日考勤：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Attendance
+    header: token
+    body:
+    {
+        "action":"getTodayAttendance",
+        "class_id":"173",
+        "current_date":"2015-12-22"
+    }
+    参数说明：current_date:当前日期，格式是：yyyy-mm-dd
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "uid": "486",
+                "status": "1"
+            }
+        ]
+    }
+    参数说明：status: 1.出勤 2.迟到 3.缺席
+</textarea>
+
+<h3 id="j301">3.01 发布作业任务：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"createMission",
+        "content":"任务文本内容",
+        "need_feedback":1,
+        "open_time":"2015-08-01 10:00:00",
+        "target_info":[
+            {
+                "target_type":"class",
+                "target_id":2
+            },
+            {
+                "target_type":"user",
+                "target_id":2
+            },
+            {
+                "target_type":"user",
+                "target_id":1
+            }
+        ],
+        "mission_detail":[
+            {
+                "mission_type":1,
+                "content":"http://www.vdianjing.com/source/001.jpg"
+            },
+            {
+                "mission_type":1,
+                "content":"http://www.vdianjing.com/source/002.jpg"
+            },
+            {
+                "mission_type":2,
+                "content":"http://www.vdianjing.com/source/002.3gp",
+                "length":"20"
+            },
+            {
+                "mission_type":3,
+                "content":"http://www.vdianjing.com/source/001.xls",
+                "aid":1
+            },
+            {
+                "mission_type":3,
+                "content":"http://www.vdianjing.com/source/002.doc",
+                "aid":2
+            }
+            {
+                "mission_type":4,
+                "description":"这是今天的上课内容",
+                "content":"这是今天的作业"
+            }
+        ],
+        "box_name":"收纳盒名称"
+    }
+    请求参数说明：
+    title:  任务标题
+    content: 任务内容
+    need_feedback: 是否需要反馈，0.不需要，1.需要
+    open_time: 定时发布的时间，若是空，则立即发布
+    target_info: 任务接收对象：
+            target_type: 接收对象类型： class：班级 user:个人
+            target_id: 接收对象ID，即班级class_id或个人uid
+    mission_detail: 任务详细内容
+            mission_type: 子任务种类： 1.图片 2.录音 3.附件
+            content: 子任务具体内容，一般为上述资源文件的路径
+            length: 录音文件长度
+    box_file: 收纳盒选项
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+</textarea>
+
+<h3 id="j302">3.02 主页任务列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"homeMission",
+        "member_type":1,
+        "page":1,
+        "pagesize":8
+    }
+    参数说明：member_type: 1.老师 2.学生
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "planned": [],
+        "items": [
+            {
+                "direction": "right",
+                "mid": "1",
+                "class_name": "某班级",
+                "content": "test",
+                "create_time": "0803 18:03",
+                "need_feedback": "1",
+                "sub_mission": [],
+                "feedback_info": {
+                    "B": 1,
+                    "A": 1
+                }
+            },
+            {
+                "direction": "right",
+                "mid": "2",
+                "class_name": "某班级",
+                "content": "任务文本内容",
+                "create_time": "0803 18:04",
+                "need_feedback": "1",
+                "sub_mission": [
+                    {
+                        "mission_type": "1",
+                        "file_type": "",
+                        "content": [
+                        "子任务详情：图片路径等",
+                        "多个用逗号隔开"
+                        ]
+                    },
+                    {
+                        "mission_type": "2",
+                        "file_type": "",
+                        "content": [
+                        "子任务详情：录音文件路径等"
+                        ]
+                    },
+                    {
+                        "mission_type": "3",
+                        "file_type": "",
+                        "content": [],
+                        "attachments":[
+                            {
+                                "file_name":"附件的中文名称",
+                                "file_path":"http://www.vdianjing.com/source/002.doc",
+                                "upload_time":"2015-10-10",
+                            },
+                            {
+                                "file_name":"附件的中文名称2",
+                                "file_path":"http://www.vdianjing.com/source/001.doc",
+                                "upload_time":"2015-10-11",
+                            }
+                        ]
+                    },
+                    {
+                        "mission_type": "4",
+                        "file_type": ""
+                    }
+                ],
+                "feedback_info": []
+            }
+        ]
+    }
+    参数说明：
+    planned: 计划、定时发布的任务
+    need_feedback: 1.此任务是需要反馈，则给出feedback_info字段信息:反馈的人数的统计:(A. 已反馈 B.未反馈 C.有疑问)
+    sub_mission:任务详情 :mission_type : 类型：1.照片 2.录音 3.附件
+</textarea>
+
+<h3 id="j303">3.03 任务详情页面：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"missionDetail",
+        "mid":1,
+        "member_type":1
+    }
+    参数说明：mid: 任务id
+    member_type: 1.老师 2.学生
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "mid": "3",
+            "content": "新的创建任务测试",
+            "class_name": "某班级",
+            "create_time": "0810 14:45",
+            "author_avatar":"",
+            "mission_pic": [
+                "http://www.vdianjing.com/source/001.jpg",
+                "http://www.vdianjing.com/source/002.jpg"
+            ],
+            "mission_audio": [
+                "http://www.vdianjing.com/source/002.3gp"
+            ],
+            "mission_attachment": [
+                {
+                    "path": "http://www.vdianjing.com/source/001.xls",
+                    "file_name": "001.xls",
+                    "file_type": "xls"
+                },
+                {
+                    "path": "http://www.vdianjing.com/source/002.doc",
+                    "file_name": "002.doc",
+                    "file_type": "doc"
+                }
+            ],
+            "feedback": {
+                "yfk": {
+                    "items": [
+                        {
+                            "mid": "3",
+                            "uid": "1",
+                            "feedback_type": "1",
+                            "feedback_time": "1438934849",
+                            "truename": ""
+                        },
+                        {
+                            "mid": "3",
+                            "uid": "2",
+                            "feedback_type": "2",
+                            "feedback_time": "1438934849",
+                            "truename": ""
+                        }
+                    ],
+                    "count": 2
+                    },
+                "wfk": {
+                    "items": [],
+                    "count": 0
+                },
+                "yyw": {
+                    "items": [],
+                    "count": 0
+                }
+            },
+            "have_feedback": 1,
+            "have_praise": 1,
+            "feedback_type": 0
+        }
+    }
+    参数说明：
+    mission_pic:图片任务
+    mission_audio:音频任务
+    mission_attachment: 附件任务
+    mission_box: 收纳盒
+    feedback: 反馈信息
+        yfk:已反馈学生列表
+        wfk:未反馈学生列表
+        yyw:有疑问学生列表
+    have_feedback: //学生端：0.未反馈 1.已反馈
+    have_praise: //学生端：0.未点赞 1.已点赞
+    feedback_type: 反馈类型: 已反馈：勾、差、星、有疑问 1.2.3.4
+</textarea>
+
+<h3 id="j304">3.04 七牛获取上传token：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/qiniu
+    header: token
+    body:
+    {
+        "action":"getUpToken",
+        "bucket":"source"
+    }
+    参数说明：bucket: 上传到云存储的空间名称，默认是source，可自定义，但是云端必须有这个空间
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "upToken": "VdujwxmrvKW0nSpE8Br6UXxTokssI-9QBNdrcJRq:6CjikMExSe3Ea-vN9OIsHAczx1A=:eyJzY29wZSI6InNvdXJjZSIsImRlYWRsaW5lIjoxNDM4ODI4MjEzfQ=="
+    }
+    参数说明：
+</textarea>
+
+<h3 id="j305">3.05 选择发布对象，获得班级和班级成员的集合：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"getReceivers"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "receiverClasses": [
+            {
+            "class_id": "2",
+            "class_name": "测试创建班级名称",
+            "avatar": ""
+            }
+        ]
+    }
+    参数说明：
+</textarea>
+
+<h3 id="j306">3.06 获取文件夹中的附件列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"getAttachmentList",
+        "folder_id":1,
+        "page":1,
+        "pagesize":8
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "aid": "2",
+                "file_type": "2",
+                "folder_id": "1",
+                "file_name": "测试word",
+                "file_path": "http://www.vdianjing.com/source/002.doc",
+                "upload_time": "0"
+            },
+            {
+                "aid": "1",
+                "file_type": "2",
+                "folder_id": "1",
+                "file_name": "测试音频",
+                "file_path": "http://www.vdianjing.com/source/001.3gp",
+                "upload_time": "0"
+            }
+        ]
+    }
+    参数说明：file_type : 文件类型： 1.图片 2.音频 3.word文档 4.excel 5.ppt 6.pdf 7.txt 8.压缩文件
+
+</textarea>
+
+<h3 id="j3062">3.06.2 获取老师上传的附件文件夹列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"getAttachmentFolder",
+        "page":1,
+        "pagesize":8
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+            "folder_id": "1",
+            "folder_name": "作业",
+            "uid": "1",
+            "create_time": "1970-01-01",
+            "file_count": "2"
+            }
+        ]
+    }
+    参数说明：file_count：该文件夹包含的文件数
+
+</textarea>
+
+<h3 id="j307">3.07 学生反馈任务：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"feedback",
+        "mid":1,
+        "feedback_type":1
+    }
+    参数说明：
+    mid:任务id
+    feedback_type: 反馈类型: 已反馈：勾、差、星、有疑问 1.2.3.4
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j308">3.08 首页收纳盒列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"indexBoxFile"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "box_id": "2",
+                "create_uid": "1",
+                "mid": "3",
+                "box_name": "收纳盒名称",
+                "send_count": 0,
+                "total_receiver": 0
+            },
+            {
+                "box_id": "1",
+                "create_uid": "1",
+                "mid": "2",
+                "box_name": "收纳盒名称",
+                "send_count": 0,
+                "total_receiver": 0
+            }
+        ]
+    }
+    返回参数说明: send_count/total_receiver : 已递交文件人数/任务接收对象总人数
+
+</textarea>
+
+<h3 id="j309">3.09 收纳盒已接收文件列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"boxFileList",
+        "mid":1,
+        "box_id":1
+    }
+    参数说明：mid: 任务id, box_id: 收纳盒id
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "send_count": 0,
+        "total_receiver": 0,
+        "items": [
+            {
+                "file_count": "0",
+                "box_id":1,
+                "uid":1,
+                "upload_time": "1970/01/01",
+                "truename": ""
+            }
+        ]
+    }
+    返回参数说明:
+
+</textarea>
+
+<h3 id="j310">3.10 某一学生递交到收纳盒的文件列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"studentBoxFile",
+        "uid":1,
+        "box_id":1
+    }
+    参数说明：uid: 用户id前一页面带过来的, box_id: 收纳盒id
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "file_type": "doc",
+                "file_path": "http://a.com/1.doc"
+            },
+            {
+                "file_type": "doc",
+                "file_path": "http://a.com/2.doc"
+            }
+        ]
+    }
+    返回参数说明:
+
+</textarea>
+
+<h3 id="j311">3.11 学生点赞任务：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"praise",
+        "mid":1
+    }
+    参数说明：
+    mid:任务id
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j312">3.12 班级主页任务列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"classMission",
+        "member_type":1,
+        "class_id":"2",
+        "page":1,
+        "pagesize":8
+    }
+    参数说明：
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "planned": 1,
+        "items": [
+            {
+                "direction": "right",
+                "mid": "3",
+                "class_name": "测试创建班级名称,徐益智1,测试姓名",
+                "content": "新的创建任务测试",
+                "create_time": "0806 19:08",
+                "need_feedback": "1",
+                "sub_mission": [
+                    {
+                        "mission_type": "1",
+                        "file_type": "jpg",
+                        "content": [
+                        "http://www.vdianjing.com/source/001.jpg",
+                        "http://www.vdianjing.com/source/002.jpg"
+                        ]
+                    },
+                    {
+                        "mission_type": "2",
+                        "file_type": "3gp",
+                        "content": [
+                            "http://www.vdianjing.com/source/002.3gp"
+                        ]
+                    },
+                    {
+                        "mission_type": "3",
+                        "file_type": "doc",
+                        "content": [],
+                        "attachments":[
+                            {
+                                "file_name":"附件的中文名称",
+                                "file_path":"http://www.vdianjing.com/source/002.doc",
+                                "upload_time":"2015-10-10",
+                            },
+                            {
+                                "file_name":"附件的中文名称2",
+                                "file_path":"http://www.vdianjing.com/source/001.doc",
+                                "upload_time":"2015-10-11",
+                            }
+                        ]
+                    },
+                    {
+                        "mission_type": 4,
+                        "file_type": "",
+                        "content": [],
+                        "title": "收纳盒名称",
+                        "send_count": 0,
+                        "total_receiver": 0
+                    }
+                ],
+                "feedback_info": {
+                    "A": 2,
+                    "B": 0,
+                    "C": 0
+                },
+                "praise_info": 0
+            },
+            {
+                "direction": "right",
+                "mid": "2",
+                "class_name": "测试创建班级名称,徐益智1,测试姓名",
+                "content": "任务文本内容",
+                "create_time": "0803 18:04",
+                "need_feedback": "1",
+                    "sub_mission": [
+                    {
+                        "mission_type": "1",
+                        "file_type": "",
+                        "content": [
+                            "子任务详情：图片路径等",
+                            "多个用逗号隔开"
+                        ]
+                    },
+                    {
+                        "mission_type": "2",
+                        "file_type": "",
+                        "content": [
+                        "子任务详情：录音文件路径等"
+                        ]
+                    },
+                    {
+                        "mission_type": "3",
+                        "file_type": "",
+                        "content": [
+                        "附件文件路径地址"
+                        ]
+                    },
+                    {
+                        "mission_type": "4",
+                        "file_type": ""
+                    },
+                    {
+                        "mission_type": 4,
+                        "file_type": "",
+                        "content": [],
+                        "title": "收纳盒名称",
+                        "send_count": "2",
+                        "total_receiver": 0
+                    }
+                ],
+                "feedback_info": {
+                    "A": 0,
+                    "B": 0,
+                    "C": 0
+                },
+                "praise_info": 0
+            },
+            {
+                "direction": "right",
+                "mid": "1",
+                "class_name": "测试创建班级名称",
+                "content": "test",
+                "create_time": "0803 18:03",
+                "need_feedback": "1",
+                "sub_mission": [],
+                "feedback_info": {
+                    "A": 2,
+                    "B": 0,
+                    "C": 0
+                },
+                "praise_info": 0
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j313">3.13 预定任务列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"plannedMission",
+        "class_id":"2",
+        "page":1,
+        "pagesize":8
+    }
+    参数说明：
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            //同主页任务列表
+        ]
+    }
+
+</textarea>
+
+<h3 id="j314">3.14 删除任务：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"removeMission",
+        "mid":1
+    }
+    参数说明：
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j315">3.15 v1.1班级主页任务列表：返回数据同<a href="#j312">3.12 班级主页任务列表</a></h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"classMission11",
+        "member_type":1,
+        "mission_type":1,
+        "class_id":"2",
+        "page":1,
+        "pagesize":8
+    }
+    参数说明：mission_type 任务类型：0.动态(不需反馈) 1.任务(需反馈)
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "planned": 1,
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j316">3.16 班级主页-&gt;文件：老师文件夹列表</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"getClassTeacherFolder",
+        "class_id":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id":"2",
+                "upload_uid":"1",
+                "teacher_name":"徐老师",
+                "file_count":"2"
+            },
+            {
+                "class_id":"2",
+                "upload_uid":"23",
+                "teacher_name":"李老师",
+                "file_count":"11"
+            }
+        ]
+    }
+    参数说明：upload_uid：上传文件的老师的uid
+            teacher_name：老师名字
+            file_count：该老师上传的文件数
+    注意：class_id和upload_uid需要带入下一层
+
+</textarea>
+
+<h3 id="j317">3.17 班级主页-&gt;文件：某一老师发布到任务的所有文件列表</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"getClassTeacherFiles",
+        "class_id":"2",
+        "upload_uid":"1",
+        "page":1,
+        "pagesize":8
+    }
+    参数说明：upload_uid：上传文件的老师的uid
+    注意：class_id和upload_uid由上层带入
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "file_type":"2",
+                "file_name":"作业附件2",
+                "file_path":"http://7xkopi.com2.z0.glb.qiniucdn.com/a87ff679a2f3e71d9181a67b7542122c1439023351214.jpg",
+                "upload_time":"2015-12-01",
+                "download_count":"2"
+            },
+            {
+                "file_type":"2",
+                "file_name":"作业附件1",
+                "file_path":"http://7xkopi.com2.z0.glb.qiniucdn.com/a87ff679a2f3e71d9181a67b7542122c1439023351214.jpg",
+                "upload_time":"2015-12-01",
+                "download_count":"12"
+            }
+        ]
+    }
+    参数说明：file_type：文件类型（不同文件类型可能调用不同的icon）
+    file_name：文件名
+    file_path：附件文件的绝对路径
+    download_count：下载次数
+    注意：class_id和upload_uid需要带入下一层
+
+</textarea>
+
+<h3 id="j318">3.18 提醒学生反馈任务</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/mission
+    header: token
+    body:
+    {
+        "action":"noticeStudentToFeedback",
+        "mid":1
+    }
+    参数说明：mid 任务ID
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+
+<h3 id="j319">3.19 发布动态</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+      "action": "createActivity",
+      "title": "测试标题",
+      "content": "文章内容",
+      "class_id": "200",
+      "pics": "[\"http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png\",\"http://lawangimg.subaojiang.com/Public/works/56d8059272162.png\"]"
+    }
+    参数说明：pics 动态图片列表,json格式
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "ca_id": "3"
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j320">3.20 发布通知</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "class_id":"200",
+        "action":"createClassNotice",
+        "content":"通知内容测试"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "cn_id": "2"
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j321">3.21 课程批量签到</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "class_id":"200",
+        "action":"createClassAttendance",
+        "ctp_id":"5",
+        "date_key":"2016-03-22",
+        "status":"3",
+        "comment":"请假测试",
+        "uids":"[\"486\",\"488\"]"
+    }
+    参数说明：status 状态,1为签到 3为请假
+    comment 说明文字
+    ctp_id 教学计划ID
+    date_key 签到日期
+    uids 学生uid json格式
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": null
+    }
+
+</textarea>
+
+
+<h3 id="j322">3.22 课程班级签到情况</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/classes
+    header: token
+    body:
+    {
+        "action":"courseClassAttendanceList",
+        "class_id":"200",
+        "ctp_id":"5"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "course_atten_count": {
+          "student_count": "3",
+          "atten_count": "2"
+        },
+        "course_atten_list": [
+          {
+            "uid": "486",
+            "truename": "大婶",
+            "nickname": "洋洋",
+            "avatar": "http://7xotb6.com2.z0.glb.qiniucdn.com/4a8bde197b2385a0b7322677cbc8a4fa.jpg",
+            "attendance_status": "3",
+            "attendance_comment": ""
+          },
+          {
+            "uid": "488",
+            "truename": "徐益智",
+            "nickname": "徐老师",
+            "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/B9D9A495-798E-4B3A-AFCB-A54DA6FDE77C.jpg",
+            "attendance_status": "3",
+            "attendance_comment": "请假文字说明"
+          },
+          {
+            "uid": "584",
+            "truename": "呵呵",
+            "nickname": "唧唧",
+            "avatar": "http://7xs065.com1.z0.glb.clouddn.com/CE788294-81B8-4BC0-99D2-F57A7A2B24AD.jpg",
+            "attendance_status": 0,
+            "attendance_comment": ""
+          }
+        ]
+      }
+    }
+    返回说明 student_count 班级学生数  atten_count已签到人数
+</textarea>
+
+<h3 id="j401">4.01 讨论组列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/message
+    header: token
+    body:
+    {
+        "action":"msgGroup"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "group_id": "1439288668",
+                "to_uid": "2",
+                "truename": "",
+                "content": "mytest",
+                "send_time": "08月11日"
+            },
+            {
+                "group_id": "3333",
+                "to_uid": "2",
+                "truename": "",
+                "content": "好",
+                "send_time": "01月01日"
+            },
+            {
+                "group_id": "1212",
+                "to_uid": "2",
+                "truename": "",
+                "content": "test",
+                "send_time": "01月01日"
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j402">4.02 搜索用户聊天记录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/message
+    header: token
+    body:
+    {
+        "action":"searchContent",
+        "keyword":"关键词"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "group_id": "0",
+                "to_uid": "2",
+                "truename": "",
+                "content": "test",
+                "send_time": "01年01日"
+            },
+            {
+                "group_id": "0",
+                "to_uid": "2",
+                "truename": "",
+                "content": "reply test",
+                "send_time": "01年01日"
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j403">4.03 聊天内容数据：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/message
+    header: token
+    body:
+    {
+        "action":"msgContentList",
+        "group_id":3333,
+        "to_uid":2,
+        "page":1,
+        "pagesize":10
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "direction": "left",
+                "truename": "别人",
+                "content": "reply test",
+                "time": "01月01日 08:00"
+            },
+            {
+                "direction": "right",
+                "truename": "我",
+                "content": "好",
+                "time": "01月01日 08:00"
+            }
+        ]
+    }
+    参数说明：direction：内容显示方向
+
+</textarea>
+
+<h3 id="j404">4.04 发消息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/message
+    header: token
+    body:
+    {
+        "action":"sendMsg",
+        "group_id":1439288668,
+        "to_uid":2,
+        "content":"mytest2"
+    }
+    参数说明：group_id: 讨论组id,从讨论组列表中获取和带入。当两个用户是首次聊天，group_id是0,
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "group_id": 1439288668
+    }
+
+</textarea>
+
+<h3 id="j405">4.05 搜索可聊天对象：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/message
+    header: token
+    body:
+    {
+        "action":"searchChatObject",
+        "member_type":1,
+        "class_id":1,
+        "keyword":"测试"
+    }
+    参数说明：member_type: 当前用户在班级成员中的角色，由班级成员列表数据中代入, 1.创建者 2.协作老师 3.学生
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "to_uid": "2",
+                "truename": "测试姓名",
+                "hx_username":"323dfasd3r23r234gsge4fgr",
+                "avatar":""
+            }
+        ]
+    }
+    参数说明：hx_username:环信用户名；avatar：用户头像绝对路径
+
+</textarea>
+
+<h3 id="j406">4.06 获取环信用户昵称：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"getHxNickname",
+        "hx_username":"5c2c3adff2a4a093b4e8feb74f5fbe6b"
+    }
+    参数说明：hx_username: 环信用户username
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "hx_nickname": "彭芸"
+    }
+
+</textarea>
+
+<h3 id="j407">4.07 获取环信用户昵称-批量：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"getHxNickname_batch",
+        "hx_username":"环信用户username的json数据"
+    }
+    参数说明：hx_username: 环信用户username的json数据
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "hx_username":"5c2c3adff2a4a093b4e8feb74f5fbe6b",
+                "hx_nickname":"彭芸"
+            },
+            {
+                "hx_username":"5c2c3adff2a4a093b4e8feb74f5fbe6b",
+                "hx_nickname":"彭芸"
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j408">4.08 根据环信用户名获取用户信息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"getUserInfoByHx",
+        "hx_username":"环信用户username",
+        "get_class_info":"0"
+    }
+    参数说明：hx_username: 环信用户username
+    get_class_info: 是否获取用户的班级信息: 默认0.不获取 ,1.获取
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "uid": "1",
+            "user_type": "1",
+            "mobile": "13681796760",
+            "truename": "徐益智",
+            "nickname": "虚无影",
+            "avatar": "",
+            "sex": "0",
+            "birthday": "0000-00-00",
+            "hx_username": "38bf87963d0faf9588b04e8f11f974ec",
+            "class_info": [
+                {
+                    "class_id": "2",
+                    "class_name": "测试创建班级名称",
+                    "class_code": "testClass001",
+                    "avatar": "a",
+                    "school_id": "0"
+                }
+            ]
+        }
+    }
+    参数说明：class_info: 用户加入的班级信息列表
+
+</textarea>
+
+<h3 id="j501">5.01 完善资料：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"setProfile",
+        "nickname":"虚无影",
+        "truename":"徐益智"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+    参数说明：
+
+</textarea>
+
+<h3 id="j502">5.02 判断用户是否已完善资料：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"checkCompleteProfile"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "complete": 1
+    }
+    参数说明：complete: 1:已完善，0:未完善
+
+</textarea>
+
+<h3 id="j503">5.03 读取个人资料：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"getUserProfile"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "nickname": "虚无影",
+            "truename": "徐益智"
+        }
+    }
+
+</textarea>
+
+<h3 id="j504">5.04 修改个人资料：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"editProfile",
+        "nickname":"虚无影1",
+        "truename":"徐益智1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j505">5.05 获取个人资料详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"getProfile",
+        "uid":"1",
+        "class_id":"1"
+    }
+    说明：class_id是可选项
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "uid": "1",
+            "nickname": "虚无影1",
+            "truename": "徐益智1",
+            "sex": "0",
+            "mobile": "13681796760",
+            "hx_username": "38bf87963d0faf9588b04e8f11f974ec",
+            "user_type": "1",
+            "class_member_type": 0
+        }
+    }
+    返回参数说明：
+    hx_username:在环信的username
+    user_type:该用户的角色：1.老师 2.学生
+    class_member_type:该用户在该班级中的角色：1.创建者 2.管理协作者 3.普通成员
+
+</textarea>
+
+<h3 id="j506">5.06 检查新版本：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/version
+
+    android地址：http://api.xt-cloud.com/version/checkAndroidVersion
+    IOS地址：http://api.xt-cloud.com/version/checkIOSVersion
+
+</textarea>
+
+<h3 id="j507">5.07 修改真实姓名：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"modifyTruename",
+        "truename":"徐益智1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j508">5.08 修改昵称(签名)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"modifyNickname",
+        "nickname":"虚无影1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j509">5.09 修改头像：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"updateAvatar",
+        "avatar":"http://7xkopi.com2.z0.glb.qiniucdn.com/021230E8-E3D4-4D50-BB3E-057A16A844DA.jpg"
+    }
+    请求参数说明：avatar: 用户头像绝对路径
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j510">5.10 用户提交意见反馈：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Feedback
+    header: token
+    body:
+    {
+        "action":"addFeedback",
+        "content":"测试反馈内容"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+
+<h3 id="j511">5.11 修改性别：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"updateSex",
+        "sex":"0"
+    }
+    请求参数说明：sex: 用户性别,0女1男2未知
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+
+<h3 id="j512">5.12 获取个人资料详情(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"getPersonalProfile",
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success!",
+      "items": {
+        "user_info": {
+          "nickname": "徐老师",
+          "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/4EC353B5-F7F3-4779-888A-4B533D9AE734.jpg",
+          "sex": "1",
+          "truename": "徐益智",
+          "school_id":"1",
+          "account_money":"10.00",
+          "username":"12312312312"
+        }
+      }
+    }
+    说明:school_id  为0是表示未加入学校
+
+</textarea>
+
+
+<h3 id="j513">5.13 获取个人学习首页(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getStudyIndex",
+    }
+
+    response:
+    {
+  "code": 400,
+  "message": "错误的参数请求",
+  "items":
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "request_date": 1458098896,
+        "plan_list": [
+          {
+            "ctp_id": "3",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_time": "上午 10:00",
+            "attendance_status": 1
+          },
+          {
+            "ctp_id": "4",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_time": "下午 02:00",
+            "attendance_status": 0
+          }
+        ],
+        "class_list": [
+          {
+            "class_id": "173",
+            "class_name": "测试班级02"
+          },
+          {
+            "class_id": "218",
+            "class_name": "嘿嘎嘎"
+          },
+          {
+            "class_id": "220",
+            "class_name": "快乐更好"
+          }
+        ],
+        "attendance_list": [
+          {
+            "ctp_id": "1",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_time": null,
+            "attendance_status": 1
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j514">5.14 获取个人行程安排(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getUserTeachingPlan",
+        "ctp_date":"2016-03-15"
+    }
+    参数说明:ctp_date 请求日期格式必须是 XXXX-XX-XX
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+          "code": 200,
+          "message": "Success",
+          "items": {
+            "plan_list": [
+              {
+                "ctp_id": "3",
+                "ctp_course_name": "鼓课程测试",
+                "ctp_time": "上午 10:00",
+                "attendance_status": 1
+              },
+              {
+                "ctp_id": "4",
+                "ctp_course_name": "鼓课程测试",
+                "ctp_time": "下午 02:00",
+                "attendance_status": 0
+              }
+            ]
+          }
+        }
+
+</textarea>
+
+
+<h3 id="j515">5.15 获取个人行程详情(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getTeachingPlanDetail",
+        "ctp_date":"2016-03-22"
+    }
+    参数说明:ctp_date 请求日期格式必须是 XXXX-XX-XX
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+          "code": 200,
+          "message": "Success",
+          "items":
+            {
+              "ctp_id": "1",
+              "ctp_date": "2016-03-15",
+              "ctp_time": "上午 8:00",
+              "ctp_course_name": "鼓课程测试",
+              "attendance_status": "1"
+            }
+    }
+
+</textarea>
+
+
+<h3 id="j516">5.16 签到,请假(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"createTeachingPlanAttendance",
+        "ctp_id":"1",
+        "status":"1",
+        "comment":"请假说明"
+    }
+    参数说明:ctp_id 日程ID
+    status 1 签到,3请假
+    mark 请假说明
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+          "code": 200,
+          "message": "Success"
+        }
+    }
+
+</textarea>
+
+<h3 id="j517">5.17 班级动态列表(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getClassActivities",
+        "class_id":"200",
+        "page":"1",
+        "pagesize":"20"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+            "activity_list": [
+              {
+                "ca_id": "2",
+                "ca_title": "任务开通测试23味如体育和健康",
+                "ca_content": "任务开通啦，测试文字cdshdklasjhdkvajhdvjahkd.jhak.djhkasjdhfkajsdjhfasdf方便面呢是否地方环境",
+                "ca_create_time": "1458182455",
+                "ca_pics": [
+                  {
+                    "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+                  },
+                  {
+                    "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+                  }
+                ],
+                "author_name": "洋娃娃",
+                "hx_username": "b8106e12e918bb325b49136780bebb3f",
+                "author_avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/854d9fca60b4bd07f9bb215d59ef55611453346457247.jpg",
+                "whether_favorite": "0",
+                "whether_praise": "1",
+                "comment_count": "0"
+              },
+              {
+                "ca_id": "1",
+                "ca_title": "任务开通测试",
+                "ca_content": "任务开通啦，测试文字cdshdklasjhdkvajhdvjahkd.jhak.djhkasjdhfkajsdjhfasdf",
+                "ca_create_time": "1458182455",
+                "ca_pics": [
+                  {
+                    "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+                  },
+                  {
+                    "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+                  }
+                ],
+                "author_name": "洋娃娃",
+                "hx_username": "b8106e12e918bb325b49136780bebb3f",
+                "author_avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/854d9fca60b4bd07f9bb215d59ef55611453346457247.jpg",
+                "whether_favorite": "1",
+                "whether_praise": "0",
+                "comment_count": "2"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j518">5.18 班级动态评论列表(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getClassActivityComments",
+        "ca_id":"2",
+        "page":"1",
+        "pagesize":"20"
+    }
+    参数说明:ca_id 动态ID
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+            "activity_comment_list": [
+              {
+                "cac_id": "2",
+                "uid": "488",
+                "cac_content": "评论文字内容2345tyu488",
+                "cac_create_time": "1458182455",
+                "truename": "徐益智",
+                "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/B9D9A495-798E-4B3A-AFCB-A54DA6FDE77C.jpg"
+              },
+              {
+                "cac_id": "1",
+                "uid": "487",
+                "cac_content": "评论文字内容",
+                "cac_create_time": "1458182455",
+                "truename": "刘胜",
+                "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/a516a87cfcaef229b342c437fe2b95f71449135101165.jpg"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j519">5.19 班级通知列表(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getClassNotices",
+        "class_id":"200",
+        "page":"1",
+        "pagesize":"20"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+            "notice_list": [
+              {
+                "cn_id": "1",
+                "cn_content": "通知文字内容测试",
+                "cn_create_time": "1458182455",
+                "author_truename": "洋娃娃",
+                "author_avator": "http://7xosvx.com2.z0.glb.qiniucdn.com/854d9fca60b4bd07f9bb215d59ef55611453346457247.jpg"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j520">5.20 评论动态(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"createClassActivityComment",
+        "ca_id":"1",
+        "cac_comment":"评论内容"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+            "cac_id": "3"
+        }
+    }
+
+</textarea>
+
+
+<h3 id="j521">5.21 [取消]收藏动态(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"favoriteClassActivity",
+        "ca_id":"1",
+        "handle_code":"0"
+    }
+
+    参数说明 handle_code  0代表取消,1代表新增
+
+    response:
+    {
+      "code": 200,
+      "message": "Success"
+    }
+
+</textarea>
+
+
+<h3 id="j522">5.22 [取消]赞动态(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"praiseClassActivity",
+        "ca_id":"1",
+        "handle_code":"0"
+    }
+    参数说明 handle_code  0代表取消,1代表新增
+
+    response:
+    {
+      "code": 200,
+      "message": "Success"
+    }
+
+</textarea>
+
+<h3 id="j523">5.23 我收藏的动态：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"userFavoriteActivities",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+            "favorite_list": [
+              {
+                "ca_id": "1",
+                "ca_title": "任务开通测试",
+                "ca_content": "任务开通啦，测试文字cdshdklasjhdkvajhdvjahkd.jhak.djhkasjdhfkajsdjhfasdf",
+                "ca_create_time": "1458182455",
+                "ca_pics": [
+                  {
+                    "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+                  },
+                  {
+                    "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+                  }
+                ],
+                "author_name": "洋娃娃",
+                "author_avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/854d9fca60b4bd07f9bb215d59ef55611453346457247.jpg"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j524">5.24 班级动态详情(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getClassActivityDetail",
+        "ca_id":"1"
+    }
+    参数说明:ca_id 动态ID
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "activity_detail": {
+          "ca_id": "1",
+          "class_id": "200",
+          "ca_title": "任务开通测试",
+          "ca_content": "任务开通啦，测试文字cdshdklasjhdkvajhdvjahkd.jhak.djhkasjdhfkajsdjhfasdf",
+          "ca_create_time": "1458182455",
+          "ca_pics": [
+            {
+              "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+            },
+            {
+              "ca_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+            }
+          ],
+          "author_name": "洋娃娃",
+          "author_avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/854d9fca60b4bd07f9bb215d59ef55611453346457247.jpg",
+          "whether_favorite": "1",
+          "whether_praise": "0",
+          "comment_count": "3"
+        },
+        "comment_list": [
+          {
+            "cac_id": "3",
+            "uid": "488",
+            "cac_content": "",
+            "cac_create_time": "1458184125",
+            "truename": "徐益智",
+            "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/B9D9A495-798E-4B3A-AFCB-A54DA6FDE77C.jpg"
+          },
+          {
+            "cac_id": "2",
+            "uid": "488",
+            "cac_content": "评论文字内容2345tyu488",
+            "cac_create_time": "1458182455",
+            "truename": "徐益智",
+            "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/B9D9A495-798E-4B3A-AFCB-A54DA6FDE77C.jpg"
+          },
+          {
+            "cac_id": "1",
+            "uid": "487",
+            "cac_content": "评论文字内容",
+            "cac_create_time": "1458182455",
+            "truename": "刘胜",
+            "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/a516a87cfcaef229b342c437fe2b95f71449135101165.jpg"
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j525">5.25 获取老师学习首页(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getMasterStudyIndex",
+    }
+
+    response:
+    {
+  "code": 400,
+  "message": "错误的参数请求",
+  "items":
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "request_date": 1458098896,
+        "plan_list": [
+          {
+            "ctp_id": "3",
+            "class_id": "200",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_time": "上午 10:00",
+            "attendance_status": 1
+          },
+          {
+            "ctp_id": "4",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_time": "下午 02:00",
+            "attendance_status": 0
+          }
+        ],
+        "class_list": [
+          {
+            "class_id": "173",
+            "class_name": "测试班级02"
+          },
+          {
+            "class_id": "218",
+            "class_name": "嘿嘎嘎"
+          },
+          {
+            "class_id": "220",
+            "class_name": "快乐更好"
+          }
+        ]
+      }
+    }
+    返回说明  items->plan_list->attendance_status  是否全部签到,1为全部签到,2为有未签到
+</textarea>
+
+
+<h3 id="j526">5.26 获取老师行程详情(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getMasterTeachingPlan",
+        "ctp_date":"2016-03-22"
+    }
+    参数说明:ctp_date 请求日期格式必须是 XXXX-XX-XX
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "plan_list": [
+          {
+            "ctp_id": "6",
+            "class_id": "200",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_time": "上午 10:00",
+            "attendance_status": 1
+          }
+        ]
+      }
+    }
+
+    返回说明  items->plan_list->attendance_status  是否全部签到,1为全部签到,2为有未签到
+
+</textarea>
+
+
+<h3 id="j527">5.27 获取签到详情(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"userAttendanceDetail",
+        "ctp_id":"5"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "atten_detail": {
+          "date_key": "2016-03-22",
+          "status": "3",
+          "comment": "请假文字说明"
+        }
+      }
+    }
+
+
+</textarea>
+
+<h3 id="j528">5.28 充值金额选择：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/account
+    body:
+    {
+        "action":"accountCateList"
+    }
+
+    response:
+    {
+      "code": "200",
+      "message": "Success",
+      "items": {
+        "cate_list": [
+          "1",
+          "5",
+          "10",
+          "50",
+          "100",
+          "500",
+          "100"
+        ]
+      }
+    }
+
+
+</textarea>
+
+<h3 id="j529">5.29 充值订单创建：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/account
+    header: token
+    body:
+    {
+        "action":"addAccountOrder",
+        "uao_price":"5",
+        "uid":"543"
+    }
+    参数说明 : uid 充值用户ID,非必填。不填给自己充值
+
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "account_order_id": "3",
+        "account_order_sn": "201603300959415021583",
+        "account_order_price": "5"
+      }
+    }
+
+
+</textarea>
+
+<h3 id="j530">5.30 充值记录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/account
+    header: token
+    body:
+    {
+        "action":"accountOrderList",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "account_order_list": [
+          {
+            "uao_id": "3",
+            "uao_sn": "201603300959415021583",
+            "uao_price": "5.00",
+            "uao_status": "1",
+            "uao_create_time": "1459303181"
+          }
+        ]
+      }
+    }
+
+
+</textarea>
+
+<h3 id="j531">5.31 获取个人月份行程安排(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getUserMonthTeachingPlan",
+        "ctp_date":"2016-03"
+    }
+    参数说明:ctp_date 请求日期格式必须是 XXXX-XX
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items":
+        {
+          "code": 200,
+          "message": "Success",
+          "items": {
+            "plan_list": [
+              {
+                "ctp_id": "3",
+                "ctp_course_name": "鼓课程测试",
+                "ctp_date": "2016-04-12",
+                "ctp_time": "上午 10:00",
+                "attendance_status": 1
+              },
+              {
+                "ctp_id": "4",
+                "ctp_course_name": "鼓课程测试",
+                "ctp_date": "2016-04-12",
+                "ctp_time": "下午 02:00",
+                "attendance_status": 0
+              }
+            ]
+          }
+        }
+
+</textarea>
+
+
+
+<h3 id="j532">5.32 获取老师月份行程详情(通过token)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/teaching
+    header: token
+    body:
+    {
+        "action":"getMasterMonthTeachingPlan",
+        "ctp_date":"2016-03"
+    }
+    参数说明:ctp_date 请求日期格式必须是 XXXX-XX
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "plan_list": [
+          {
+            "ctp_id": "6",
+            "class_id": "200",
+            "ctp_course_name": "鼓课程测试",
+            "ctp_date": "2016-04-12",
+            "ctp_time": "上午 10:00",
+            "attendance_status": 1
+          }
+        ]
+      }
+    }
+
+    返回说明  items->plan_list->attendance_status  是否全部签到,1为全部签到,2为有未签到
+
+</textarea>
+
+<h3 id="j533">5.33 根据手机号验证用户是否是学校学员：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/profile
+    header: token
+    body:
+    {
+        "action":"checkSchoolUserByMobile",
+        "school_id":"1",
+        "mobile":"15221014211"
+    }
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        uid": "543"
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j601">6.01 判断手机号和验证码是否可注册：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    header: token
+    body:
+    {
+        "action":"checkRegCode",
+        "mobile":"17756234759",
+        "code":"123456"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success"
+    }
+</textarea>
+
+<h3 id="j602">6.02 注册环信用户：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/login
+    header: token
+    body:
+    {
+        "action":"regHx"
+    }
+    注意：必须带token
+
+    response:
+    {
+        "code": 200,
+        "message": "success"
+    }
+    还有以下几种状态码
+    "code": 300,
+    "message": "已注册环信",
+
+    "code": 400,
+    "message": "注册环信失败",
+
+    "code": 400,
+    "message": "cannot_get_token"
+</textarea>
+
+<h3 id="j603">6.03 开启/隐藏【发现】功能：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/hidden
+    header: token
+    body:
+    {
+        "action":"discovery",
+        "token":"c81e728d9d4c2f636f067f89cc14862c"
+    }
+    注意：token这里需要做为body的参数传入
+
+    response:
+    {
+        "open_status": "0",
+        "transfer_url": "http://www.magicteacher.cn/apph5/discovery?token=c81e728d9d4c2f636f067f89cc14862c"
+    }
+    说明：open_status = 1，表示开启功能 0为隐藏
+         transfer_url: 跳转到的h5页面地址
+</textarea>
+
+<h3 id="j701">7.01 校园首页:学校列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"schoolHome"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "mySchool": [
+            {
+                "school_id": "1",
+                "school_name": "测试学校名称",
+                "short_name": "学校短名",
+                "logo": "http://7xkopi.com2.z0.glb.qiniucdn.com/e1306c16bcc4b4a9c1b68100ed9052ba.png",
+                "cover": "http://7xkopi.com2.z0.glb.qiniucdn.com/0607C25E-25CA-4BE5-94CD-8F1DB3B4236E.jpg",
+                "title": "tongzhi",
+                "summary": "tongzhi"
+            }
+        ],
+        "adSchool": []
+    }
+    参数说明:mySchool:我的校园   adSchool:推广校园
+    school_name:学校全名
+    short_name:学校简称
+    logo:学校logo图片路径（圆角的）
+    cover:学校封面图片路径
+    title:置顶的通知标题
+    summary:通知摘要
+
+</textarea>
+
+<h3 id="j702">7.02 获取学校简要信息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"getSchoolInfo",
+        "school_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "school_id": "1",
+            "school_name": "测试学校名称",
+            "school_type": "培训机构",
+            "short_name": "学校短名",
+            "logo": "http://7xkopi.com2.z0.glb.qiniucdn.com/e1306c16bcc4b4a9c1b68100ed9052ba.png",
+            "cover": "http://7xkopi.com2.z0.glb.qiniucdn.com/0607C25E-25CA-4BE5-94CD-8F1DB3B4236E.jpg",
+            "area": "上海上海杨浦区",
+            "myClasses": 1,
+            "school_address": "测试地址",
+            "school_longitude": "121.511213",
+            "school_latitude": "31.240491",
+            "school_description": "学校简介",
+                "school_pics":
+                [
+                    {
+                        "school_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+                    },
+                    {
+                        "school_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+                    }
+                ],
+            "mobile":"15221014200"
+        }
+    }
+    参数说明:
+
+</textarea>
+
+<h3 id="j703">7.03 学校通知列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"noticeList",
+        "school_id":"1",
+        "pagesize":"8",
+        "page":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "notice_id": "2",
+                "school_id": "1",
+                "title": "tongzhi ",
+                "time": "2015/10/30",
+                "summary": "tongzhi ",
+                "uv": "0",
+                "had_read": 0
+            },
+            {
+                "notice_id": "1",
+                "school_id": "1",
+                "title": "123456",
+                "time": "2015/10/29",
+                "summary": "111",
+                "uv": "0",
+                "had_read": 0
+            }
+        ]
+    }
+    参数说明:
+    notice_id:通知id
+    school_id:学校id
+    title:通知标题
+    time:发布时间
+    summary:通知摘要
+    uv:阅读数
+    had_read:当前用户是否已读：0.未读 1.已读
+
+</textarea>
+
+<h3 id="j704">7.04 通知详情页：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"noticeDetail",
+        "notice_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "notice_id": "1",
+            "school_id": "1",
+            "title": "123456",
+            "time": "2015/10/29 14:49",
+            "content": "111",
+            "uv": "0"
+        }
+    }
+    参数说明:
+    notice_id:通知id
+    school_id:学校id
+    title:通知标题
+    time:发布时间
+    content:通知内容
+    uv:阅读数
+
+</textarea>
+
+<h3 id="j705">7.05 我在当前学校加入的班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"mySchoolClasses",
+        "school_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id": "191",
+                "class_name": "工商登陆就",
+                "class_code": "7253882683"
+            }
+        ]
+    }
+    参数说明:
+
+</textarea>
+
+<h3 id="j706">7.06 提交内容到校长信箱：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"mail2Master",
+        "school_id":"1",
+        "content":"提交到校长信箱的内容",
+        "anonymous":"0"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+    参数说明:anonymous:是否匿名提交：0.实名 1.匿名
+
+</textarea>
+
+<h3 id="j707">7.07 退出校园：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"quitSchool",
+        "school_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+<h3 id="j708">7.08 获取通讯录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/school
+    header: token
+    body:
+    {
+        "action":"getSchoolUserList",
+        "school_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items":[
+            {
+                "truename": "洋娃娃",
+                "mobile": "18321702917",
+                "postion": "",
+                "position_rank": "0",
+                "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/4119C928-DE2C-4597-AABE-07872B7A1D68.jpg"
+            }
+        ]
+    }
+    参数说明：
+    position_rank:职务说明
+</textarea>
+<h3 id="j801">8.01 学生：班级所有考试成绩简表(按科目分类)：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"studentExamList",
+        "class_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id": "2",
+                "subject_id": "1",
+                "subject_name": "语文",
+                "report_cards": [
+                    {
+                        "card_id": "1",
+                        "exam_id": "1",
+                        "score": "82",
+                        "exam_time": "2015-10-25",
+                        "exam_sign": "(未签收)",
+                        "exam_name": "10月份单元测试",
+                        "exam_type_name":"单元测试"
+                    }
+                ]
+            }
+        ]
+    }
+    参数说明：
+    subject_id:科目ID
+    subject_name：科目名称
+    report_cards：成绩列表
+        card_id：此项考试成绩ID
+        exam_id：此次考试ID
+        score：考试得分(或评价)
+        exam_time：考试日期
+        exam_sign：学生是否签收成绩（未签收为空）
+        exam_name：考试名称
+
+</textarea>
+
+<h3 id="j802">8.02 学生：某一科目所有考试列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"studentSubjectExamList",
+        "class_id":"2",
+        "subject_id":"1",
+        "pagesize":"8",
+        "page":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "card_id": "1",
+                "exam_id": "1",
+                "score": "82",
+                "exam_time": "2015-10-25",
+                "exam_sign": "(未签收)",
+                "exam_name": "10月份单元测试",
+                "exam_type_name": "单元测试"
+            }
+        ]
+    }
+    参数说明：
+    card_id：此项考试成绩ID
+    exam_id：此次考试ID
+    score：考试得分(或评价)
+    exam_time：考试日期
+    exam_sign：学生是否签收成绩（未签收为空）
+    exam_name：考试名称
+    exam_type_name：考试类型名称
+
+</textarea>
+
+<h3 id="j803">8.03 学生：签收考试成绩：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"studentSign",
+        "card_id":"1"
+    }
+    请求参数说明：card_id：此项考试成绩ID(上一步骤带下来)
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j804">8.04 老师按科目：获取班级考试科目列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"teacherExamList",
+        "class_id":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id": "2",
+                "subject_id": "1",
+                "subject_name": "语文",
+                "teacher_uid": "徐益智"
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j805">8.05 老师按科目：班级某一科目的考试列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"teacherSubjectExamList",
+        "class_id":"2",
+        "subject_id":"1",
+        "pagesize":"8",
+        "page":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "exam_id": "1",
+                "exam_name": "10月份单元测试",
+                "exam_type_name": "单元测试",
+                "exam_time": "2015-10-25"
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j806">8.06 老师按科目：某次考试的签收学生信息：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"teacherExamDetail",
+        "exam_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "signed": [],
+        "not_signed": [
+            {
+                "uid": "2",
+                "truename": "张同学",
+                "avatar": "",
+                "score":"88"
+            }
+        ]
+    }
+    参数说明：
+    signed：已签收成绩学生列表
+    not_signed：未签收学生列表
+        avatar：用户头像地址
+
+</textarea>
+
+<h3 id="j807">8.07 老师按科目：提醒学生签收考试成绩：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"remindStudentToSign",
+        "exam_id":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": []
+    }
+
+</textarea>
+
+<h3 id="j808">8.08 老师按成员：某一学生所有科目考试简表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"teacherStudentExamList",
+        "class_id":"2",
+        "student_uid":"2"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "class_id": "2",
+                "subject_id": "1",
+                "subject_name": "语文",
+                "report_cards": [
+                    {
+                        "card_id": "1",
+                        "exam_id": "1",
+                        "score": "82",
+                        "exam_time": "2015-10-25",
+                        "exam_sign": "(未签收)",
+                        "exam_name": "10月份单元测试"
+                    }
+                ]
+            }
+        ]
+    }
+    参数说明：
+    subject_id:科目ID
+    subject_name：科目名称
+    report_cards：成绩列表
+        card_id：此项考试成绩ID
+        exam_id：此次考试ID
+        score：考试得分(或评价)
+        exam_time：考试日期
+        exam_sign：学生是否签收成绩（未签收为空）
+        exam_name：考试名称
+
+</textarea>
+
+<h3 id="j809">8.09 老师按成员：某一学生某一科目所有考试列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/Exam
+    header: token
+    body:
+    {
+        "action":"teacherStudentSubjectExamList",
+        "class_id":"2",
+        "student_uid":"2",
+        "subject_id":"1",
+        "pagesize":"8",
+        "page":"1"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+                "card_id": "1",
+                "exam_id": "1",
+                "score": "82",
+                "exam_time": "2015-10-25",
+                "exam_sign": "(未签收)",
+                "exam_name": "10月份单元测试",
+                "exam_type_name": "单元测试"
+            }
+        ]
+    }
+
+</textarea>
+
+<h3 id="j901">9.01 商城首页：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    body:
+    {
+        "action":"getMallIndex"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "mall_banner_list": [
+          {
+            "mb_id": "1",
+            "mb_path": "http://7xlwwd.com1.z0.glb.clouddn.com/yanwushu2.jpg"
+          },
+          {
+            "mb_id": "2",
+            "mb_path": "http://7xlwwd.com1.z0.glb.clouddn.com/yanwushu3.jpg"
+          },
+          {
+            "mb_id": "3",
+            "mb_path": "http://img3.imgtn.bdimg.com/it/u=2414756802,531263205&fm=21&gp=0.jpg"
+          },
+          {
+            "mb_id": "4",
+            "mb_path": "http://img2.imgtn.bdimg.com/it/u=2280771936,3888134874&fm=21&gp=0.jpg"
+          }
+        ],
+        "goods_category_list": [
+          {
+            "gc_id": "1",
+            "gc_name": "鼓",
+            "gc_icon": "http://7xkopi.com2.z0.glb.qiniucdn.com/mall_drum_icon.png"
+          },
+          {
+            "gc_id": "2",
+            "gc_name": "钢琴",
+            "gc_icon": "http://7xkopi.com2.z0.glb.qiniucdn.com/mall_piano_icon.png"
+          },
+          {
+            "gc_id": "3",
+            "gc_name": "教材",
+            "gc_icon": "http://7xkopi.com2.z0.glb.qiniucdn.com/mall_book_icon.png"
+          },
+          {
+            "gc_id": "0",
+            "gc_name": "全部",
+            "gc_icon": "http://7xkopi.com2.z0.glb.qiniucdn.com/mall_all_icon.png"
+          }
+        ],
+        "goods_list": [
+          {
+            "g_id": "2",
+            "g_name": "书商品测试",
+            "g_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
+            "g_price": "12345.00",
+            "g_sale_count": "350",
+            "g_description": "书商品测试"
+          },
+          {
+            "g_id": "1",
+            "g_name": "鼓商品测试",
+            "g_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "g_price": "12345.00",
+            "g_sale_count": "350",
+            "g_description": "书商品测试"
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j902">9.02 商品列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    body:
+    {
+        "action":"getGoodsList",
+        "keyword":"鼓",
+        "order":0,
+        "price_order":0,
+        "gc_id":0,
+        "page":0,
+        "pagesize":20
+    }
+    参数说明:
+    keyword:关键字
+    order:排序方式,0为按销量排序,1为按价格排序
+    price_order:order为1的时候,0为价格从高到底,1为价格从低到高
+    gc_id:商品分类,0为全部
+    page:页数
+    pagesize:请求商品数量
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "goods_list": [
+          {
+            "g_id": "1",
+            "g_name": "鼓商品测试",
+            "g_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "g_price": "12345.00",
+            "g_sale_count": "360"
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j903">9.03 商品详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    body:
+    {
+        "action":"getGoodsDetail",
+        "g_id":1
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "goods_detail": {
+          "g_id": "1",
+          "g_name": "鼓商品测试",
+          "g_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+          "g_description": "",
+          "gc_id": "1",
+          "g_brand": "测试",
+          "g_marque": null,
+          "g_banners": "[\"http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90\",\"http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90\"]",
+          "g_status": "1",
+          "g_shelve_time": "1457339683",
+          "g_unshelve_time": "1458339286",
+          "g_stock_count": "1000",
+          "g_sale_count": "360",
+          "g_price": "12345.00",
+          "g_is_hot": "1",
+          "g_discount": "11000.00",
+          "g_size": "100*60*150",
+          "g_creator": "1",
+          "g_school_id": "1",
+          "g_create_time": "1457339286",
+          "g_update_time": null
+        },
+        "goods_review_list": [
+          {
+            "nickname": "徐老师",
+            "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/4EC353B5-F7F3-4779-888A-4B533D9AE734.jpg",
+            "uid": "488",
+            "gr_content": "真不错",
+            "gr_id": "1"
+          }
+        ],
+        "goods_favorited": 0
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j904">9.04 商品评论列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    body:
+    {
+        "action":"getGoodsReview",
+        "g_id":1,
+        "page":0,
+        "pagesize":20
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "goods_review_list": [
+          {
+            "nickname": "徐老师",
+            "avatar": "http://7xosvx.com2.z0.glb.qiniucdn.com/4EC353B5-F7F3-4779-888A-4B533D9AE734.jpg",
+            "uid": "488",
+            "gr_content": "真不错",
+            "gr_id": "1"
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+<h3 id="j905">9.05 我的收件人：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"getUserReceiver"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "receiver_list": [
+          {
+            "rec_id": "1",
+            "uid": "488",
+            "rec_name": "徐益智",
+            "rec_country": "中国",
+            "rec_province": "上海",
+            "rec_city": "杨浦",
+            "rec_street": "江浦路街道",
+            "rec_address": "长阳路1080号",
+            "rec_postcode": "200000",
+            "rec_mobile": "13501011000",
+            "rec_tel": "13501011000",
+            "rec_status": "0"
+          },
+          {
+            "rec_id": "2",
+            "uid": "488",
+            "rec_name": "张唐华",
+            "rec_country": "中国",
+            "rec_province": "上海",
+            "rec_city": "杨浦",
+            "rec_street": "江浦路街道",
+            "rec_address": "长阳路1080号23号楼208",
+            "rec_postcode": "200000",
+            "rec_mobile": "13501011111",
+            "rec_tel": "13501011111",
+            "rec_status": "1"
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j906">9.06 我的订单：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"getUserGoodsOrderList",
+        "ugo_status":'-1',
+        "page":0,
+        "pagesize":20
+    }
+    参数说明:
+    ugo_status :订单状态,-1为全部订单,0为未支付，1为已支付，2为已发货，3为确认收货未评论，4已评论，5为退单，6为订单关闭
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items":
+        {
+            "user_order_list": [
+              {
+                "ugo_id": "1",
+                "ugo_sn": "MDMF_SP_20160309104300112233",
+                "ugo_status": "0",
+                "g_name": "鼓商品测试",
+                "g_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+                "g_price": "12345.00",
+                "g_id":"1"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j907">9.07 新建订单：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"createGoodsOrder",
+        "g_id":"1",
+        "rec_id":"1",
+        "g_count":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "goods_order_id": "3",
+        "goods_order_sn": "MDMF_SP20160314142423123123",
+        "goods_order_price":"1000",
+        "goods_order_final_price":"1000"
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j908">9.08 取消订单：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"cancelGoodsOrder",
+        "ugo_id":"3"
+    }
+
+    response:
+    {
+       "code": 200,
+       "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j909">9.09 订单详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"getGoodsOrderDetail",
+        "ugo_id":"1"
+    }
+
+    response:
+    {
+  "code": 200,
+  "message": "success",
+  "items":
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "order_detail": {
+          "g_id": "1",
+          "g_count": "1",
+          "ugo_sn": "MDMF_SP_20160309104300112233",
+          "goods_order_price": "0.00",
+          "goods_order_final_price": 0
+        },
+        "goods_detail": {
+          "g_name": "鼓商品测试",
+          "g_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+        },
+        "receiver_detail": {
+          "rec_id": "1",
+          "rec_name": "徐益智",
+          "rec_area": "上海市",
+          "rec_address": "长阳路1080号",
+          "rec_mobile": "13501011000"
+        }
+      }
+    }
+
+</textarea>
+
+<h3 id="j910">9.10 我的收藏：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"getUserGoodsFavoriteList",
+        "page":0,
+        "pagesize":20
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items":
+        {
+            "user_favorite_list": [
+              {
+                "ugf_id": "2",
+                "g_name": "书商品测试",
+                "g_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j911">9.11 新建收藏：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"createGoodsFavorite",
+        "g_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "ugf_id": "1"
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j912">9.12 取消收藏：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"cancleGoodsFavorite",
+        "g_id":"1"
+    }
+
+    response:
+    {
+       "code": 200,
+       "message": "success"
+    }
+
+</textarea>
+
+<h3 id="j913">9.13 创建收件人：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"createUserReceiver",
+        "rec_name":"12345",
+        "rec_area":"1234r",
+        "rec_address":"12",
+        "rec_mobile":"1234e5",
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {"rec_id": 1}
+      }
+    }
+
+</textarea>
+
+<h3 id="j914">9.14 编辑收件人：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"updateUserReceiver",
+        "rec_id":"1",
+        "rec_name":"12345",
+        "rec_area":"1234r",
+        "rec_address":"12",
+        "rec_mobile":"1234e5",
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items":
+        {
+            "user_favorite_list": [
+              {
+                "ugf_id": "2",
+                "g_name": "书商品测试",
+                "g_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg"
+              }
+            ]
+        }
+    }
+
+</textarea>
+
+<h3 id="j915">9.15 设为默认联系人：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"setDefaultReceiver",
+        "rec_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j916">9.16 删除联系人：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"cancelUserReceiver",
+        "rec_id":"1"
+    }
+
+    response:
+    {
+       "code": 200,
+       "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j917">9.17 确认收货：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"updateGoodsOrder",
+        "ugo_id":"1",
+        "ugo_status":"3"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j918">9.18 订单评论：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"createGoodsOrderReview",
+        "ugo_id":"1",
+        "gr_content":"评论内容"
+    }
+
+    response:
+    {
+       "code": 200,
+       "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j919">9.19 申请售后：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"createOrderServiceApply",
+        "ugo_id":"1",
+        "apply_name":"张唐华",
+        "apply_mobile":"12323123123",
+        "apply_content":"机器坏了，来维修吧"
+    }
+    参数说明:ugo_id  订单ID
+    apply_cate  售后类型 1退货，2换货，3维修
+    apply_name  联系人
+    apply_mobile 联系电话
+    apply_content 申请说明
+
+    response:
+    {
+       "code": 200,
+       "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j920">9.20 已完成订单列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"getUserFinishGoodsOrderList",
+        "page":"1",
+        "pagesize":"20"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "user_order_list": [
+          {
+            "ugo_id": "1",
+            "g_count": "2",
+            "ugo_sn": "MDMF_SP_20160309104300112233",
+            "ugo_status": "3",
+            "g_name": "鼓商品测试",
+            "g_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "g_price": "12345.00",
+            "goods_order_price": "24692.00",
+            "goods_order_final_price": 24692
+          },
+          {
+            "ugo_id": "2",
+            "g_count": "2",
+            "ugo_sn": "MDMF_SP_20160309111543123453",
+            "ugo_status": "4",
+            "g_name": "书商品测试",
+            "g_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
+            "g_price": "12346.00",
+            "goods_order_price": "24692.00",
+            "goods_order_final_price": 24692
+          }
+        ]
+      }
+    }
+
+</textarea>
+
+
+<h3 id="j921">9.21 更新订单收件人：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/goods
+    header: token
+    body:
+    {
+        "action":"updateOrderReceiver",
+        "ugo_id":"1",
+        "rec_id":"2"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success"
+    }
+
+</textarea>
+
+
+<h3 id="j1001">10.01 秀场首页：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token(非必需)
+    body:
+    {
+        "action":"getShowIndex"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "banner_list": [
+          {
+            "mb_id": "5",
+            "mb_path": "http://7xlwwd.com1.z0.glb.clouddn.com/yanwushu1.jpg"
+          }
+        ],
+        "show_list": [
+          {
+            "sh_id": "1",
+            "sh_name": "全国秀场测试",
+            "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "school_id": "0"
+          },
+          {
+            "sh_id": "3",
+            "sh_name": "本地秀场测试热门",
+            "sh_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
+            "sh_content": "本地秀场测试热门秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "school_id": "2"
+          }
+        ]
+      }
+    }
+</textarea>
+
+
+<h3 id="j1002">10.02 全国秀场：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    body:
+    {
+        "action":"getAllShowList",
+        "show_order":0,
+        "page":0,
+        "pagesize":20
+    }
+    参数说明:show_order:0为最新,1为最热
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "show_list": [
+          {
+            "sh_id": "2",
+            "sh_name": "全国秀场测试非热门",
+            "sh_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
+            "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "school_id": "0"
+          },
+          {
+            "sh_id": "1",
+            "sh_name": "全国秀场测试",
+            "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "school_id": "0"
+          }
+        ]
+      }
+    }
+</textarea>
+
+
+<h3 id="j1003">10.03 本地秀场：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token
+    body:
+    {
+        "action":"getLocalShowList",
+        "page":0,
+        "pagesize":20
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "show_list": [
+          {
+            "sh_id": "3",
+            "sh_name": "本地秀场测试热门",
+            "sh_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
+            "sh_content": "本地秀场测试热门秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "school_id": "2"
+          },
+          {
+            "sh_id": "4",
+            "sh_name": "本地秀场测试非热门",
+            "sh_cover_pic": "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
+            "sh_content": "本地秀场非测试热门秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "school_id": "2"
+          }
+        ]
+      }
+    }
+</textarea>
+
+<h3 id="j1004">10.04 秀场详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token(非必需)
+    body:
+    {
+        "action":"getShowDetail",
+        "sh_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "show_detail": {
+          "sh_id": "1",
+          "school_id": "0",
+          "sh_name": "全国秀场测试",
+          "sh_price": "300.00",
+          "sh_discount": "30.00",
+          "sh_stock_count": "100",
+          "sh_sale_count": "10",
+          "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+          "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+          "sh_time": "1457971200",
+          "sh_address": "金茂大厦",
+          "sh_longitude": "121.511213",
+          "sh_latitude": "31.240491",
+          "sh_status": "1",
+          "sh_is_hot": "1",
+          "sh_create_time": null,
+          "sh_pics": {
+            {
+              "sh_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+            },
+            {
+              "sh_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+            }
+          }
+        }
+      }
+    }
+</textarea>
+
+
+<h3 id="j1005">10.05 秀场订单列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token
+    body:
+    {
+        "action":"userShowOrderList",
+        "page":0,
+        "pagesize":20
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success.",
+      "items": {
+        "order_list": [
+          {
+            "uso_id": "5",
+            "uso_sn": "MDMF_XC20160314110659603381",
+            "sh_id": "1",
+            "sh_count": "1",
+            "uid": "488",
+            "uso_price": "488.00",
+            "uso_discount": "0.00",
+            "exp_price": "0",
+            "uso_status": "0",
+            "uso_used_status": "0",
+            "uso_create_time": "1457924819",
+            "uso_update_time": "0",
+            "sh_name": "全国秀场测试",
+            "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "sh_time": "1457971200",
+            "sh_price": 488,
+            "sh_address": "金茂大厦",
+            "show_order_price": "488.00",
+            "show_order_final_price": 488
+          },
+          {
+            "uso_id": "4",
+            "uso_sn": "MDMF_XC20160314110419504004",
+            "sh_id": "1",
+            "sh_count": "2",
+            "uid": "488",
+            "uso_price": "976.00",
+            "uso_discount": "0.00",
+            "exp_price": "0",
+            "uso_status": "0",
+            "uso_used_status": "0",
+            "uso_create_time": "1457924659",
+            "uso_update_time": "0",
+            "sh_name": "全国秀场测试",
+            "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+            "sh_time": "1457971200",
+            "sh_price": 976,
+            "sh_address": "金茂大厦",
+            "show_order_price": "976.00",
+            "show_order_final_price": 976
+          }
+        ]
+      }
+    }
+</textarea>
+
+
+<h3 id="j1006">10.06 新建秀场订单：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token
+    body:
+    {
+        "action":"createShowOrder",
+        "sh_id":"1",
+        "sh_count":"1",
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "show_order_id": 1,
+        "show_order_sn":"MDMF_XC20160314142300123123",
+        "show_order_price":1000,
+        "show_order_final_price":1000,
+      }
+    }
+</textarea>
+
+
+<h3 id="j1007">10.07 取消秀场订单：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token
+    body:
+    {
+        "action":"cancelShowOrder",
+        "uso_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "取消订单成功",
+      "items": null
+    }
+</textarea>
+
+<h3 id="j1008">10.08 秀场精彩分享：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token(非必需)
+    body:
+    {
+        "action":"getShowHighlights",
+        "page":0,
+        "pagesize":20
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "highlights_list": [
+          {
+            "shl_id": "1",
+            "shl_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+            "shl_video_url": "http://121.40.63.192////2015-12-30//4da92767a3f84c668c199c23e3999d82.mp4",
+            "sh_name": "全国秀场测试",
+            "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊"
+          }
+        ]
+      }
+    }
+</textarea>
+
+
+<h3 id="j1009">10.09 秀场图片全部：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token
+    body:
+    {
+        "action":"ShowPicsList",
+        "sh_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "Success",
+      "items": {
+        "pic_list": {
+          "sh_pics": {
+            {
+              "sh_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+            },
+            {
+              "sh_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+            }
+          }
+        }
+      }
+    }
+</textarea>
+
+
+<h3 id="j1010">10.10 订单详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/show
+    header: token
+    body:
+    {
+        "action":"getShowOrderDetail",
+        "uso_id":"1"
+    }
+
+    response:
+    {
+  "code": 200,
+  "message": "Success.",
+  "items": {
+    "order_detail": {
+      "uso_id": "1",
+      "uso_sn": "MDMF_XC20160309140343223531",
+      "sh_id": "1",
+      "sh_count": "1",
+      "uid": "488",
+      "uso_price": "488.00",
+      "uso_discount": "0.00",
+      "exp_price": "0",
+      "uso_status": "1",
+      "uso_used_status": "1",
+      "uso_create_time": "1457503423",
+      "uso_update_time": null,
+      "pay_trade_no": null,
+      "pay_total_fee": null,
+      "pay_trade_status": null,
+      "pay_notify_id": null,
+      "pay_notify_time": null,
+      "pay_buyer_email": null,
+      "show_order_price": "488.00",
+      "show_order_final_price": 488
+    },
+    "show_detail": {
+      "sh_id": "1",
+      "school_id": "0",
+      "sh_name": "全国秀场测试",
+      "sh_price": "300.00",
+      "sh_discount": "30.00",
+      "sh_stock_count": "100",
+      "sh_sale_count": "10",
+      "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+      "sh_content": "秀场文字介绍啊啊啊啊啊啊啊啊啊啊",
+      "sh_time": "1457971200",
+      "sh_address": "金茂大厦",
+      "sh_tel": "12312312",
+      "sh_longitude": "121.511213",
+      "sh_latitude": "31.240491",
+      "sh_status": "1",
+      "sh_is_hot": "1",
+      "sh_create_time": null,
+      "sh_pics": [
+        {
+          "sh_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90"
+        },
+        {
+          "sh_pic": "http://lawangimg.subaojiang.com/Public/works/56d8059272162.png?imageView2/5/w/295/h/295/q/90"
+        }
+      ]
+    }
+  }
+}
+</textarea>
+<h3 id="j1101">11.01 当天开课数：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"getDailyCourse",
+        'school_id':'1'
+    }
+
+    response:
+    {
+      {
+          "code": 200,
+          "message": "success",
+          "items": "8"
+        }
+    }
+</textarea>
+<h3 id="j1102">11.02 当天课程情况列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"getDailyCourseList",
+        "school_id":"1"
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": [
+            {
+              "class_id": "253",
+              "create_uid": "56",
+              "ctp_course_name": "钢琴初级教程02",
+              "ctp_time": "上午 8:00",
+              "class_name": "33773442",
+              "class_code": "2879637861278963",
+              "teacher": "涂成平",
+              "count_student": "2",
+              "att_count": "0",
+              "att_rate": 0,
+              "count_course_end":0
+            }
+        ]
+    }参数说明：
+        student_count：学校人数
+        att_count：出勤人数
+        att_rate：出勤比率
+
+</textarea>
+<h3 id="j1103">11.03 今日流水总额：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"getDialyFinanceCount",
+        "school_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": "100.00"
+    }
+</textarea>
+<h3 id="j1104">11.04 今日流水详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"dailyFianceDetail",
+        "school_id":"1",
+        "ff_audit_time" : "2016-06-10",
+        "page":"1",
+        "pagesize":"10"
+    }参数说明：ff_audit_time：不填则为当天
+
+    response:
+    {
+      "con_code": 1000001,
+      "truename": "洋娃娃",
+      "ff_money_type": "0",
+      "ff_money": "100.00",
+      "post_time": "2016-06-10"
+    } 参数说明：
+        con_code:流水编号
+        ff_money_type=0 为现金交易（暂定）
+        post_time:提交的时间
+</textarea>
+<h3 id="j1105">11.05 今日试听详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"dailyAuditionDetail",
+        "school_id":"1",
+        "signup" : "1",
+        "ctp_date":"2016-06-14",
+        "page":"1",
+        "pagesize":"10"
+    }参数说明：signup：1:报名；0:未报名
+
+    response:
+    {
+
+       "code": 200,
+       "message": "success",
+       "items": [
+        {
+          "childname": "慢羊羊",
+          "course_name": "萨玛",
+          "feedback": "123123",
+          "adviser": "洋娃娃"
+        },
+        {
+          "childname": "美羊羊",
+          "course_name": "请问",
+          "feedback": "1121212",
+          "adviser": "洋娃娃"
+        }
+      ]
+
+    }参数说明:
+        childname : 学员姓名
+        course_name:课程名
+        feedback : 反馈
+        adviser : 顾问名
+</textarea>
+
+<h3 id="j1107">11.07 日报首页：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"dailyHomeDetail",
+        "school_id":"1"
+    }
+
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+            "time" :"2016-06-06",
+            "dailyCount": "300.00",
+            "auditionCount": 0,
+            "newPotentialCustomerCount": "21",
+            "dailyCourse": 0,
+            "fireClass": 3
+          }
+    } 参数说明：
+        dailyCount: 流水总额
+        auditionCount 试听人数
+        newPotentialCustomerCount:新增潜客
+        dailyCourse:今日开课
+        fireClass:今日消课
+</textarea>
+<h3 id="j1108">11.08 当前消课课程情况列表：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/daily
+    body:
+    {
+        "action":"getDailyLastCourseList",
+        "school_id":"1",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": [
+            {
+              "class_id": "253",
+              "create_uid": "56",
+              "ctp_course_name": "钢琴初级教程02",
+              "ctp_time": "上午 8:00",
+              "class_name": "33773442",
+              "class_code": "2879637861278963",
+              "teacher": "涂成平",
+              "count_student": "2",
+              "att_count": "0",
+              "att_rate": 0,
+              "count_course_end":0
+            }
+        ]
+    }参数说明：
+        student_count：学校人数
+        att_count：出勤人数
+        att_rate：出勤比率
+</textarea>
+<h3 id="j1201">12.01 新增潜客数量:</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/customer
+    body:
+    {
+        "action":"newPotentialCustomer",
+        "school_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": "22"
+    }
+}
+</textarea>
+<h3 id="j1202">12.02 新增潜客按渠道:</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/customer
+    body:
+    {
+        "action":"PotentialCustomerByChannel",
+        "school_id":"1",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+              "scl_id": "4",
+              "scl_title": "爱迪生",
+              "count": "4"
+            }
+        ]
+    }参数说明：
+        scl_id: 渠道id
+        channel_type:1为线上，其他为线下
+        scl_title : 渠道名
+        count: 渠道新增的潜客数
+}
+</textarea>
+<h3 id="j1203">12.03 新增潜客详情按渠道:</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/customer
+    body:
+    {
+        "action":"PotentialCustomerDetailByChannel",
+        "school_id":"1",
+        "scl_id":"3",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": [
+          {
+              "customer_name": "喜羊羊",
+              "customer_phone": "13052018371",
+              "scl_title": "123"
+          }
+        ]
+    }参数说明：
+        scl_title : 渠道名
+}
+</textarea>
+<h3 id="j1204">12.04 新增潜客按专员:</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/customer
+    body:
+    {
+        "action":"PotentialCustomerByPersonnel",
+        "school_id":"1",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": [
+          {
+              "suid": "2",
+              "truename": "朱茵",
+              "count": "6"
+          }
+        ]
+    }参数说明：
+        suid : 专员id
+        truename : 专员姓名
+}
+</textarea>
+<h3 id="j1205">12.05 新增潜客详情按专员:</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/customer
+    body:
+    {
+        "action":"PotentialCustomerDetailByPersonnel",
+        "school_id":"1",
+        "suid":"2",
+        "page":"1",
+        "pagesize":"10"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": [
+          {
+              "customer_name": "喜羊羊",
+              "customer_phone": "13052018371",
+              "truename": "朱茵"
+          }
+        ]
+    }
+}
+</textarea>
+<h3 id="j1206">12.06 潜客名单结果:</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/customer
+    body:
+    {
+        "action":"potentialCustomerResult",
+        "school_id":"1"
+    }
+
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": [
+          {
+             "effective_list_count": "3",
+             "invalid_list_count": "0",
+             "reg_list_count": "2"
+          }
+        ]
+    }参数说明：
+        "effective_list_count": 有效名单数
+        "invalid_list_count": 无效名单数
+        "reg_list_count": 已注册数
+}
+</textarea>
+
+<h3 id="j1301">13.01 财务:阶段流水统计图：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getFianaceCountList",
+        "school_id":"1",
+        "date_length":"7"
+    }
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+              "count": 0,
+              "date": "星期六"
+            },
+            {
+              "count": 0,
+              "date": "星期日"
+            },
+            {
+              "count": "300.00",
+              "date": "星期一"
+            },
+            {
+              "count": 0,
+              "date": "星期二"
+            },
+            {
+              "count": 0,
+              "date": "星期三"
+            },
+            {
+              "count": 0,
+              "date": "星期四"
+            },
+            {
+              "count": 0,
+              "date": "星期五"
+            }
+          ]
+    }
+//or
+    body:
+    {
+        "action":"getFianaceCountList",
+        "school_id":"1",
+        "date_length":"30"
+    }
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": [
+            {
+              "count": 0,
+              "date": "06-01"
+            },
+            {
+              "count": 0,
+              "date": "06-02"
+            },
+            {
+              "count": "300.00",
+              "date": "06-03"
+            },
+            {
+              "count": 0,
+              "date": "06-04"
+            },
+            {
+              "count": 0,
+              "date": "06-05"
+            },
+            {
+              "count": 0,
+              "date": "06-06"
+            },
+            {
+              "count": 0,
+              "date": "06-07"
+            }
+          ]
+    }
+
+</textarea>
+<h3 id="j1302">13.02 获取账户余额：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getSchoolAccountBalance",
+        "school_id":"1"
+    }
+    response:
+    {
+        {
+          "code": 200,
+          "message": "success",
+          "items": "6075.51"
+        }
+    }
+</textarea>
+<h3 id="j1303">13.03 可提现金额：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"withdrawCashCount",
+        "school_id":"1"
+    }
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": 150
+    }
+</textarea>
+
+<h3 id="j1304">13.04 获取未结算金额：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getFianceOutstanding",
+        "school_id":"1"
+    }
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": "2.00"
+    }
+
+</textarea>
+
+<h3 id="j1305">13.05 未结算明细：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"financeOutstandingList",
+        "school_id":"1"
+    }
+    response:
+    {
+        {
+        "uao_id": "2",
+        "uao_sn": "201603300959149724453",
+        "uao_price": "5.00",
+        "uao_status": "0",
+        "uao_create_time": "1459303154",
+        "uao_truename": "张唐华",
+        "uao_create_time_date": "03-30",
+        "uao_create_time_week": "星期三"
+      }
+    }
+
+</textarea>
+<h3 id="j1306">13.06 学校的充值记录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getAllRecharge",
+        "school_id":"1",
+        "page":"1",
+        "pagesize":"10"
+    }
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+            "account_order_list": [
+              {
+                "uao_id": "3",
+                "uao_sn": "201603300959415021583",
+                "uao_price": "+5.00",
+                "uao_status": "1",
+                "pay_notify_time": null,
+                "uao_truename": "张唐华",
+                "uao_create_time_date": "",
+                "uao_create_time_week": ""
+              },
+              {
+                "uao_id": "17",
+                "uao_sn": "201603301329032024493",
+                "uao_price": "100.00",
+                "uao_status": "1",
+                "pay_notify_time": "2016-03-30 13:29:15",
+                "uao_truename": "张唐华",
+                "uao_create_time_date": "2016-03-30",
+                "uao_create_time_week": "星期三"
+              }
+        }
+    }参数说明：
+        uao_truename : 下订单人名
+</textarea>
+<h3 id="j1307">13.07 获取学校商城交易总额：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getGoodsCount",
+        "school_id":"1",
+        "date_length":"7"
+    }参数说明：
+        date_length: eg: 7 为近7天
+                        all,则为总流水
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": 10000
+        }
+    }
+</textarea>
+<h3 id="j1308">13.08 获取学校商城交易详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getGoodsDetail",
+        "school_id":"1",
+        "date_length":"7",
+        "page":"1",
+        "pagesize":"10"
+    }参数说明：
+        date_length: eg:近7天
+    response:
+    {
+        "g_name": "鼓商品测试",
+        "ugo_price": "49380.00",
+        "g_cover_pic": "http://7xsqwb.com2.z0.glb.qiniucdn.com/PMD_07_1.jpg?imageMogr2/quality/40",
+        "g_rebate": 0
+        }
+    }参数说明：
+        ugo_price : 订单价
+        g_rebate : 返利
+</textarea>
+    <h3 id="j1309">13.09 近期秀场交易金额：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getShowCount",
+        "school_id":"1",
+        "date_length":"7"
+    }参数说明：
+        date_length: eg: 7 为近7天
+                         all,则为总流水
+    response:
+    {
+        "code": 200,
+        "message": "success",
+        "items": 10000
+        }
+    }
+</textarea>
+<h3 id="j1310">13.10 近期秀场交易详情：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getShowDetail",
+        "school_id":"1",
+        "date_length":"7",
+        "page":"1",
+        "pagesize":"10"
+    }参数说明：
+        date_length: eg:近7天
+    response:
+    {
+        "sh_name": "全国秀场测试",
+        "uso_price": "300.00",
+        "sh_address": "金茂大厦",
+        "sh_cover_pic": "http://lawangimg.subaojiang.com/Public/works/56d96358abf27.png?imageView2/5/w/295/h/295/q/90",
+        "sh_type": "0",
+        "sh_customer": "徐益智",
+        "sh_score": "4.4"
+    }参数说明：
+        sh_type : 0:全国秀场|门票；   其他值为 全国秀场|报名演出
+        sh_score : 秀场评分（暂为随机）
+</textarea>
+<h3 id="j1311">13.11 收支明细：</h3>
+<textarea>
+url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getPaymentBalance",
+        "school_id":"1",
+        "page":"1",
+        "pagesize":"10"
+    }参数说明：
+        date_length: eg:近7天
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+            'week'=>'周五',
+            'date'=>'05-27',
+            'money'=>'240',
+            'type' => '1',
+            'truename' => '杨力帆'
+        }
+    }参数说明：
+        type:1:收入；0：支出
+</textarea>
+<h3 id="j1312">13.12 财务首页：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    header:token
+    body:
+    {
+        "action":"financeHomeDetail",
+        "school_id":"1"
+    }
+    response:
+    {
+        {
+  "code": 200,
+  "message": "success",
+  "items": {
+    "financeWeek": [
+      {
+        "count": 0,
+        "date": "星期二"
+      },
+      {
+        "count": 0,
+        "date": "星期三"
+      }
+    ],
+    "financeMonth": [
+      {
+        "count": 0,
+        "date": "05-15"
+      },
+      {
+        "count": 0,
+        "date": "05-16"
+      }
+    ],
+    "accountBalance": "6075.51",
+    "fianceOutstanding": "10003426.00"
+  }
+}
+    }参数说明：
+        accountBalance : 账户余额
+        fianceOutstanding : 待结算金额
+</textarea>
+<h3 id="j1313">13.13 交易记录：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"transactionRecord",
+        "school_id":"1"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+            "column_max": 200,
+            "week": {
+              "tuition": 2000,
+              "goodsCount": 0,
+              "showCount": 0,
+              "rechargeCount":0
+            },
+            "month": {
+              "tuition": 2000,
+              "goodsCount": 0,
+              "showCount": 0,
+              "rechargeCount":0
+            }
+          }
+   }
+</textarea>
+<h3 id="j1314">13.14 提现三项汇总：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"withdrawCashGather",
+        "school_id":"1"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+            "showWithdraw": 1250,
+            "goodsWithDrawCash" : 3000,
+            "rechargeCount" : 123000,
+            "balance":"32"
+          }
+   }
+</textarea>
+
+<h3 id="j1315">13.15 近期学费交易明细：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    body:
+    {
+        "action":"getTuitionList",
+        "date_length":"30",
+        "page":"1",
+        "pagesize":"10",
+        "school_id":"3"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": [
+            {
+                "price": "990.00",
+                "truename": "张唐华",
+                "avatar": "http://7xotb6.com2.z0.glb.qiniucdn.com/440d8f09d01825e52e3572c5bba086cc.jpg",
+                "course_name": "三六班"
+            },
+            {
+                "price": "11.00",
+                "truename": "张唐华",
+                "avatar": "http://7xotb6.com2.z0.glb.qiniucdn.com/440d8f09d01825e52e3572c5bba086cc.jpg",
+                "course_name": "物料费"
+            }
+        ]
+   }
+</textarea>
+
+<h3 id="j1316">13.16 提现申请：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/finance
+    header: token
+    body:
+    {
+        "action":"schoolWithdraw",
+        "uaw_money":"30",
+        "school_id":"3"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": []
+   }
+</textarea>
+
+<h3 id="j1401">14.01 运营统计图：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"getBalanceOfPayment",
+        "school_id":"1",
+        "page":"1",
+        "pagesize":"10"
+    }
+    response:
+    {
+
+   }
+</textarea>
+<h3 id="j1402">14.02 教务部上课消课情况：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"classEliminateTermCount",
+        "school_id":"3",
+        "date_length":"7"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+            "eliminate_class": "7",
+            "class_member_count": "12",
+            "residual_class": 118
+          }
+    }参数说明：
+        eliminate_class : 消课数
+        residual_class : 剩余课时
+        class_member_count : 学员数
+</textarea>
+<h3 id="j1403">14.03 课程情况按老师：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"classEliminateListByTeacher",
+        "school_id":"3"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+              "truename": "张菲菲",
+              "student_count": "5",
+              "eliminate_count": "5",
+              "class_times_count": "25"
+          }
+    }参数说明：
+        eliminate_count : 消课数
+        class_times_count : 开课课时
+</textarea>
+<h3 id="j1404">14.04 课程情况按班级：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"classEliminateListByClass",
+        "school_id":"3"
+    }
+    response:
+   {
+      "code": 200,
+      "message": "success",
+      "items": [
+        {
+          "truename": "架子鼓培训初级班",
+          "student_count": "5",
+          "class_times_count": 150,
+          "eliminate_count": 10
+        },
+        {
+          "truename": "架子鼓中级班",
+          "student_count": "4",
+          "class_times_count": 200,
+          "eliminate_count": 2
+        },
+        {
+          "truename": "爵士鼓一班",
+          "student_count": "5",
+          "class_times_count": 1500,
+          "eliminate_count": 2
+        },
+        {
+          "truename": "吉他3班",
+          "student_count": "5",
+          "class_times_count": 1500,
+          "eliminate_count": 0
+        }
+      ]
+    }参数说明：
+        eliminate_count : 消课数
+        class_times_count : 开课课时
+</textarea>
+
+<h3 id="j1405">14.05 课程情况按课程：</h3>
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"classEliminateListByCourse",
+        "school_id":"3"
+    }
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+              [
+                {
+                    "ctp_course_name": "萨玛",
+                    "class_name": "发送到",
+                    "teacher_name": "张菲菲",
+                    "teacher_id": "5",
+                    "eliminate_count": "1",
+                    "class_times_count": "25"
+                },
+                {
+                   "ctp_course_name": "请问",
+                   "class_name": "佛挡杀佛1",
+                   "teacher_name": "格瑞特",
+                   "teacher_id": "6",
+                   "eliminate_count": "3",
+                   "class_times_count": "300"
+                },
+                {
+                   "ctp_course_name": "请问",
+                   "class_name": "高的",
+                   "teacher_name": "张菲菲",
+                   "teacher_id": "5",
+                   "eliminate_count": "4",
+                   "class_times_count": "0"
+                }
+              ]
+          }
+    }参数说明：
+        eliminate_count : 消课数
+        class_times_count : 开课课时
+</textarea>
+<h3 id="j1406">14.06 市场部页面结果:</h3> <textarea> 
+    url:	http://api.xt-cloud.com/customer 
+    body:     { 
+        "action":"potentialCustomerResultGather", 
+        "school_id":"1" 
+    } 
+    response: 
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "all": {
+          "effective_list_count": "43",
+          "invalid_list_count": "3",
+          "reg_list_count": "18"
+        },
+        "week": [
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "星期五"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "星期六"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "星期日"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "0",
+            "reg_list_count": "2",
+            "date": "星期一"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "1",
+            "reg_list_count": "3",
+            "date": "星期二"
+          },
+          {
+            "effective_list_count": "4",
+            "invalid_list_count": "0",
+            "reg_list_count": "4",
+            "date": "星期三"
+          },
+          {
+            "effective_list_count": "8",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "星期四"
+          }
+        ],
+        "month": [
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-06"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-07"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-08"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-09"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-10"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-11"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-12"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-13"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-14"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-15"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-16"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-17"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-18"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-19"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "0",
+            "reg_list_count": "1",
+            "date": "07-20"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-21"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "0",
+            "reg_list_count": "2",
+            "date": "07-22"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-23"
+          },
+          {
+            "effective_list_count": "6",
+            "invalid_list_count": "0",
+            "reg_list_count": "3",
+            "date": "07-24"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-25"
+          },
+          {
+            "effective_list_count": "2",
+            "invalid_list_count": "1",
+            "reg_list_count": "1",
+            "date": "07-26"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-27"
+          },
+          {
+            "effective_list_count": "5",
+            "invalid_list_count": "1",
+            "reg_list_count": "2",
+            "date": "07-28"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-29"
+          },
+          {
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-30"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "07-31"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "0",
+            "reg_list_count": "2",
+            "date": "08-01"
+          },
+          {
+            "effective_list_count": "3",
+            "invalid_list_count": "1",
+            "reg_list_count": "3",
+            "date": "08-02"
+          },
+          {
+            "effective_list_count": "4",
+            "invalid_list_count": "0",
+            "reg_list_count": "4",
+            "date": "08-03"
+          },
+          {
+            "effective_list_count": "8",
+            "invalid_list_count": "0",
+            "reg_list_count": "0",
+            "date": "08-04"
+          }
+        ]
+      }
+    }
+</textarea>
+<h3 id="j1407">14.07 教务消课情况柱状图：</h3> 
+    <textarea> 
+        url:	http://api.xt-cloud.com/operate 
+        body: 
+        {
+            "action":"classEliminateTermAll",
+            "school_id":"1"
+        }
+        response: 
+        {
+          "code": 200,
+          "message": "success",
+          "items": {
+            "week": {
+              "class_member_count": "23",
+              "rs_eliminate_class": 14,
+              "residual_class": 3336,
+              "max_value": "4000"
+            },
+            "month": {
+              "class_member_count": "23",
+              "rs_eliminate_class": 14,
+              "residual_class": 3336,
+              "max_value": "4000"
+            }
+          }
+        }
+    </textarea>
+
+
+<h3 id="j1408">14.08 顾问部页面：</h3> 
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"adviserHome",
+        "school_id":"1"
+    }
+    response:
+
+    {
+        "code": 200,
+        "message": "success",
+        "items": {
+        "max_value":200,
+        "achieve_month_action": 2000,
+        "achieve_month_reach": 2000,
+        "achieve_week": 2000,
+        "achieve_week_reach": 200,
+        "week": {
+            "potential_count": 20,
+            "potential_active": 18,
+            "audition_appoint": 20,
+            "audition_real": 15,
+            "count_signup": 10,
+            "signup_money_count": 10000
+        },
+        "month": {
+            "potential_count": 20,
+            "potential_active": 18,
+            "audition_appoint": 20,
+            "audition_real": 15,
+            "count_signup": 10,
+            "signup_money_count": 10000
+        }
+    }
+}
+</textarea>
+<h3 id="j1409">14.09 顾问列表业绩：</h3> 
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"adviserAchieveList",
+        "school_id":"1"
+    }
+    response:
+
+    {
+          "code": 200,
+          "message": "success",
+          "items": [
+            {
+              "truename": "杨丽萍",
+              "achieved": "5800",
+              "scl_id": "1"
+            },
+            {
+              "truename": "杨丽萍",
+              "achieved": "5800",
+              "scl_id": "1"
+            },
+            {
+              "truename": "杨丽萍",
+              "achieved": "5800",
+              "scl_id": "1"
+            }
+    }
+</textarea>
+<h3 id="j1410">顾问个人业绩详情</h3> 
+<textarea>
+    url:	http://api.xt-cloud.com/operate
+    body:
+    {
+        "action":"adviserOwnAchieve",
+        "school_id":"1",
+        "scl_id":"1"
+    }
+    response:
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "potential_count": 20,
+        "potential_active": 18,
+        "audition_appoint": 20,
+        "audition_real": 15,
+        "count_signup": 10,
+        "signup_money_count": 10000
+      }
+    }
+</textarea>
+<h3 id="j1411">14.11 运营首页：</h3>
+<textarea>
+    url: http://api.xt-cloud.com/operate
+    body:
+     {
+        "action":"saleAchieveCount",
+        "school_id":"1"
+    }
+
+    response:
+    {
+          "code": 200,
+          "message": "success",
+          "items": {
+            "max_value":200,
+            "week": {
+             "week_goal": [
+                  {
+                    "date": "06.01",
+                    "achieve": 1
+                  },
+                  {
+                    "date": "06.02",
+                    "achieve": 2
+                  }
+                ],
+               "week_achieve": [
+                  {
+                    "date": "06.01",
+                    "achieve": 1
+                  },
+                  {
+                    "date": "06.02",
+                    "achieve": 2
+                  }
+                ],
+            },
+            "month": {
+              "month_goal": [
+                  {
+                    "date": "06.01",
+                    "achieve": 1
+                  },
+                  {
+                    "date": "06.02",
+                    "achieve": 2
+                  }
+                ],
+               "month_achieve": [
+                  {
+                    "date": "06.01",
+                    "achieve": 1
+                  },
+                  {
+                    "date": "06.02",
+                    "achieve": 2
+                  }
+                ],
+            },
+            "ranking": [
+              {
+                "truename": "张三",
+                "position": "市场部（业务经理）"
+              },
+              {
+                "truename": "李四",
+                "position": "市场部（业务经理）"
+              },
+              {
+                "truename": "王五",
+                "position": "市场部（业务专员）"
+              }
+            ]
+          }
+        }
+</textarea>
+<h3 id="j1412">14.12 市场部页面结果:</h3> <textarea> 
+    url:	http://api.xt-cloud.com/customer 
+    body:     { 
+        "action":"getMarketingPotential", 
+        "school_id":"35" 
+    } 
+    response: 
+    {
+      "code": 200,
+      "message": "success",
+      "items": {
+        "channel": [
+          {
+            "name": "测试",
+            "effective_list_count": "22",
+            "invalid_list_count": "2",
+            "reg_list_count": "9"
+          },
+          {
+            "name": "网络",
+            "effective_list_count": "9",
+            "invalid_list_count": "0",
+            "reg_list_count": "3"
+          },
+          {
+            "name": "电话",
+            "effective_list_count": "12",
+            "invalid_list_count": "1",
+            "reg_list_count": "6"
+          }
+        ],
+        "personnel": [
+          {
+            "name": "ruby",
+            "effective_list_count": "21",
+            "invalid_list_count": "1",
+            "reg_list_count": "8"
+          },
+          {
+            "name": "成龙",
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0"
+          },
+          {
+            "name": "老师1",
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0"
+          },
+          {
+            "name": "老师2",
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0"
+          },
+          {
+            "name": "许老师",
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0"
+          },
+          {
+            "name": "刘老师",
+            "effective_list_count": "0",
+            "invalid_list_count": "0",
+            "reg_list_count": "0"
+          },
+          {
+            "name": "周舟",
+            "effective_list_count": "14",
+            "invalid_list_count": "0",
+            "reg_list_count": "5"
+          },
+          {
+            "name": "谢贤",
+            "effective_list_count": "8",
+            "invalid_list_count": "2",
+            "reg_list_count": "5"
+          }
+        ]
+      }
+    }
+</textarea>
+</body>
+</html>

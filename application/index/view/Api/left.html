@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fafafa;
+            font-size: 12px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        li {
+            padding: 2px 0px 2px 5px;
+            list-style: none;
+        }
+
+        .topic {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: #999999
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <ul>
+        <li><h3><span class="topic"><a href="right.html#log" target="rightFrame">更新日志</a></span></h3></li>
+
+        <li><h3><span class="topic">1.注册与登录</span></h3></li>
+        <li>1.01 <a href="right.html#j101" target="rightFrame">手机注册时获取验证码</a></li>
+        <li>1.02 <a href="right.html#j102" target="rightFrame">手机号注册</a></li>
+        <li>1.03 <a href="right.html#j103" target="rightFrame">手机号登录</a></li>
+        <li>1.04 <a href="right.html#j104" target="rightFrame">找回密码：发送验证码</a></li>
+        <li>1.05 <a href="right.html#j105" target="rightFrame">忘记密码后重置密码</a></li>
+        <li>1.06 <a href="right.html#j106" target="rightFrame">修改密码</a></li>
+        <li>1.07 <a href="right.html#j107" target="rightFrame">忘记密码:判断验证码是否正确</a></li>
+        <li>1.08 <a href="right.html#j108" target="rightFrame">获取登录验证码</a></li>
+        <li>1.09 <a href="right.html#j109" target="rightFrame">验证码登录</a></li>
+        <li>1.10 <a href="right.html#j110" target="rightFrame">机构手机登陆（校长账号）</a></li>
+
+        <li><h3><span class="topic">2.班级与成员管理</span></h3></li>
+        <li>2.01 <a href="right.html#j201" target="rightFrame">创建一个班级</a></li>
+        <li>2.02 <a href="right.html#j202" target="rightFrame">修改班级名称</a></li>
+        <li>2.03 <a href="right.html#j203" target="rightFrame">删除班级</a></li>
+        <li>2.04 <a href="right.html#j204" target="rightFrame">根据班级代码加入班级</a></li>
+        <li>2.05 <a href="right.html#j205" target="rightFrame">移除班级成员</a></li>
+        <li>2.06 <a href="right.html#j206" target="rightFrame">老师开启、关闭接收班级成员的消息</a></li>
+        <li>2.07 <a href="right.html#j207" target="rightFrame">获取我的班级</a></li>
+        <li>2.08 <a href="right.html#j208" target="rightFrame">获取班级成员列表</a></li>
+        <li>2.09 <a href="right.html#j208" target="rightFrame">老师给班级成员添加备注信息</a></li>
+        <li>2.10 <a href="right.html#j210" target="rightFrame">设置或取消成员为协作老师</a></li>
+        <li>2.11 <a href="right.html#j211" target="rightFrame">学生退出班级</a></li>
+        <li>2.12 <a href="right.html#j212" target="rightFrame">ios: 学生端班级列表：未读的任务个数</a></li>
+        <li>2.13 <a href="right.html#j213" target="rightFrame">获取班级成员数</a></li>
+        <li>2.14 <a href="right.html#j214" target="rightFrame">消除班级成员的新加入状态</a></li>
+        <li>2.15 <a href="right.html#j215" target="rightFrame">学生：获取我加入的班级的新的任务数(我未反馈的)</a></li>
+        <li>2.16 <a href="right.html#j216" target="rightFrame">学生：消除本班级所有未反馈任务标记</a></li>
+        <li>2.17 <a href="right.html#j217" target="rightFrame">获取一个班级信息</a></li>
+        <li>2.18 <a href="right.html#j218" target="rightFrame">设置班级头像</a></li>
+        <li>2.19 <a href="right.html#j219" target="rightFrame">转让班级</a></li>
+        <li>2.20 <a href="right.html#j220" target="rightFrame">获取班级的协作老师</a></li>
+        <li>2.21 <a href="right.html#j221" target="rightFrame">老师：所有学生列表</a></li>
+        <li>2.22 <a href="right.html#j222" target="rightFrame">老师：保存当日考勤</a></li>
+        <li>2.23 <a href="right.html#j223" target="rightFrame">老师：查看当日考勤</a></li>
+
+        <li><h3><span class="topic">3.任务发布管理</span></h3></li>
+        <li>3.01 <a href="right.html#j301" target="rightFrame">发布作业任务</a></li>
+        <li>3.02 <a href="right.html#j302" target="rightFrame">主页任务列表</a></li>
+        <li>3.03 <a href="right.html#j303" target="rightFrame">任务详情页面</a></li>
+        <li>3.04 <a href="right.html#j304" target="rightFrame">七牛获取上传token</a></li>
+        <li>3.05 <a href="right.html#j305" target="rightFrame">获得班级和班级成员的集合</a></li>
+        <li>3.06 <a href="right.html#j306" target="rightFrame">发布任务：获取文件夹中的附件列表</a></li>
+        <li>3.06.2 <a href="right.html#j3062" target="rightFrame">发布任务：获取老师上传的附件文件夹列表</a></li>
+        <li>3.07 <a href="right.html#j307" target="rightFrame">学生反馈任务</a></li>
+        <li>3.08 <a href="right.html#j308" target="rightFrame">首页收纳盒列表</a></li>
+        <li>3.09 <a href="right.html#j309" target="rightFrame">收纳盒已接收文件列表</a></li>
+        <li>3.10 <a href="right.html#j310" target="rightFrame">某一学生递交到收纳盒的文件列表</a></li>
+        <li>3.11 <a href="right.html#j311" target="rightFrame">学生点赞任务</a></li>
+        <li>3.12 <a href="right.html#j312" target="rightFrame">班级主页任务列表</a></li>
+        <li>3.13 <a href="right.html#j313" target="rightFrame">预定任务列表</a></li>
+        <li>3.14 <a href="right.html#j314" target="rightFrame">删除任务</a></li>
+        <li>3.15 <a href="right.html#j315" target="rightFrame">v1.1班级主页任务列表</a></li>
+        <li>3.16 <a href="right.html#j316" target="rightFrame">班级主页-&gt;文件：老师文件夹列表</a></li>
+        <li>3.17 <a href="right.html#j317" target="rightFrame">班级主页-&gt;文件：某一老师发布到任务的所有文件列表</a></li>
+        <li>3.18 <a href="right.html#j318" target="rightFrame">提醒学生反馈任务</a></li>
+        <li>3.19 <a href="right.html#j319" target="rightFrame">发布动态-New</a></li>
+        <li>3.20 <a href="right.html#j320" target="rightFrame">发布通知-New</a></li>
+        <li>3.21 <a href="right.html#j321" target="rightFrame">批量签到-New</a></li>
+        <li>3.22 <a href="right.html#j322" target="rightFrame">获取课程签到情况</a></li>
+
+        <li><h3><span class="topic">4.消息聊天</span></h3></li>
+        <li>4.01 <a href="right.html#j401" target="rightFrame">讨论组列表</a></li>
+        <li>4.02 <a href="right.html#j402" target="rightFrame">搜索用户聊天记录</a></li>
+        <li>4.03 <a href="right.html#j403" target="rightFrame">聊天内容数据</a></li>
+        <li>4.04 <a href="right.html#j404" target="rightFrame">发消息</a></li>
+        <li>4.05 <a href="right.html#j405" target="rightFrame">搜索可聊天对象</a></li>
+        <li>4.06 <a href="right.html#j406" target="rightFrame">获取环信用户昵称</a></li>
+        <li>4.07 <a href="right.html#j407" target="rightFrame">获取环信用户昵称-批量</a></li>
+        <li>4.08 <a href="right.html#j408" target="rightFrame">根据环信用户名获取用户信息</a></li>
+
+        <li><h3><span class="topic">5.个人相关</span></h3></li>
+        <li>5.01 <a href="right.html#j501" target="rightFrame">完善资料</a></li>
+        <li>5.02 <a href="right.html#j502" target="rightFrame">判断用户是否已完善资料</a></li>
+        <li>5.03 <a href="right.html#j503" target="rightFrame">读取个人资料</a></li>
+        <li>5.04 <a href="right.html#j504" target="rightFrame">修改个人资料</a></li>
+        <li>5.05 <a href="right.html#j505" target="rightFrame">获取个人资料详情</a></li>
+        <li>5.06 <a href="right.html#j506" target="rightFrame">检查新版本</a></li>
+        <li>5.07 <a href="right.html#j507" target="rightFrame">修改真实姓名</a></li>
+        <li>5.08 <a href="right.html#j508" target="rightFrame">修改昵称(签名)</a></li>
+        <li>5.09 <a href="right.html#j509" target="rightFrame">修改头像</a></li>
+        <li>5.10 <a href="right.html#j510" target="rightFrame">用户提交意见反馈</a></li>
+        <li>5.11 <a href="right.html#j511" target="rightFrame">修改性别</a></li>
+        <li>5.12 <a href="right.html#j512" target="rightFrame">通过token获取个人信息</a></li>
+        <li>5.13 <a href="right.html#j513" target="rightFrame">学习首页</a></li>
+        <li>5.14 <a href="right.html#j514" target="rightFrame">个人日程安排</a></li>
+        <li>5.15 <a href="right.html#j515" target="rightFrame">个人日程详情</a></li>
+        <li>5.16 <a href="right.html#j516" target="rightFrame">日程签到(请假)</a></li>
+        <li>5.17 <a href="right.html#j517" target="rightFrame">班级动态列表</a></li>
+        <li>5.18 <a href="right.html#j518" target="rightFrame">班级动态评论列表</a></li>
+        <li>5.19 <a href="right.html#j519" target="rightFrame">班级通知列表</a></li>
+        <li>5.20 <a href="right.html#j520" target="rightFrame">评论动态</a></li>
+        <li>5.21 <a href="right.html#j521" target="rightFrame">[取消]收藏动态</a></li>
+        <li>5.22 <a href="right.html#j522" target="rightFrame">[取消]赞动态</a></li>
+        <li>5.23 <a href="right.html#j523" target="rightFrame">我收藏的动态</a></li>
+        <li>5.24 <a href="right.html#j524" target="rightFrame">动态详情</a></li>
+        <li>5.25 <a href="right.html#j525" target="rightFrame">获取老师学习首页</a></li>
+        <li>5.26 <a href="right.html#j526" target="rightFrame">获取老师行程详情</a></li>
+        <li>5.27 <a href="right.html#j527" target="rightFrame">获取签到详情</a></li>
+        <li>5.28 <a href="right.html#j528" target="rightFrame">充值金额</a></li>
+        <li>5.29 <a href="right.html#j529" target="rightFrame">充值</a></li>
+        <li>5.30 <a href="right.html#j530" target="rightFrame">充值记录</a></li>
+        <li>5.31 <a href="right.html#j531" target="rightFrame">获取个人月份行程安排</a></li>
+        <li>5.32 <a href="right.html#j532" target="rightFrame">获取老师月份行程详情</a></li>
+        <li>5.32 <a href="right.html#j533" target="rightFrame">根据手机号验证用户是否是学校学员</a></li>
+
+
+        <li><h3><span class="topic">6.MagicTeacher相关</span></h3></li>
+        <li>6.01 <a href="right.html#j601" target="rightFrame">判断手机号和验证码是否可注册</a></li>
+        <li>6.02 <a href="right.html#j602" target="rightFrame">注册环信用户</a></li>
+        <li>6.03 <a href="right.html#j603" target="rightFrame">开启/隐藏【发现】功能</a></li>
+
+        <li><h3><span class="topic">7.校园</span></h3></li>
+        <li>7.01 <a href="right.html#j701" target="rightFrame">校园首页:学校列表</a></li>
+        <li>7.02 <a href="right.html#j702" target="rightFrame">获取学校简要信息</a></li>
+        <li>7.03 <a href="right.html#j703" target="rightFrame">学校通知列表</a></li>
+        <li>7.04 <a href="right.html#j704" target="rightFrame">通知详情页</a></li>
+        <li>7.05 <a href="right.html#j705" target="rightFrame">我在当前学校加入的班级</a></li>
+        <li>7.06 <a href="right.html#j706" target="rightFrame">提交内容到校长信箱</a></li>
+        <li>7.07 <a href="right.html#j707" target="rightFrame">退出校园</a></li>
+        <li>7.08 <a href="right.html#j708" target="rightFrame">获取通讯录</a></li>
+        <li><h3><span class="topic">8.成绩</span></h3></li>
+        <li>8.01 <a href="right.html#j801" target="rightFrame">学生：班级所有考试成绩简表(按科目分类)</a></li>
+        <li>8.02 <a href="right.html#j802" target="rightFrame">学生：某一科目所有考试列表</a></li>
+        <li>8.03 <a href="right.html#j803" target="rightFrame">学生：签收考试成绩</a></li>
+        <li>8.04 <a href="right.html#j804" target="rightFrame">老师按科目：获取班级考试科目列表</a></li>
+        <li>8.05 <a href="right.html#j805" target="rightFrame">老师按科目：班级某一科目的考试列表</a></li>
+        <li>8.06 <a href="right.html#j806" target="rightFrame">老师按科目：某次考试的签收学生信息</a></li>
+        <li>8.07 <a href="right.html#j807" target="rightFrame">老师按科目：提醒学生签收考试成绩</a></li>
+        <li>8.08 <a href="right.html#j808" target="rightFrame">老师按成员：某一学生所有科目考试简表</a></li>
+        <li>8.09 <a href="right.html#j809" target="rightFrame">老师按成员：某一学生某一科目所有考试列表</a></li>
+
+        <li><h3><span class="topic">9.商城</span></h3></li>
+        <li>9.01 <a href="right.html#j901" target="rightFrame">商城首页</a></li>
+        <li>9.02 <a href="right.html#j902" target="rightFrame">商品列表</a></li>
+        <li>9.03 <a href="right.html#j903" target="rightFrame">商品详情</a></li>
+        <li>9.04 <a href="right.html#j904" target="rightFrame">商品评价</a></li>
+        <li>9.05 <a href="right.html#j905" target="rightFrame">我的收件人</a></li>
+        <li>9.06 <a href="right.html#j906" target="rightFrame">我的订单</a></li>
+        <li>9.07 <a href="right.html#j907" target="rightFrame">新建订单</a></li>
+        <li>9.08 <a href="right.html#j908" target="rightFrame">取消订单</a></li>
+        <li>9.09 <a href="right.html#j909" target="rightFrame">订单详情</a></li>
+        <li>9.10 <a href="right.html#j910" target="rightFrame">我的收藏</a></li>
+        <li>9.11 <a href="right.html#j911" target="rightFrame">添加收藏</a></li>
+        <li>9.12 <a href="right.html#j912" target="rightFrame">取消收藏</a></li>
+        <li>9.13 <a href="right.html#j913" target="rightFrame">创建收件人</a></li>
+        <li>9.14 <a href="right.html#j914" target="rightFrame">编辑收件人</a></li>
+        <li>9.15 <a href="right.html#j915" target="rightFrame">设为默认联系人</a></li>
+        <li>9.16 <a href="right.html#j916" target="rightFrame">删除联系人</a></li>
+        <li>9.17 <a href="right.html#j917" target="rightFrame">确认收货</a></li>
+        <li>9.18 <a href="right.html#j918" target="rightFrame">订单评论</a></li>
+        <li>9.19 <a href="right.html#j919" target="rightFrame">申请售后</a></li>
+        <li>9.20 <a href="right.html#j920" target="rightFrame">已完成订单列表</a></li>
+        <li>9.21 <a href="right.html#j921" target="rightFrame">修改订单收件人</a></li>
+
+        <li><h3><span class="topic">10.秀场</span></h3></li>
+        <li>10.01 <a href="right.html#j1001" target="rightFrame">秀场首页</a></li>
+        <li>10.02 <a href="right.html#j1002" target="rightFrame">全国秀场</a></li>
+        <li>10.03 <a href="right.html#j1003" target="rightFrame">本地秀场</a></li>
+        <li>10.04 <a href="right.html#j1004" target="rightFrame">秀场详情</a></li>
+        <li>10.05 <a href="right.html#j1005" target="rightFrame">我的订单</a></li>
+        <li>10.06 <a href="right.html#j1006" target="rightFrame">新建订单</a></li>
+        <li>10.07 <a href="right.html#j1007" target="rightFrame">取消订单</a></li>
+        <li>10.08 <a href="right.html#j1008" target="rightFrame">秀场首页精彩分享</a></li>
+        <li>10.09 <a href="right.html#j1009" target="rightFrame">秀场图片列表</a></li>
+        <li>10.10 <a href="right.html#j1010" target="rightFrame">秀场订单详情</a></li>
+
+        <li><h3><span class="topic">11.机构日报相关</span></h3></li>
+        <li>11.01 <a href="right.html#j1101" target="rightFrame">当天开课数</a></li>
+        <li>11.02 <a href="right.html#j1102" target="rightFrame">当天课程情况列表</a></li>
+        <li>11.03 <a href="right.html#j1103" target="rightFrame">今日流水总额</a></li>
+        <li>11.04 <a href="right.html#j1104" target="rightFrame">今日流水详情</a></li>
+        <li>11.05 <a href="right.html#j1105" target="rightFrame">今日试听详情</a></li>
+        <li>11.06 <a href="right.html#j1105" target="rightFrame">学费（待定）</a></li>
+        <li>11.07 <a href="right.html#j1107" target="rightFrame">日报首页</a></li>
+        <li>11.08 <a href="right.html#j1108" target="rightFrame">当前消课课程情况列表</a></li>
+
+
+        <li><h3><span class="topic">12.机构版客户</span></h3></li>
+            <li>12.01 <a href="right.html#j1201" target="rightFrame">新增潜客数量</a></li>
+            <li>12.02 <a href="right.html#j1202" target="rightFrame">新增潜客按渠道</a></li>
+            <li>12.03 <a href="right.html#j1203" target="rightFrame">新增潜客详情按渠道</a></li>
+            <li>12.04 <a href="right.html#j1204" target="rightFrame">新增潜客按专员</a></li>
+            <li>12.05 <a href="right.html#j1205" target="rightFrame">新增潜客详情按专员</a></li>
+            <li>12.06 <a href="right.html#j1206" target="rightFrame">潜客名单结果</a></li>
+
+
+        <li><h3><span class="topic">13.机构财务相关</span></h3></li>
+            <li>13.01 <a href="right.html#j1301" target="rightFrame">财务:阶段流水统计图</a></li>
+            <li>13.02 <a href="right.html#j1302" target="rightFrame">账户余额</a></li>
+            <li>13.03 <a href="right.html#j1303" target="rightFrame">可提现金额</a></li>
+            <li>13.04 <a href="right.html#j1304" target="rightFrame">获取未结算金额</a></li>
+            <li>13.05 <a href="right.html#j1305" target="rightFrame">未结算明细</a></li>
+            <li>13.06 <a href="right.html#j1306" target="rightFrame">学校的充值记录</a></li>
+            <li>13.07 <a href="right.html#j1307" target="rightFrame">近期学校商城交易总额</a></li>
+            <li>13.08 <a href="right.html#j1308" target="rightFrame">近期学校商城交易详情</a></li>
+            <li>13.09 <a href="right.html#j1309" target="rightFrame">近期秀场交易金额</a></li>
+            <li>13.10 <a href="right.html#j1310" target="rightFrame">近期秀场交易详情</a></li>
+            <li>13.11 <a href="right.html#j1311" target="rightFrame">收支明细</a></li>
+            <li>13.12 <a href="right.html#j1312" target="rightFrame">财务首页</a></li>
+            <li>13.13 <a href="right.html#j1313" target="rightFrame">交易记录</a></li>
+            <li>13.14 <a href="right.html#j1314" target="rightFrame">提现三项汇总</a> </li>
+            <li>13.15 <a href="right.html#j1315" target="rightFrame">近期学费交易明细</a> </li>
+            <li>13.16 <a href="right.html#j1316" target="rightFrame">提现申请</a> </li>
+
+        <li><h3><span class="topic">14.机构运营相关</span></h3></li>
+            <li>14.01 <a href="right.html#j1401" target="rightFrame">销售业绩统计图</a></li>
+            <li>14.02 <a href="right.html#j1402" target="rightFrame">教务部上课消课情况</a></li>
+            <li>14.03 <a href="right.html#j1403" target="rightFrame">课程情况按老师</a></li>
+            <li>14.04 <a href="right.html#j1404" target="rightFrame">课程情况按班级</a></li>
+            <li>14.05 <a href="right.html#j1405" target="rightFrame">课程情况按课程</a></li>
+            <li>14.06 <a href="right.html#j1406" target="rightFrame">市场部周日统计</a></li>
+            <li>14.07 <a href="right.html#j1407" target="rightFrame">教务消课情况柱状图</a></li>
+            <li>14.08 <a href="right.html#j1408" target="rightFrame">顾问部页面</a></li>
+            <li>14.09 <a href="right.html#j1409" target="rightFrame">顾问列表业绩</a></li>
+            <li>14.10 <a href="right.html#j1410" target="rightFrame">顾问个人业绩详情</a></li>
+            <li>14.11 <a href="right.html#j1411" target="rightFrame">运营首页</a></li>
+            <li>14.12 <a href="right.html#j1412" target="rightFrame">日报圆圈统计</a></li>
+
+    </ul>
+</div>
+
+</body>
+</html>

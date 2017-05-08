@@ -1,0 +1,45 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body { /*background: url("../images/invite/bg.jpg") center center no-repeat; background-attachment: fixed;*/ font-family: STXihei,STHeiti,"Microsoft YaHei",Helvetica; font-size:0.875rem; }
+a:link, a:visited, a:hover { text-decoration:none; }
+ul { list-style:none; }
+img { border:0; }
+.clear { clear: both; height: 0; overflow: hidden; }
+
+.main { position: relative; width: 100%; }
+.main_bg { position: absolute; top: 0px; left: 0px; z-index: -1; }
+.main_layout { position: absolute; top: 40px; width: 100%; }
+.main_content { margin: 0 auto; padding-bottom: 20px; width: 90%; background-color: #ffffff; }
+.logo { padding: 15px 0 20px 15px; }
+.title { padding: 5px 0 20px 15px; font-size: 1em; color: #666666; }
+.title span { color: #008ed8; padding: 0px 5px; }
+.content { padding: 5px 10px 20px 15px; font-size: 0.75em; color: #666666; line-height: 18px; }
+.class_name { padding: 5px 10px 10px 15px; font-size: 1em; color: #999999; }
+.class_name span { color: #008ed8; }
+
+.download { margin: 10px auto 0px auto; text-align: center; width: 80%; height: 30px; line-height: 30px; background-color: #008ed8; color: #ffffff; }
+.download a:link { color: #ffffff; }
+.download a:visited { color: #ffffff; }
+.download a:hover { color: #ffffff; }
+
+.logo_small { margin: 10px auto; text-align: center; }
+.desc { padding: 0 20px; line-height: 18px; }
+.hot_line {  height: 25px; line-height: 25px; color: #ffffff !important; }
+
+.nav { position:fixed; bottom:0; margin:0 auto; width: 100%; height:120px; background:#008ed8; text-align:center; font-size: 0.75em; color: #ffffff !important; }
+
+/*font*/
+.font_cn { }
+.font_en {}
+
+.clear { clear:both; width:0; height:0; overflow:hidden; }
+.fl { float:left; }
+.fr { float:right; }
+.fn { float:none; }
